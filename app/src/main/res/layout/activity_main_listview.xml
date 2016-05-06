@@ -95,7 +95,6 @@
         />
 
     <com.yc.BaiSiBuDeJie.module.error.ErrorPortraitView
-        android:visibility="gone"
         android:id="@+id/errorPortraitVw"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
