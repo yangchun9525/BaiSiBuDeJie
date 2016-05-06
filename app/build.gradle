@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda' //加上这句加,入plugin声明
+android {
+    compileSdkVersion 23
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.yc.baisibudejie"
+        minSdkVersion 18
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        //使用JAVA8语法解析
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+retrolambda {
+    //指定将源码编译的级别，使用下列代码，会将代码编译到兼容1.6的字节码格式
+    javaVersion JavaVersion.VERSION_1_6
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    // 添加eventBus支持
+    compile 'de.greenrobot:eventbus:2.4.0'
+    // 添加Gson支持
+    compile 'com.google.code.gson:gson:2.3.1'
+    // 添加volley支持
+    compile files('libs/volley.jar')
+    // 添加ormLite支持
+    compile files('libs/ormlite-android-4.48.jar')
+    compile files('libs/ormlite-core-4.48.jar')
+    // 图片缓存框架
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile project(':gallery')
+    compile project(':jcvideoplayer-lib')
+    compile project(':recyclelibrary')
+    compile project(':rxvolley')
+}

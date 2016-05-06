@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- loading -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/commonLoadingLayout"
+        android:background="@color/white">
+
+        <com.yc.BaiSiBuDeJie.widget.CircularProgress
+            android:id="@+id/commonProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:progressBorderWidth="3dp"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+    <!-- no data -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/commonNoDataLayout"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/commonNoDataIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/error_nodata"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+    <!-- error -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/commonErrorLayout"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/error_portrait"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/commonErrorIv"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/commonErrorLine"
+            android:layout_below="@id/commonErrorIv"
+            android:background="@color/common_body_content_text"/>
+
+        <com.yc.BaiSiBuDeJie.base.BaseTextView
+            android:id="@+id/commonErrorTv"
+            style="@style/textview_common"
+            android:textColor="@color/common_body_content_text"
+            android:text="@string/common_error_maybe"
+            android:layout_below="@id/commonErrorLine"
+            android:gravity="center_vertical"/>
+
+        <com.yc.BaiSiBuDeJie.base.BaseListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/commonErrorReasonLv"
+            android:layout_toRightOf="@id/commonErrorTv"
+            android:layout_alignTop="@id/commonErrorTv"
+            android:divider="@null"
+            android:listSelector="@android:color/transparent"/>
+
+        <com.yc.BaiSiBuDeJie.base.BaseButton
+            android:id="@+id/commonRetryBtn"
+            style="@style/button_common"
+            android:text="@string/common_retry"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/commonErrorReasonLv"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

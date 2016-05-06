@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_toast_style"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="5dip" >
+
+    <com.yc.BaiSiBuDeJie.base.BaseTextView
+        android:id="@+id/toastLongTxt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dip"
+        android:textColor="@android:color/white"
+        tools:ignore="SelectableText" />
+
+    <com.yc.BaiSiBuDeJie.base.BaseTextView
+        android:id="@+id/toastLongTxt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dip"
+        android:textColor="@android:color/white"
+        tools:ignore="SelectableText" />
+
+</LinearLayout>

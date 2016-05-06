@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="red">#C93437</color>
+    <color name="blue">#375BF1</color>
+    <color name="yellow">#F7D23E</color>
+    <color name="green">#34A350</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="common_btn_ok_bg">#066DD9</color>
+    <color name="common_btn_ok_click_bg">#3F8CDC</color>
+
+    <color name="common_body_content_text">#7F7F7F</color>
+    <color name="common_body_hint_text">#CCCCCC</color>
+
+    <color name="common_tab_selected_text">#FC4B4E</color>
+    <color name="common_tab_text">#7F7F7F</color>
+
+    <color name="title">#ff1ab2e8</color>
+</resources>

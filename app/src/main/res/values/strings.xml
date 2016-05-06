@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">仿制百思不得姐</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="common_ok_text">OK</string>
+    <string name="common_cancel_text">Cancel</string>
+
+    <!-- pulltorefresh -->
+    <string name="p2refresh_head_load_more">Load more information</string>
+    <string name="p2refresh_end_load_more">More</string>
+    <string name="p2refresh_end_click_load_more">Click Load</string>
+    <string name="p2refresh_release_refresh">Undo refresh</string>
+    <string name="p2refresh_pull_to_refresh">Drop-down Refresh</string>
+    <string name="p2refresh_doing_head_refresh">Refreshing&#8230;</string>
+    <string name="p2refresh_doing_end_refresh">Loading&#8230;</string>
+    <string name="p2refresh_refresh_lasttime">The latest update&#160;&#058;&#160;</string>
+    
+    <!-- error -->
+    <string name="error">error</string>
+    <string name="error_server_down">server error</string>
+    <string name="error_network_service">The network is unavailable，please set the network!</string>
+    <string name="error_network_request">Limited or poor network connectivity, please try again later.</string>
+    <string name="error_character">Invalid character.</string>
+    <string name="error_character_too_long">Character is too long</string>
+
+    <string-array name="common_error_reason">
+        <item>Network instability.</item>
+        <item>Not yet access to the Internet.</item>
+        <item>The server is down.</item>
+    </string-array>
+
+    <string name="common_error_maybe">May be</string>
+    <string name="common_retry">RETRY</string>
+</resources>

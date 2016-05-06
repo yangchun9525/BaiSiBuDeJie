@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <com.yc.BaiSiBuDeJie.base.BaseTextView
+        android:text="jashkjahskjfhjakfbmxzbnjashkjfahsfjkhnf,masnkjshakjfhjksh"
+        android:textColor="#323038"
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.yc.BaiSiBuDeJie.base.BaseTextView
+        android:textColor="#7F7F7F"
+        android:id="@+id/content"
+        android:layout_below="@id/title"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/image"
+        android:scaleType="fitXY"
+        android:layout_below="@id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+        android:layout_below="@id/title"
+        android:visibility="gone"
+        android:id="@+id/videocontroller1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+</RelativeLayout>

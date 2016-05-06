@@ -1,0 +1,46 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- customize the color palette -->
+        <!-- toolbar（actionbar）颜色 -->
+        <!--<item name="colorPrimary">#4876FF</item>-->
+        <!--&lt;!&ndash; 状态栏颜色 &ndash;&gt;-->
+        <!--<item name="colorPrimaryDark">#3A5FCD</item>-->
+        <!-- 窗口的背景颜色 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 系统默认divider样式 -->
+        <item name="android:listDivider">@drawable/bg_divider</item>
+
+        <!-- 设置状态栏透明(需要4.4以上的版本支持，还需在布局文件中设置marginTop或paddingTop) -->
+        <!--<item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>-->
+    </style>
+
+
+    <style name="button_common">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/bg_button_ok_selector</item>
+    </style>
+
+    <style name="textview_common">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="title">
+        <item name="android:textColor">@color/title</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:shadowColor">#44000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+</resources>

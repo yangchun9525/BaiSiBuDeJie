@@ -1,0 +1,30 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="app_bar_height">256dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="fab_margin">50dp</dimen>
+    <!-- 说明 -->
+    <!-- 1. 控件没有在java文件中实例化时，设置字体大小用sp单位 -->
+    <!-- 2. 自定义控件设置字体大小用sp单位 -->
+    <!-- 3. 代码中用工具类设置字体大小是，用px单位-->
+    <!-- 4. 字体大小定义时，用text_size 开头 -->
+
+    <!-- common -->
+    <dimen name="text_size_common_txt_36">36px</dimen>
+    <dimen name="text_size_common_txt_38">38px</dimen>
+    <dimen name="text_size_common_txt_40">40px</dimen>
+    <dimen name="text_size_common_txt_42">42px</dimen>
+    <dimen name="text_size_common_txt_46">46px</dimen>
+    <dimen name="text_size_common_txt_48">48px</dimen>
+    <dimen name="text_size_common_txt_50">50px</dimen>
+    <dimen name="text_size_common_txt_54">54px</dimen>
+    <dimen name="text_size_common_txt_60">60px</dimen>
+    <dimen name="text_size_common_txt_72">72px</dimen>
+
+    <dimen name="update_version_dialog_tile">66px</dimen>
+    <dimen name="update_version_dialog_rounded_radius">6dp</dimen>
+
+    <dimen name="text_size_user_loading_copyright">32px</dimen>
+</resources>
