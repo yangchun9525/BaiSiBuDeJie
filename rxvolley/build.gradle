@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'me.tatarka.retrolambda' //¼ÓÉÏÕâ¾ä¼Ó,ÈëpluginÉùÃ÷
+apply plugin: 'me.tatarka.retrolambda' //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½pluginï¿½ï¿½ï¿½ï¿½
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -17,13 +17,13 @@ android {
         }
     }
     compileOptions {
-        //Ê¹ÓÃJAVA8Óï·¨½âÎö
+        //Ê¹ï¿½ï¿½JAVA8ï¿½ï·¨ï¿½ï¿½ï¿½ï¿½
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 retrolambda {
-    //Ö¸¶¨½«Ô´Âë±àÒëµÄ¼¶±ğ£¬Ê¹ÓÃÏÂÁĞ´úÂë£¬»á½«´úÂë±àÒëµ½¼æÈİ1.6µÄ×Ö½ÚÂë¸ñÊ½
+    //Ö¸ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ë£¬ï¿½á½«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ëµ½ï¿½ï¿½ï¿½ï¿½1.6ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½Ê½
     javaVersion JavaVersion.VERSION_1_6
 }
 dependencies {

@@ -25,6 +25,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
  * @author kymjs (http://www.kymjs.com/) on 10/19/15.
  */
 public class SamplePagerAdapter extends PagerAdapter {
+    private float mScaleSize = 3.0f;
     private Activity aty;
     private String[] imageUrls;
     private KJHttp kjh;
@@ -66,6 +67,11 @@ public class SamplePagerAdapter extends PagerAdapter {
                     displayGif(gifView, t);
                 } else {
                     displayImage(photoView, t);
+                    if(mScaleSize > 1.0f) {
+                        photoView.setMaxScale(mScaleSize);
+                    }else {
+                        photoView.setZoomable(false);
+                    }
                 }
             }
 
@@ -170,6 +176,7 @@ public class SamplePagerAdapter extends PagerAdapter {
         int desiredHeight = getResizedDimension(mMaxHeight, mMaxWidth,
                 actualHeight, actualWidth);
 
+        mScaleSize = mMaxWidth / desiredWidth;
         option.inJustDecodeBounds = false;
         option.inSampleSize = findBestSampleSize(actualWidth, actualHeight,
                 desiredWidth, desiredHeight);
