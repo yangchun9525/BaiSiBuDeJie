@@ -33,4 +33,8 @@
 
     <string name="common_error_maybe">May be</string>
     <string name="common_retry">RETRY</string>
+
+    <string name="to_mvp_activity">使用MVP实现</string>
+    <string name="to_mvc_activity">使用MVC实现</string>
+    <string name="change_skin">换肤</string>
 </resources>

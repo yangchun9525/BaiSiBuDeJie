@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -25,6 +26,10 @@ import com.yc.BaiSiBuDeJie.utils.LogTools;
 
 import java.util.ArrayList;
 
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.Utils;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -35,7 +40,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by YangChun on 2016/4/19.
  */
-public class MainRecycleViewActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener{
+public class MainRecycleViewActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener,SwipeBackActivityBase {
     private RecyclerView mRecyclerView;
     private RecycleViewAdapter mQuickAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -44,11 +49,16 @@ public class MainRecycleViewActivity extends BaseActivity implements SwipeRefres
     private int currentPage = 1;
     private boolean isLoadMore = false;
     private ArrayList<ContentEntity> contentlist = new ArrayList<>();
+    private SwipeBackActivityHelper swipeBackActivityHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        swipeBackActivityHelper = new SwipeBackActivityHelper(this);
+        swipeBackActivityHelper.onActivityCreate();
         setContentView(R.layout.activity_main_recyclerview);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.to_mvc_activity);
         init();
         rxVolleyPost(Const.SHOWAPI_TYPE_IMAGE);
     }
@@ -181,5 +191,33 @@ public class MainRecycleViewActivity extends BaseActivity implements SwipeRefres
     public void onLoadMoreRequested() {
         isLoadMore = true;
         rxVolleyPost(Const.SHOWAPI_TYPE_IMAGE);
+    }
+
+    @Override
+    public SwipeBackLayout getSwipeBackLayout() {
+        return swipeBackActivityHelper.getSwipeBackLayout();
+    }
+
+    @Override
+    public void setSwipeBackEnable(boolean enable) {
+        getSwipeBackLayout().setEnableGesture(enable);
+    }
+
+    @Override
+    public void scrollToFinishActivity() {
+        Utils.convertActivityToTranslucent(this);
+        getSwipeBackLayout().scrollToFinishActivity();
+    }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        swipeBackActivityHelper.onPostCreate();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return true;
     }
 }

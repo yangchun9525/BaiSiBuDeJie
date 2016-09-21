@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#324968</color>
     <color name="red">#C93437</color>
     <color name="blue">#375BF1</color>
     <color name="yellow">#F7D23E</color>
@@ -16,5 +17,7 @@
     <color name="common_tab_selected_text">#FC4B4E</color>
     <color name="common_tab_text">#7F7F7F</color>
 
+    <color name="common_viewpage_background">#F7F7F7</color>
     <color name="title">#ff1ab2e8</color>
+    <color name="transparent_background">#7f7F7F7F</color>
 </resources>
