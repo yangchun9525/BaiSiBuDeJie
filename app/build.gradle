@@ -4,9 +4,13 @@ android {
     compileSdkVersion 23
     buildToolsVersion "22.0.1"
 
+//    dataBinding {
+//        enabled true
+//    }
+
     defaultConfig {
         applicationId "com.yc.baisibudejie"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -28,7 +32,7 @@ retrolambda {
     javaVersion JavaVersion.VERSION_1_6
 }
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     // 添加eventBus支持
@@ -48,4 +52,6 @@ dependencies {
     compile project(':recyclelibrary')
     compile project(':rxvolley')
     compile files('libs/MobCommons-2016.0426.1819.jar')
+    //增加左滑退出activity的库
+    compile 'me.imid.swipebacklayout.lib:library:1.0.0'
 }

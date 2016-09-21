@@ -1,19 +1,29 @@
 package com.yc.BaiSiBuDeJie.module.listview;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.volley.VolleyError;
 import com.yc.BaiSiBuDeJie.GlobalApp;
 import com.yc.BaiSiBuDeJie.R;
 import com.yc.BaiSiBuDeJie.base.BaseActivity;
+import com.yc.BaiSiBuDeJie.base.BaseTextView;
 import com.yc.BaiSiBuDeJie.constant.Const;
 import com.yc.BaiSiBuDeJie.manager.RequestManager;
 import com.yc.BaiSiBuDeJie.module.error.ErrorPortraitView;
@@ -21,6 +31,7 @@ import com.yc.BaiSiBuDeJie.module.listview.adapter.TabLayoutFragmentAdapter;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
 import com.yc.BaiSiBuDeJie.module.listview.fragment.ItemFragment;
+import com.yc.BaiSiBuDeJie.module.mvp.activity.BuDeJieMvpActivity;
 import com.yc.BaiSiBuDeJie.module.recycleview.MainRecycleViewActivity;
 import com.yc.BaiSiBuDeJie.net.IParserListener;
 import com.yc.BaiSiBuDeJie.net.IRequestListener;
@@ -42,18 +53,15 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     private SlipViewPager mViewPager;
     private TabLayoutFragmentAdapter mFragmentAdapter;
     private ErrorPortraitView errorPortraitVw;
+    private BaseTextView mTvToMvcRv,mTvToMvpRv;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
-    private FloatingActionButton mToVolleyRecycleTvFAB;
-
-    private CollapsingToolbarLayout collapsingToolbarLayout;
-    private Toolbar toolbar;
+    private DrawerLayout mMainDrawerLayout;
     private long exitTime = 0; ////记录第一次点击的时间
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_listview);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init();
         sendRequest(Const.SHOWAPI_TYPE_IMAGE);
     }
@@ -75,20 +83,40 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
         errorPortraitVw = (ErrorPortraitView) findViewById(R.id.errorPortraitVw);
         errorPortraitVw.isLoading();
 
-        mToVolleyRecycleTvFAB = (FloatingActionButton) findViewById(R.id.fab);
+        mTvToMvcRv = (BaseTextView) findViewById(R.id.tvToMvcRv);
+        mTvToMvpRv = (BaseTextView) findViewById(R.id.tvToMvpRv);
 
-        //标题
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        collapsingToolbarLayout.setTitle(getString(R.string.app_name));
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        final DrawerArrowDrawable indicator = new DrawerArrowDrawable(this);
+        indicator.setColor(Color.WHITE);
+        getSupportActionBar().setHomeAsUpIndicator(indicator);
+
+        mMainDrawerLayout = (DrawerLayout) findViewById(R.id.mainDrawer);
+        mMainDrawerLayout.setScrimColor(getResources().getColor(R.color.transparent_background));
+        mMainDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                indicator.setProgress(slideOffset);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
     }
 
     @Override
     protected void setViewSize() {
-        if(Integer.parseInt(android.os.Build.VERSION.SDK) > 20) {
-            DimensionUtil.setMargin(mTabLayout, 0, 50, 0, 0);
-        }
     }
 
     @Override
@@ -100,7 +128,8 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     @Override
     protected void bindEvent() {
-        mToVolleyRecycleTvFAB.setOnClickListener(this);
+        mTvToMvcRv.setOnClickListener(this);
+        mTvToMvpRv.setOnClickListener(this);
     }
 
     @Override
@@ -116,7 +145,7 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     @Override
     public void onBackPressed() {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
-            Snackbar.make(mToVolleyRecycleTvFAB, "再按一次退出程序", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(mTabLayout, "再按一次退出程序", Snackbar.LENGTH_SHORT).show();
             exitTime = System.currentTimeMillis();
         } else {
             finish();
@@ -171,7 +200,6 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
             mFragments.add(textFragment);
         }
         if (mFragments.size() == 3) {
-            mToVolleyRecycleTvFAB.setVisibility(View.VISIBLE);
             errorPortraitVw.setVisibility(View.GONE);
             setupViewPager(mFragments);
         }
@@ -186,9 +214,26 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
-            case R.id.fab:
+            case R.id.tvToMvcRv:
+                mMainDrawerLayout.closeDrawer(GravityCompat.START);
                 startActivity(new Intent(MainListViewActivity.this, MainRecycleViewActivity.class));
                 break;
+            case R.id.tvToMvpRv:
+                mMainDrawerLayout.closeDrawer(GravityCompat.START);
+                startActivity(new Intent(MainListViewActivity.this, BuDeJieMvpActivity.class));
+                break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            if (mMainDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                mMainDrawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                mMainDrawerLayout.openDrawer(GravityCompat.START);
+            }
+        }
+        return true;
     }
 }

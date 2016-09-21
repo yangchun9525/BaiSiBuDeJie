@@ -1,22 +1,22 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- customize the color palette -->
-        <!-- toolbar（actionbar）颜色 -->
-        <!--<item name="colorPrimary">#4876FF</item>-->
-        <!--&lt;!&ndash; 状态栏颜色 &ndash;&gt;-->
-        <!--<item name="colorPrimaryDark">#3A5FCD</item>-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- 窗口的背景颜色 -->
         <item name="android:windowBackground">@android:color/transparent</item>
         <!-- 系统默认divider样式 -->
         <item name="android:listDivider">@drawable/bg_divider</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
 
-        <!-- 设置状态栏透明(需要4.4以上的版本支持，还需在布局文件中设置marginTop或paddingTop) -->
-        <!--<item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>-->
     </style>
 
+    <style name="LoadingActivityTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- 窗口的背景颜色 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 系统默认divider样式 -->
+        <item name="android:listDivider">@drawable/bg_divider</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+    </style>
 
     <style name="button_common">
         <item name="android:layout_width">match_parent</item>
@@ -43,4 +43,7 @@
         <item name="android:shadowRadius">1</item>
     </style>
 
+    <style name="ActivityTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 </resources>
