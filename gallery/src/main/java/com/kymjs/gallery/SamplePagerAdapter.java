@@ -1,6 +1,7 @@
 package com.kymjs.gallery;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.view.PagerAdapter;
@@ -146,15 +147,15 @@ public class SamplePagerAdapter extends PagerAdapter {
      * 获取图片类型
      */
     public int getType(byte[] data) {
-        // Png test:  
+        // Png test:
         if (data[1] == 'P' && data[2] == 'N' && data[3] == 'G') {
             return TYPE_PNG;
         }
-        // Gif test:  
+        // Gif test:
         if (data[0] == 'G' && data[1] == 'I' && data[2] == 'F') {
             return TYPE_GIF;
         }
-        // JPG test:  
+        // JPG test:
         if (data[6] == 'J' && data[7] == 'F' && data[8] == 'I'
                 && data[9] == 'F') {
             return TYPE_JPG;
@@ -178,6 +179,14 @@ public class SamplePagerAdapter extends PagerAdapter {
                 actualHeight, actualWidth);
 
         mScaleSize = mMaxWidth / desiredWidth;
+        int size = findBestSampleSize(actualWidth, actualHeight,
+                desiredWidth, desiredHeight);
+        //3为手动测试出来的，3为最合适的大小
+        if(size > 3) {
+            option.inSampleSize = 3;
+        }else {
+            option.inSampleSize = size;
+        }
         option.inJustDecodeBounds = false;
         return BitmapFactory.decodeByteArray(data, 0, data.length, option);
     }
@@ -213,5 +222,17 @@ public class SamplePagerAdapter extends PagerAdapter {
             resized = (int) (maxSecondary / ratio);
         }
         return resized;
+    }
+
+    static int findBestSampleSize(int actualWidth, int actualHeight,
+                                  int desiredWidth, int desiredHeight) {
+        double wr = (double) actualWidth / desiredWidth;
+        double hr = (double) actualHeight / desiredHeight;
+        double ratio = Math.min(wr, hr);
+        float n = 1.0f;
+        while ((n * 2) <= ratio) {
+            n *= 2;
+        }
+        return (int) n;
     }
 }
