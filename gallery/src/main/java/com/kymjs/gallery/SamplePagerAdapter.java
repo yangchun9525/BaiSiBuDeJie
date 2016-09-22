@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -178,24 +179,7 @@ public class SamplePagerAdapter extends PagerAdapter {
 
         mScaleSize = mMaxWidth / desiredWidth;
         option.inJustDecodeBounds = false;
-        option.inSampleSize = findBestSampleSize(actualWidth, actualHeight,
-                desiredWidth, desiredHeight);
-        Bitmap tempBitmap = BitmapFactory.decodeByteArray(data, 0,
-                data.length, option);
-
-        Bitmap bitmap;
-        // 做缩放
-        if (tempBitmap != null
-                && (tempBitmap.getWidth() > desiredWidth || tempBitmap
-                .getHeight() > desiredHeight)) {
-            bitmap = Bitmap.createScaledBitmap(tempBitmap, desiredWidth,
-                    desiredHeight, true);
-            tempBitmap.recycle();
-        } else {
-            bitmap = tempBitmap;
-        }
-
-        return bitmap;
+        return BitmapFactory.decodeByteArray(data, 0, data.length, option);
     }
 
     /**
@@ -229,20 +213,5 @@ public class SamplePagerAdapter extends PagerAdapter {
             resized = (int) (maxSecondary / ratio);
         }
         return resized;
-    }
-
-    /**
-     * 关于本方法的判断，可以查看我的博客：http://kymjs.com/code/2014/12/05/02/
-     */
-    static int findBestSampleSize(int actualWidth, int actualHeight,
-                                  int desiredWidth, int desiredHeight) {
-        double wr = (double) actualWidth / desiredWidth;
-        double hr = (double) actualHeight / desiredHeight;
-        double ratio = Math.min(wr, hr);
-        float n = 1.0f;
-        while ((n * 2) <= ratio) {
-            n *= 2;
-        }
-        return (int) n;
     }
 }

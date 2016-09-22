@@ -34,7 +34,7 @@ public class RecycleViewAdapter extends BaseQuickAdapter<ContentEntity> {
             @Override
             public void onClick(View view) {
                 String[] imageUrls = new String[1];
-                imageUrls[0] = item.image0;
+                imageUrls[0] = item.image3;
                 KJGalleryActivity.toGallery(mContext, imageUrls);
             }
         });
@@ -44,7 +44,7 @@ public class RecycleViewAdapter extends BaseQuickAdapter<ContentEntity> {
         DimensionUtil.setMargin(tv, 0, 30, 0, 0);
         tv.setTextSize(TextDisplayUtil.fixSpValue(R.dimen.text_size_common_txt_50));
         helper.setText(R.id.title, item.text)
-                .setImageUrl(R.id.image, item.image0);
+                .setImageUrl(R.id.image, item.image3);
 
     }
 }
