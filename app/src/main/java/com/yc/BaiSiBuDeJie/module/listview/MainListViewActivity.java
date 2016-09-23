@@ -2,14 +2,12 @@ package com.yc.BaiSiBuDeJie.module.listview;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.graphics.drawable.DrawerArrowDrawable;
@@ -43,11 +41,13 @@ import com.yc.BaiSiBuDeJie.widget.SlipViewPager;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 /**
  * Created by YangChun on 2016/4/15.
  * http://7xl07p.com1.z0.glb.clouddn.com/image" + i + ".jpg
  */
-public class MainListViewActivity extends BaseActivity implements IRequestListener, IParserListener, View.OnClickListener, OnDisableViewPagerSlipListener {
+public class MainListViewActivity extends BaseActivity implements IRequestListener, IParserListener, View.OnClickListener, OnDisableViewPagerSlipListener, ViewPager.OnPageChangeListener {
     private String[] mTitles = new String[3];
     private TabLayout mTabLayout;
     private SlipViewPager mViewPager;
@@ -159,6 +159,7 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
         mFragmentAdapter = new TabLayoutFragmentAdapter(getSupportFragmentManager(), mFragments, mTitles);
         mViewPager.setAdapter(mFragmentAdapter);
         mViewPager.setScrollble(true);
+        mViewPager.setOnPageChangeListener(this);
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabsFromPagerAdapter(mFragmentAdapter);
     }
@@ -235,5 +236,30 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
             }
         }
         return true;
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        if (state == ViewPager.SCROLL_STATE_DRAGGING) {
+            //正在滑动   pager处于正在拖拽中
+            LogTools.i("测试代码", "onPageScrollStateChanged=======正在滑动" + "SCROLL_STATE_DRAGGING");
+        } else if (state == ViewPager.SCROLL_STATE_SETTLING) {
+            //pager正在自动沉降，相当于松手后，pager恢复到一个完整pager的过程
+            LogTools.i("测试代码", "onPageScrollStateChanged=======自动沉降" + "SCROLL_STATE_SETTLING");
+        } else if (state == ViewPager.SCROLL_STATE_IDLE) {
+            //空闲状态  pager处于空闲状态
+            LogTools.i("测试代码", "onPageScrollStateChanged=======空闲状态" + "SCROLL_STATE_IDLE");
+            JCVideoPlayer.releaseAllVideos();
+        }
     }
 }
