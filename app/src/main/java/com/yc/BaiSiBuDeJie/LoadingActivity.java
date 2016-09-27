@@ -18,8 +18,9 @@ public class LoadingActivity extends BaseActivity implements Animation.Animation
     private ImageView loadingIv;
     private Animation mFadeIn;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.LoadingActivityTheme);
         //去掉Activity上面的状态栏
         getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN , WindowManager.LayoutParams. FLAG_FULLSCREEN);
         setContentView(R.layout.activity_loading);

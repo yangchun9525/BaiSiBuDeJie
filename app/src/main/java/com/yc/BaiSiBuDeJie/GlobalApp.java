@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import com.yc.BaiSiBuDeJie.net.MyVolley;
 import com.yc.BaiSiBuDeJie.utils.DebugUtil;
 import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
+import com.yc.BaiSiBuDeJie.utils.SharedPreferencesMgr;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class GlobalApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        SharedPreferencesMgr.init(this, "derson");
         sGlobalApp = this;
 
         // 开启严格模式

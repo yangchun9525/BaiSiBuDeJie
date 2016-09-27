@@ -1,7 +1,12 @@
 package com.yc.BaiSiBuDeJie.module.listview;
 
+import android.animation.Animator;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -13,14 +18,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.android.volley.VolleyError;
 import com.yc.BaiSiBuDeJie.GlobalApp;
 import com.yc.BaiSiBuDeJie.R;
 import com.yc.BaiSiBuDeJie.base.BaseActivity;
+import com.yc.BaiSiBuDeJie.base.BaseRelativeLayout;
 import com.yc.BaiSiBuDeJie.base.BaseTextView;
 import com.yc.BaiSiBuDeJie.constant.Const;
 import com.yc.BaiSiBuDeJie.manager.RequestManager;
@@ -34,8 +42,11 @@ import com.yc.BaiSiBuDeJie.module.recycleview.MainRecycleViewActivity;
 import com.yc.BaiSiBuDeJie.net.IParserListener;
 import com.yc.BaiSiBuDeJie.net.IRequestListener;
 import com.yc.BaiSiBuDeJie.net.ParserFacade;
+import com.yc.BaiSiBuDeJie.utils.ColorUiUtil;
 import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
 import com.yc.BaiSiBuDeJie.utils.LogTools;
+import com.yc.BaiSiBuDeJie.utils.SharedPreferencesMgr;
+import com.yc.BaiSiBuDeJie.utils.TextDisplayUtil;
 import com.yc.BaiSiBuDeJie.widget.SlipViewPager;
 
 import java.util.ArrayList;
@@ -53,15 +64,17 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     private SlipViewPager mViewPager;
     private TabLayoutFragmentAdapter mFragmentAdapter;
     private ErrorPortraitView errorPortraitVw;
-    private BaseTextView mTvToMvcRv,mTvToMvpRv;
+    private BaseTextView mTvToMvcRv,mTvToMvpRv,mTvChangeSkin,mTvLabel;
+    private ImageView mIvOpenDrawer;
+    private BaseRelativeLayout mTopRela,mLeftDrawerLayout,mRootLinear;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private DrawerLayout mMainDrawerLayout;
     private long exitTime = 0; ////记录第一次点击的时间
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_listview);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init();
         sendRequest(Const.SHOWAPI_TYPE_IMAGE);
     }
@@ -76,6 +89,10 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     @Override
     protected void findView() {
+        mRootLinear = (BaseRelativeLayout) findViewById(R.id.rootLinear);
+        mLeftDrawerLayout = (BaseRelativeLayout) findViewById(R.id.leftDrawerLayout);
+        mTvLabel = (BaseTextView) findViewById(R.id.tvLabel);
+        mTopRela = (BaseRelativeLayout) findViewById(R.id.topRela);
         mTabLayout = (TabLayout) findViewById(R.id.mainTabLay);
         mViewPager = (SlipViewPager) findViewById(R.id.mainViewPager);
         mViewPager.setScrollble(true);
@@ -85,17 +102,15 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
         mTvToMvcRv = (BaseTextView) findViewById(R.id.tvToMvcRv);
         mTvToMvpRv = (BaseTextView) findViewById(R.id.tvToMvpRv);
-
-        final DrawerArrowDrawable indicator = new DrawerArrowDrawable(this);
-        indicator.setColor(Color.WHITE);
-        getSupportActionBar().setHomeAsUpIndicator(indicator);
+        mTvChangeSkin = (BaseTextView) findViewById(R.id.tvToChangeSkin);
+        mIvOpenDrawer = (ImageView) findViewById(R.id.ivOpenDraw);
 
         mMainDrawerLayout = (DrawerLayout) findViewById(R.id.mainDrawer);
         mMainDrawerLayout.setScrimColor(getResources().getColor(R.color.transparent_background));
         mMainDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
-                indicator.setProgress(slideOffset);
+
             }
 
             @Override
@@ -117,6 +132,13 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     @Override
     protected void setViewSize() {
+        DimensionUtil.setSize(mTopRela, 0, 150);
+        DimensionUtil.setSize(mIvOpenDrawer, 120, 120);
+
+        DimensionUtil.setMargin(mIvOpenDrawer, 35, 15, 0, 0);
+        DimensionUtil.setMargin(mTvLabel, 30, 35, 0, 0);
+        DimensionUtil.setMargin(mRootLinear, 0, 150, 0, 0);
+        mTvLabel.setTextSize(TextDisplayUtil.fixSpValue(R.dimen.text_size_common_txt_60));
     }
 
     @Override
@@ -130,6 +152,8 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     protected void bindEvent() {
         mTvToMvcRv.setOnClickListener(this);
         mTvToMvpRv.setOnClickListener(this);
+        mTvChangeSkin.setOnClickListener(this);
+        mIvOpenDrawer.setOnClickListener(this);
     }
 
     @Override
@@ -223,6 +247,73 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
                 mMainDrawerLayout.closeDrawer(GravityCompat.START);
                 startActivity(new Intent(MainListViewActivity.this, BuDeJieMvpActivity.class));
                 break;
+            case R.id.tvToChangeSkin:
+                if(SharedPreferencesMgr.getInt("theme", 0) == 1) {
+                    SharedPreferencesMgr.setInt("theme", 0);
+                    setTheme(R.style.theme_1);
+                } else {
+                    SharedPreferencesMgr.setInt("theme", 1);
+                    setTheme(R.style.theme_2);
+                }
+                mMainDrawerLayout.closeDrawer(GravityCompat.START);
+                final View rootView = getWindow().getDecorView();
+                if(Build.VERSION.SDK_INT >= 14) {
+                    rootView.setDrawingCacheEnabled(true);
+                    rootView.buildDrawingCache(true);
+                    final Bitmap localBitmap = Bitmap.createBitmap(rootView.getDrawingCache());
+                    rootView.setDrawingCacheEnabled(false);
+                    if (null != localBitmap && rootView instanceof ViewGroup) {
+                        final View localView2 = new View(getApplicationContext());
+                        localView2.setBackgroundDrawable(new BitmapDrawable(getResources(), localBitmap));
+                        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                        ((ViewGroup) rootView).addView(localView2, params);
+                        localView2.animate().alpha(0).setDuration(400).setListener(new Animator.AnimatorListener() {
+                            @Override
+                            public void onAnimationStart(Animator animation) {
+                                ColorUiUtil.changeTheme(rootView, getTheme());
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                ((ViewGroup) rootView).removeView(localView2);
+                                localBitmap.recycle();
+                            }
+
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animator animation) {
+
+                            }
+                        }).start();
+                    }
+                } else {
+                    ColorUiUtil.changeTheme(rootView, getTheme());
+                }
+                refreshStatusBar();
+                break;
+            case R.id.ivOpenDraw:
+                if (mMainDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    mMainDrawerLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    mMainDrawerLayout.openDrawer(GravityCompat.START);
+                }
+                break;
+        }
+    }
+
+    /**
+     * 刷新 StatusBar
+     */
+    private void refreshStatusBar() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            TypedValue typedValue = new TypedValue();
+            Resources.Theme theme = getTheme();
+            theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+            getWindow().setStatusBarColor(getResources().getColor(typedValue.resourceId));
         }
     }
 

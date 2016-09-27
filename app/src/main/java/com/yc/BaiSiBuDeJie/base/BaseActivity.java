@@ -1,6 +1,13 @@
 package com.yc.BaiSiBuDeJie.base;
 
+import android.content.res.Resources;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
+
+import com.yc.BaiSiBuDeJie.R;
+import com.yc.BaiSiBuDeJie.utils.SharedPreferencesMgr;
 
 public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void findView();
@@ -43,5 +50,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(SharedPreferencesMgr.getInt("theme", 0) == 1) {
+            setTheme(R.style.theme_2);
+        } else {
+            setTheme(R.style.theme_1);
+        }
     }
 }

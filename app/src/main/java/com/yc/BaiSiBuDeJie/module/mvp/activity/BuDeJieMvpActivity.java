@@ -45,13 +45,11 @@ public class BuDeJieMvpActivity extends BaseActivity implements MvpModel, BaseQu
     private ErrorPortraitView errorPortraitVw;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         swipeBackActivityHelper = new SwipeBackActivityHelper(this);
         swipeBackActivityHelper.onActivityCreate();
         setContentView(R.layout.activity_budejiemvp);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.to_mvp_activity);
         mBuDeJieMvpPresenter = new BuDeJieMvpPresenter(this);
         init();
         mBuDeJieMvpPresenter.sendRequest(Const.SHOWAPI_TYPE_IMAGE,currentPage);

@@ -57,8 +57,6 @@ public class MainRecycleViewActivity extends BaseActivity implements SwipeRefres
         swipeBackActivityHelper = new SwipeBackActivityHelper(this);
         swipeBackActivityHelper.onActivityCreate();
         setContentView(R.layout.activity_main_recyclerview);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.to_mvc_activity);
         init();
         rxVolleyPost(Const.SHOWAPI_TYPE_IMAGE);
     }

@@ -1,6 +1,9 @@
 package com.yc.BaiSiBuDeJie.widget;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +23,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yc.BaiSiBuDeJie.R;
+import com.yc.BaiSiBuDeJie.base.ColorUiInterface;
 import com.yc.BaiSiBuDeJie.utils.LogTools;
+import com.yc.BaiSiBuDeJie.utils.ViewAttributeUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,7 +40,7 @@ import java.util.Locale;
  * <br>mIsMoveToFirstItemAfterRefresh(下拉刷新后是否显示第一条Item)
  *
  */
-public class PullToRefreshListView extends ListView implements OnScrollListener {
+public class PullToRefreshListView extends ListView implements OnScrollListener,ColorUiInterface {
 
 	// 解决scrollView 与 ListView产生冲突bug
 	private boolean mHasScrollBar;
@@ -169,6 +174,8 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 
 	public PullToRefreshListView(Context pContext, AttributeSet pAttrs) {
 		super(pContext, pAttrs);
+		this.attr_background = ViewAttributeUtil.getBackgroundAttibute(pAttrs);
+		this.attr_divider = ViewAttributeUtil.getDividerAttribute(pAttrs);
 		init(pContext);
 	}
 
@@ -179,6 +186,8 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 
 	public PullToRefreshListView(Context pContext, AttributeSet pAttrs, int pDefStyle) {
 		super(pContext, pAttrs, pDefStyle);
+		this.attr_background = ViewAttributeUtil.getBackgroundAttibute(pAttrs);
+		this.attr_divider = ViewAttributeUtil.getDividerAttribute(pAttrs);
 		init(pContext);
 	}
 
@@ -657,6 +666,29 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 
 			break;
 		}
+	}
+
+	private int attr_background = -1;
+	private int attr_divider = -1;
+	private int divider_height = 0;
+
+	@Override
+	public View getView() {
+		return this;
+	}
+
+	@Override
+	public void setTheme(Resources.Theme themeId) {
+		this.divider_height = getDividerHeight();
+		ViewAttributeUtil.applyBackgroundDrawable(this, themeId, attr_background);
+		int res_divider = this.attr_divider;
+		if(res_divider > 0) {
+			TypedArray ta = themeId.obtainStyledAttributes(new int[]{res_divider});
+			Drawable drawable = ta.getDrawable(0);
+			((ListView)getView()).setDivider(drawable);
+			ta.recycle();
+		}
+		setDividerHeight(divider_height);
 	}
 
 	/**
