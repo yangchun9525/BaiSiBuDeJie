@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="?attr/main_bg"
+    android:background="?attr/item_bg"
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <com.yc.BaiSiBuDeJie.base.BaseTextView
         android:text="jashkjahskjfhjakfbmxzbnjashkjfahsfjkhnf,masnkjshakjfhjksh"
-        android:textColor="?attr/main_textcolor"
+        android:textColor="?attr/text_color"
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <com.yc.BaiSiBuDeJie.base.BaseTextView
-        android:textColor="?attr/main_textcolor"
+        android:textColor="?attr/text_color"
         android:id="@+id/content"
         android:layout_below="@id/title"
         android:visibility="gone"

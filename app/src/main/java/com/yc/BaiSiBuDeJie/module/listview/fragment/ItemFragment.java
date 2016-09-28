@@ -1,7 +1,12 @@
 package com.yc.BaiSiBuDeJie.module.listview.fragment;
 
+import android.animation.Animator;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +18,7 @@ import com.yc.BaiSiBuDeJie.R;
 import com.yc.BaiSiBuDeJie.base.BaseFragment;
 import com.yc.BaiSiBuDeJie.constant.Const;
 import com.yc.BaiSiBuDeJie.manager.RequestManager;
+import com.yc.BaiSiBuDeJie.module.listview.MainListViewActivity;
 import com.yc.BaiSiBuDeJie.module.listview.adapter.ListViewAdapter;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
@@ -20,6 +26,7 @@ import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
 import com.yc.BaiSiBuDeJie.net.IParserListener;
 import com.yc.BaiSiBuDeJie.net.IRequestListener;
 import com.yc.BaiSiBuDeJie.net.ParserFacade;
+import com.yc.BaiSiBuDeJie.utils.ColorUiUtil;
 import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
 import com.yc.BaiSiBuDeJie.widget.PullToRefreshListView;
 
@@ -34,16 +41,17 @@ public class ItemFragment  extends BaseFragment implements IRequestListener, IPa
     private ArrayList<ContentEntity> textContentList;
     private ArrayList<ContentEntity> videoContentList;
 
-    private PullToRefreshListView mListView;
+    public PullToRefreshListView mListView;
     private ListViewAdapter lvAdapter;
     private Bundle bundle;
     private String type;
     private int count, currentPage = 1;
     private ArrayList<ContentEntity> contentlist = new ArrayList<>();
     private boolean isLoadMore = false;
-    public static ItemFragment newInstance(SingleDataEntity entities,String flag){
+    public static ItemFragment newInstance(SingleDataEntity entities,String flag,Context context){
         ItemFragment instance = new ItemFragment();
         Bundle args = new Bundle();
+
         args.putString("type", flag);
         if(flag.equals(Const.SHOWAPI_TYPE_TEXT)){
             args.putSerializable("text_entities", entities);
@@ -173,5 +181,9 @@ public class ItemFragment  extends BaseFragment implements IRequestListener, IPa
     @Override
     public void onRefresh() {
         sendRequest(type, 1);
+    }
+
+    public void refreshListViewUI(){
+        mListView.refreshUI();
     }
 }

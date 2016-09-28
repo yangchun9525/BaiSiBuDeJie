@@ -1,10 +1,12 @@
 package com.yc.BaiSiBuDeJie.base;
 
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.view.View;
 
 import com.yc.BaiSiBuDeJie.R;
 import com.yc.BaiSiBuDeJie.utils.SharedPreferencesMgr;
@@ -56,9 +58,20 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(SharedPreferencesMgr.getInt("theme", 0) == 1) {
-            setTheme(R.style.theme_2);
+            setTheme(R.style.theme_night);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                getWindow().setStatusBarColor(getResources().getColor(R.color.status_bar_night));
+            }
         } else {
-            setTheme(R.style.theme_1);
+            setTheme(R.style.theme_day);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                getWindow().setStatusBarColor(getResources().getColor(R.color.status_bar_day));
+            }
         }
+
     }
 }

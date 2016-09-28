@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#324968</color>
     <color name="red">#C93437</color>
     <color name="blue">#375BF1</color>
     <color name="yellow">#F7D23E</color>
@@ -17,16 +16,24 @@
     <color name="common_tab_selected_text">#FC4B4E</color>
     <color name="common_tab_text">#7F7F7F</color>
 
-    <color name="common_viewpage_background">#F7F7F7</color>
-    <color name="title">#ff1ab2e8</color>
     <color name="transparent_background">#7f7F7F7F</color>
 
-    <color name="bg_main_normal">#ffffff</color>
-    <color name="textcolor_main_normal">#ff0000</color>
-    <color name="bg_main_dark">#000000</color>
-    <color name="textcolor_main_dark">#ffffff</color>
-    <color name="bg_second_normal">#0000ff</color>
-    <color name="textcolor_second_normal">#00ff00</color>
-    <color name="bg_second_dark">#ffffff</color>
-    <color name="textcolor_second_dark">#000000</color>
+    <color name="status_bar_day">#FFFFFF</color>
+    <color name="status_bar_night">#232A38</color>
+    <color name="action_bar_text_color_day">#18191A</color>
+    <color name="action_bar_text_color_night">#9BAFCC</color>
+    <color name="action_bar_divider_line_day">#C9CBCD</color>
+    <color name="action_bar_divider_line_night">#161C24</color>
+    <color name="tab_background_day">#FFFFFF</color>
+    <color name="tab_background_night">#232B38</color>
+    <color name="item_background_day">#FFFFFF</color>
+    <color name="item_background_night">#262F3D</color>
+    <color name="text_color_day">#B1B1B1</color>
+    <color name="text_color_night">#8899B2</color>
+    <color name="divider_color_day">#E3E4E5</color>
+    <color name="divider_color_night">#1A2433</color>
+    <color name="recycle_item_background_day">#EDEEF0</color>
+    <color name="recycle_item_background_night">#121F33</color>
+    <color name="pull_to_refresh_bg_day">#EDEEF0</color>
+    <color name="pull_to_refresh_bg_night">#121F33</color>
 </resources>

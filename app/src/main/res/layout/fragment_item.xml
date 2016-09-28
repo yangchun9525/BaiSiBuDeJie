@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yc.BaiSiBuDeJie.base.BaseLinerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:background="?attr/main_bg"
+    android:background="?attr/item_bg"
     android:layout_height="match_parent">
-
+    <!--android:divider="?attr/divide_line_bg"-->
+    <!--android:dividerHeight="1dp"-->
     <com.yc.BaiSiBuDeJie.widget.PullToRefreshListView
         android:id="@+id/lv"
-        android:divider="?attr/second_textcolor"
+        android:divider="?attr/divide_line_bg"
         android:dividerHeight="1dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></com.yc.BaiSiBuDeJie.widget.PullToRefreshListView>
-</LinearLayout>
+</com.yc.BaiSiBuDeJie.base.BaseLinerLayout>

@@ -4,8 +4,13 @@
         <attr name="progressBorderWidth" format="dimension" />
     </declare-styleable>
 
-    <attr name="main_bg" format="reference|color"/>
-    <attr name="main_textcolor" format="reference|color"/>
-    <attr name="second_bg" format="reference|color"/>
-    <attr name="second_textcolor" format="reference|color"/>
+    <attr name="tab_bg" format="reference|color"/>
+    <attr name="item_bg" format="reference|color"/>
+    <attr name="text_color" format="reference|color"/>
+    <attr name="divide_line_bg" format="reference|color"/>
+    <attr name="action_bar_bg" format="reference|color"/>
+    <attr name="action_bar_text_color" format="reference|color"/>
+    <attr name="recycle_bg" format="reference|color"/>
+    <attr name="action_bar_divide_line" format="reference|color"/>
+    <attr name="pull_to_refresh_bg" format="reference|color"/>
 </resources>

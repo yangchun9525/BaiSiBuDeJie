@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yc.BaiSiBuDeJie.base.BaseFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="?attr/action_bar_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- loading -->
-    <RelativeLayout
+    <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/commonLoadingLayout"
-        android:background="@color/white">
+        android:background="?attr/action_bar_bg">
 
         <com.yc.BaiSiBuDeJie.widget.CircularProgress
             android:id="@+id/commonProgress"
@@ -19,14 +19,14 @@
             app:progressBorderWidth="3dp"
             android:layout_centerInParent="true" />
 
-    </RelativeLayout>
+    </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
 
     <!-- no data -->
-    <RelativeLayout
+    <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/commonNoDataLayout"
-        android:background="@color/white">
+        android:background="?attr/action_bar_bg">
 
         <ImageView
             android:id="@+id/commonNoDataIv"
@@ -35,14 +35,14 @@
             android:src="@drawable/error_nodata"
             android:layout_centerHorizontal="true"/>
 
-    </RelativeLayout>
+    </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
 
     <!-- error -->
-    <RelativeLayout
+    <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/commonErrorLayout"
-        android:background="@color/white">
+        android:background="?attr/action_bar_bg">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
         <com.yc.BaiSiBuDeJie.base.BaseTextView
             android:id="@+id/commonErrorTv"
             style="@style/textview_common"
-            android:textColor="@color/common_body_content_text"
+            android:textColor="?attr/text_color"
             android:text="@string/common_error_maybe"
             android:layout_below="@id/commonErrorLine"
             android:gravity="center_vertical"/>
@@ -82,6 +82,6 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/commonErrorReasonLv"/>
 
-    </RelativeLayout>
+    </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
 
-</FrameLayout>
+</com.yc.BaiSiBuDeJie.base.BaseFrameLayout>

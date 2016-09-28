@@ -2,12 +2,15 @@ package com.yc.BaiSiBuDeJie.module.listview;
 
 import android.animation.Animator;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -67,10 +70,13 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     private BaseTextView mTvToMvcRv,mTvToMvpRv,mTvChangeSkin,mTvLabel;
     private ImageView mIvOpenDrawer;
     private BaseRelativeLayout mTopRela,mLeftDrawerLayout,mRootLinear;
+    private View mViewActionBarDivide;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private DrawerLayout mMainDrawerLayout;
     private long exitTime = 0; ////记录第一次点击的时间
-
+    private ItemFragment textFragment = null;
+    private ItemFragment imageFragment = null;
+    private ItemFragment videoFragment = null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +95,7 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     @Override
     protected void findView() {
+        mViewActionBarDivide = findViewById(R.id.view_action_bar_divide);
         mRootLinear = (BaseRelativeLayout) findViewById(R.id.rootLinear);
         mLeftDrawerLayout = (BaseRelativeLayout) findViewById(R.id.leftDrawerLayout);
         mTvLabel = (BaseTextView) findViewById(R.id.tvLabel);
@@ -138,6 +145,7 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
         DimensionUtil.setMargin(mIvOpenDrawer, 35, 15, 0, 0);
         DimensionUtil.setMargin(mTvLabel, 30, 35, 0, 0);
         DimensionUtil.setMargin(mRootLinear, 0, 150, 0, 0);
+        DimensionUtil.setMargin(mViewActionBarDivide, 0, 149, 0, 0);
         mTvLabel.setTextSize(TextDisplayUtil.fixSpValue(R.dimen.text_size_common_txt_60));
     }
 
@@ -208,20 +216,16 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     public void onParserSuccess(String requestCode, Object result) {
         SingleDataEntity res = (SingleDataEntity) result;
 
-        ItemFragment textFragment = null;
-        ItemFragment imageFragment = null;
-        ItemFragment videoFragment = null;
-
         if (requestCode.equals(Const.SHOWAPI_TYPE_IMAGE)) {
-            imageFragment = ItemFragment.newInstance(res, Const.SHOWAPI_TYPE_IMAGE);
+            imageFragment = ItemFragment.newInstance(res, Const.SHOWAPI_TYPE_IMAGE,this);
             mFragments.add(imageFragment);
             sendRequest(Const.SHOWAPI_TYPE_VIDEO);
         } else if (requestCode.equals(Const.SHOWAPI_TYPE_VIDEO)) {
-            videoFragment = ItemFragment.newInstance(res, Const.SHOWAPI_TYPE_VIDEO);
+            videoFragment = ItemFragment.newInstance(res, Const.SHOWAPI_TYPE_VIDEO,this);
             mFragments.add(videoFragment);
             sendRequest(Const.SHOWAPI_TYPE_TEXT);
         } else if (requestCode.equals(Const.SHOWAPI_TYPE_TEXT)) {
-            textFragment = ItemFragment.newInstance(res, Const.SHOWAPI_TYPE_TEXT);
+            textFragment = ItemFragment.newInstance(res, Const.SHOWAPI_TYPE_TEXT,this);
             mFragments.add(textFragment);
         }
         if (mFragments.size() == 3) {
@@ -248,52 +252,32 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
                 startActivity(new Intent(MainListViewActivity.this, BuDeJieMvpActivity.class));
                 break;
             case R.id.tvToChangeSkin:
+                errorPortraitVw.setVisibility(View.VISIBLE);
                 if(SharedPreferencesMgr.getInt("theme", 0) == 1) {
                     SharedPreferencesMgr.setInt("theme", 0);
-                    setTheme(R.style.theme_1);
+                    setTheme(R.style.theme_day);
                 } else {
                     SharedPreferencesMgr.setInt("theme", 1);
-                    setTheme(R.style.theme_2);
+                    setTheme(R.style.theme_night);
                 }
                 mMainDrawerLayout.closeDrawer(GravityCompat.START);
-                final View rootView = getWindow().getDecorView();
-                if(Build.VERSION.SDK_INT >= 14) {
-                    rootView.setDrawingCacheEnabled(true);
-                    rootView.buildDrawingCache(true);
-                    final Bitmap localBitmap = Bitmap.createBitmap(rootView.getDrawingCache());
-                    rootView.setDrawingCacheEnabled(false);
-                    if (null != localBitmap && rootView instanceof ViewGroup) {
-                        final View localView2 = new View(getApplicationContext());
-                        localView2.setBackgroundDrawable(new BitmapDrawable(getResources(), localBitmap));
-                        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                        ((ViewGroup) rootView).addView(localView2, params);
-                        localView2.animate().alpha(0).setDuration(400).setListener(new Animator.AnimatorListener() {
-                            @Override
-                            public void onAnimationStart(Animator animation) {
-                                ColorUiUtil.changeTheme(rootView, getTheme());
-                            }
-
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                ((ViewGroup) rootView).removeView(localView2);
-                                localBitmap.recycle();
-                            }
-
-                            @Override
-                            public void onAnimationCancel(Animator animation) {
-
-                            }
-
-                            @Override
-                            public void onAnimationRepeat(Animator animation) {
-
-                            }
-                        }).start();
-                    }
-                } else {
-                    ColorUiUtil.changeTheme(rootView, getTheme());
-                }
+                changeSkin();
                 refreshStatusBar();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(imageFragment != null && imageFragment.mListView != null) {
+                            imageFragment.refreshListViewUI();
+                        }
+                        if(videoFragment != null && videoFragment.mListView != null) {
+                            videoFragment.refreshListViewUI();
+                        }
+                        if(textFragment != null && textFragment.mListView != null) {
+                            textFragment.refreshListViewUI();
+                        }
+                        errorPortraitVw.setVisibility(View.GONE);
+                    }
+                }, 1000);
                 break;
             case R.id.ivOpenDraw:
                 if (mMainDrawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -304,7 +288,45 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
                 break;
         }
     }
+    public void changeSkin(){
+        final View rootView = getWindow().getDecorView();
+        if(Build.VERSION.SDK_INT >= 14) {
+            rootView.setDrawingCacheEnabled(true);
+            rootView.buildDrawingCache(true);
+            final Bitmap localBitmap = Bitmap.createBitmap(rootView.getDrawingCache());
+            rootView.setDrawingCacheEnabled(false);
+            if (null != localBitmap && rootView instanceof ViewGroup) {
+                final View localView2 = new View(getApplicationContext());
+                localView2.setBackgroundDrawable(new BitmapDrawable(getResources(), localBitmap));
+                ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                ((ViewGroup) rootView).addView(localView2, params);
+                localView2.animate().alpha(0).setDuration(400).setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        ColorUiUtil.changeTheme(rootView, getTheme());
+                    }
 
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        ((ViewGroup) rootView).removeView(localView2);
+                        localBitmap.recycle();
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                }).start();
+            }
+        } else {
+            ColorUiUtil.changeTheme(rootView, getTheme());
+        }
+    }
     /**
      * 刷新 StatusBar
      */

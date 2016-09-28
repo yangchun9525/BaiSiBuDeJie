@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
-        android:background="?attr/main_bg"
+        android:background="?attr/action_bar_bg"
         android:layout_width="match_parent"
         android:id="@+id/topRela"
         android:layout_height="wrap_content">
@@ -18,48 +18,59 @@
             android:id="@+id/tvLabel"
             android:text="@string/app_name"
             android:layout_toRightOf="@id/ivOpenDraw"
-            android:textColor="?attr/main_textcolor"
+            android:textColor="?attr/action_bar_text_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <com.yc.BaiSiBuDeJie.base.BaseView
+            android:id="@+id/view_action_bar_divide"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?attr/action_bar_divide_line"/>
     </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
 
     <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
         android:id="@+id/rootLinear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/main_bg"
         android:orientation="vertical">
 
         <com.yc.BaiSiBuDeJie.base.BaseTabLayout
             android:id="@+id/mainTabLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/main_bg"
+            android:background="?attr/tab_bg"
             app:tabIndicatorColor="@color/common_tab_selected_text"
             app:tabSelectedTextColor="@color/common_tab_selected_text"
             app:tabTextAppearance="@style/TextAppearance.AppCompat"
             app:tabTextColor="@color/common_tab_text" />
 
+        <com.yc.BaiSiBuDeJie.base.BaseView
+            android:id="@+id/tab_divide"
+            android:layout_below="@id/mainTabLay"
+            android:background="?attr/divide_line_bg"
+            android:layout_width="match_parent"
+            android:layout_height="0.5px"/>
         <com.yc.BaiSiBuDeJie.widget.SlipViewPager
             android:id="@+id/mainViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/mainTabLay"
-            android:background="@color/common_viewpage_background" />
-
-        <com.yc.BaiSiBuDeJie.module.error.ErrorPortraitView
-            android:id="@+id/errorPortraitVw"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_below="@id/tab_divide"
+             />
 
     </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
-    <!--android:background="@color/colorPrimary"-->
+
+    <com.yc.BaiSiBuDeJie.module.error.ErrorPortraitView
+        android:id="@+id/errorPortraitVw"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
         android:id="@+id/leftDrawerLayout"
         android:layout_width="150dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-        android:background="?attr/main_bg"
+        android:background="?attr/action_bar_bg"
         android:clickable="true">
 
         <com.yc.BaiSiBuDeJie.base.BaseTextView
@@ -68,7 +79,7 @@
             android:layout_height="50dp"
             android:gravity="center"
             android:text="@string/to_mvp_activity"
-            android:textColor="?attr/main_textcolor" />
+            android:textColor="?attr/text_color" />
 
         <com.yc.BaiSiBuDeJie.base.BaseTextView
             android:id="@+id/tvToMvcRv"
@@ -77,7 +88,7 @@
             android:layout_below="@id/tvToMvpRv"
             android:gravity="center"
             android:text="@string/to_mvc_activity"
-            android:textColor="?attr/main_textcolor" />
+            android:textColor="?attr/text_color" />
 
         <com.yc.BaiSiBuDeJie.base.BaseTextView
             android:id="@+id/tvToChangeSkin"
@@ -86,6 +97,6 @@
             android:layout_below="@id/tvToMvcRv"
             android:gravity="center"
             android:text="@string/change_skin"
-            android:textColor="?attr/main_textcolor" />
+            android:textColor="?attr/text_color" />
     </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
 </android.support.v4.widget.DrawerLayout>

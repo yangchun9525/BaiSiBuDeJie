@@ -16,15 +16,18 @@ import android.view.animation.RotateAnimation;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yc.BaiSiBuDeJie.R;
 import com.yc.BaiSiBuDeJie.base.ColorUiInterface;
 import com.yc.BaiSiBuDeJie.utils.LogTools;
+import com.yc.BaiSiBuDeJie.utils.SharedPreferencesMgr;
 import com.yc.BaiSiBuDeJie.utils.ViewAttributeUtil;
 
 import java.text.SimpleDateFormat;
@@ -140,6 +143,9 @@ public class PullToRefreshListView extends ListView implements OnScrollListener,
 
 	private LayoutInflater mInflater;
 
+	private RelativeLayout mHeadContentLayout;
+	private FrameLayout mFrameLayout;
+	private LinearLayout mLinear;
 	private LinearLayout mHeadView;
 	private TextView mTipsTextView;
 	private TextView mLastUpdatedTextView;
@@ -218,6 +224,9 @@ public class PullToRefreshListView extends ListView implements OnScrollListener,
 	private void addHeadView() {
 		mHeadView = (LinearLayout) mInflater.inflate(R.layout.pulltorefresh_head_view, null);
 
+		mHeadContentLayout = (RelativeLayout) mHeadView.findViewById(R.id.head_contentLayout);
+		mFrameLayout = (FrameLayout) mHeadView.findViewById(R.id.frameLayout);
+		mLinear = (LinearLayout) mHeadView.findViewById(R.id.linear);
 		mArrowImageView = (ImageView) mHeadView
 				.findViewById(R.id.head_arrowImageView);
 		mArrowImageView.setMinimumWidth(70);
@@ -817,6 +826,30 @@ public class PullToRefreshListView extends ListView implements OnScrollListener,
 			super.onMeasure(widthMeasureSpec, expandSpec);
 		} else {
 			super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		}
+	}
+
+	public void refreshUI(){
+		if(SharedPreferencesMgr.getInt("theme", 0) == 1) {
+			//夜晚
+			mHeadView.setBackgroundResource(R.color.pull_to_refresh_bg_night);
+			mFrameLayout.setBackgroundResource(R.color.pull_to_refresh_bg_night);
+			mLinear.setBackgroundResource(R.color.pull_to_refresh_bg_night);
+			mHeadContentLayout.setBackgroundResource(R.color.pull_to_refresh_bg_night);
+			mEndRootView.setBackgroundResource(R.color.pull_to_refresh_bg_night);
+			mTipsTextView.setTextColor(getResources().getColor(R.color.text_color_night));
+			mLastUpdatedTextView.setTextColor(getResources().getColor(R.color.text_color_night));
+			mEndLoadTipsTextView.setTextColor(getResources().getColor(R.color.text_color_night));
+		} else {
+			//白天
+			mHeadView.setBackgroundResource(R.color.pull_to_refresh_bg_day);
+			mFrameLayout.setBackgroundResource(R.color.pull_to_refresh_bg_day);
+			mLinear.setBackgroundResource(R.color.pull_to_refresh_bg_day);
+			mHeadContentLayout.setBackgroundResource(R.color.pull_to_refresh_bg_day);
+			mEndRootView.setBackgroundResource(R.color.pull_to_refresh_bg_day);
+			mTipsTextView.setTextColor(getResources().getColor(R.color.text_color_day));
+			mLastUpdatedTextView.setTextColor(getResources().getColor(R.color.text_color_day));
+			mEndLoadTipsTextView.setTextColor(getResources().getColor(R.color.text_color_day));
 		}
 	}
 }

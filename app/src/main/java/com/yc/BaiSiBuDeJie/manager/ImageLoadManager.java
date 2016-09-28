@@ -12,6 +12,7 @@ public class ImageLoadManager {
     public static void loadImage(Context context, String url, ImageView image) {
         Glide.with(context)
                 .load(url)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .placeholder(R.drawable.common_loading)
                 .crossFade()
