@@ -10,11 +10,13 @@ import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.kymjs.rxvolley.RxVolley;
+import com.kymjs.rxvolley.client.HttpCallback;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.kymjs.rxvolley.rx.Result;
 import com.yc.BaiSiBuDeJie.GlobalApp;
 import com.yc.BaiSiBuDeJie.R;
 import com.yc.BaiSiBuDeJie.base.BaseActivity;
+import com.yc.BaiSiBuDeJie.cache.LruCacheManager;
 import com.yc.BaiSiBuDeJie.constant.Const;
 import com.yc.BaiSiBuDeJie.constant.HttpURL;
 import com.yc.BaiSiBuDeJie.module.error.ErrorPortraitView;
@@ -23,6 +25,7 @@ import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
 import com.yc.BaiSiBuDeJie.module.recycleview.adapter.RecycleViewAdapter;
 import com.yc.BaiSiBuDeJie.net.parser.JsonParser;
 import com.yc.BaiSiBuDeJie.utils.LogTools;
+import com.yc.BaiSiBuDeJie.utils.SecurityUtil;
 
 import java.util.ArrayList;
 
@@ -72,6 +75,34 @@ public class MainRecycleViewActivity extends BaseActivity implements SwipeRefres
                 .params(params)
                 .httpMethod(RxVolley.Method.POST)
                 .contentType(RxVolley.ContentType.FORM)
+                .callback(new HttpCallback() {
+
+                    @Override
+                    public void onFailure(int errorNo, String strMsg) {
+                        String res = LruCacheManager.getStringFromCache(SecurityUtil.getMD5(type));
+                        if(res != null){
+                            JsonParser jsonParser = new JsonParser("pagebean", SingleDataEntity.class);
+                            SingleDataEntity singleDataEntity =  (SingleDataEntity) jsonParser.parser(res);
+                            errorPortraitVw.setVisibility(View.GONE);
+                            currentPage = singleDataEntity.currentPage + 1;
+                            if(!isLoadMore) {
+                                contentlist = singleDataEntity.contentlist;
+                                initAdapter(contentlist);
+                                mSwipeRefreshLayout.setRefreshing(false);
+
+                            }else {
+                                isLoadMore = false;
+                                mQuickAdapter.setData(singleDataEntity.contentlist);
+                                mQuickAdapter.isNextLoad(true);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onSuccess(String t) {
+                        LruCacheManager.addStringToCache(SecurityUtil.getMD5(type), t);
+                    }
+                })
                 .getResult();
 
         subscription = observable

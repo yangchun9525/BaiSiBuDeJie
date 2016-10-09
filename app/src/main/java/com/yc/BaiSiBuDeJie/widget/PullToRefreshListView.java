@@ -831,6 +831,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener,
 
 	public void refreshUI(){
 		if(SharedPreferencesMgr.getInt("theme", 0) == 1) {
+			LogTools.i("test-refreshUI","夜晚");
 			//夜晚
 			mHeadView.setBackgroundResource(R.color.pull_to_refresh_bg_night);
 			mFrameLayout.setBackgroundResource(R.color.pull_to_refresh_bg_night);
@@ -841,6 +842,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener,
 			mLastUpdatedTextView.setTextColor(getResources().getColor(R.color.text_color_night));
 			mEndLoadTipsTextView.setTextColor(getResources().getColor(R.color.text_color_night));
 		} else {
+			LogTools.i("test-refreshUI","白天");
 			//白天
 			mHeadView.setBackgroundResource(R.color.pull_to_refresh_bg_day);
 			mFrameLayout.setBackgroundResource(R.color.pull_to_refresh_bg_day);

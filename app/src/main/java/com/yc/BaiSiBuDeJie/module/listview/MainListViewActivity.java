@@ -33,6 +33,7 @@ import com.yc.BaiSiBuDeJie.R;
 import com.yc.BaiSiBuDeJie.base.BaseActivity;
 import com.yc.BaiSiBuDeJie.base.BaseRelativeLayout;
 import com.yc.BaiSiBuDeJie.base.BaseTextView;
+import com.yc.BaiSiBuDeJie.cache.LruCacheManager;
 import com.yc.BaiSiBuDeJie.constant.Const;
 import com.yc.BaiSiBuDeJie.manager.RequestManager;
 import com.yc.BaiSiBuDeJie.module.error.ErrorPortraitView;
@@ -48,8 +49,10 @@ import com.yc.BaiSiBuDeJie.net.ParserFacade;
 import com.yc.BaiSiBuDeJie.utils.ColorUiUtil;
 import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
 import com.yc.BaiSiBuDeJie.utils.LogTools;
+import com.yc.BaiSiBuDeJie.utils.SecurityUtil;
 import com.yc.BaiSiBuDeJie.utils.SharedPreferencesMgr;
 import com.yc.BaiSiBuDeJie.utils.TextDisplayUtil;
+import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
 import com.yc.BaiSiBuDeJie.widget.SlipViewPager;
 
 import java.util.ArrayList;
@@ -203,6 +206,7 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     @Override
     public void onRequestSuccess(String requestCode, String result) {
+        LruCacheManager.addStringToCache(SecurityUtil.getMD5(requestCode), result);
         LogTools.i("test-result", result);
         ParserFacade parser = new ParserFacade(requestCode, this);
         parser.start(result, "pagebean", SingleDataEntity.class);
@@ -210,6 +214,14 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     @Override
     public void onRequestError(String requestCode, VolleyError volleyError) {
+        String result = LruCacheManager.getStringFromCache(SecurityUtil.getMD5(requestCode));
+        if (!ValidatesUtil.isEmpty(result)) {
+            ParserFacade parser = new ParserFacade(requestCode, this);
+            parser.start(result, "pagebean", SingleDataEntity.class);
+        }else {
+//            mIdeaListLv.setVisibility(View.GONE);
+            errorPortraitVw.isError();
+        }
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.View;
@@ -71,8 +72,6 @@ public class SamplePagerAdapter extends PagerAdapter {
                     displayImage(photoView, t);
                     if(mScaleSize > 1.0f) {
                         photoView.setMaxScale(mScaleSize);
-                    }else {
-                        photoView.setZoomable(false);
                     }
                 }
             }
@@ -181,12 +180,9 @@ public class SamplePagerAdapter extends PagerAdapter {
         mScaleSize = mMaxWidth / desiredWidth;
         int size = findBestSampleSize(actualWidth, actualHeight,
                 desiredWidth, desiredHeight);
-        //3为手动测试出来的，3为最合适的大小
-        if(size > 3) {
-            option.inSampleSize = 3;
-        }else {
-            option.inSampleSize = size;
-        }
+        Log.i("test-size",size+"");
+        //inSampleSize = = 2，则取出的缩略图的宽和高都是原始图片的1/2，图片大小就为原始大小的1/4。
+        option.inSampleSize = size;
         option.inJustDecodeBounds = false;
         return BitmapFactory.decodeByteArray(data, 0, data.length, option);
     }

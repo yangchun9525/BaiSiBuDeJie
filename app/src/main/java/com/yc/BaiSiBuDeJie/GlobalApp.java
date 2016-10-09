@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.app.Application;
 import android.graphics.Typeface;
 
+import com.yc.BaiSiBuDeJie.cache.LruCacheManager;
+import com.yc.BaiSiBuDeJie.constant.Dir;
 import com.yc.BaiSiBuDeJie.net.MyVolley;
+import com.yc.BaiSiBuDeJie.utils.ApplicationUtil;
 import com.yc.BaiSiBuDeJie.utils.DebugUtil;
 import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
+import com.yc.BaiSiBuDeJie.utils.LogTools;
 import com.yc.BaiSiBuDeJie.utils.SharedPreferencesMgr;
 
 import java.util.LinkedList;
@@ -46,6 +50,10 @@ public class GlobalApp extends Application {
     private void initApp() {
         DimensionUtil.init();
         MyVolley.init(getApplicationContext());
+        LruCacheManager.init(getApplicationContext(), Dir.getDiskCacheDir());
+        LogTools.i("test-url",Dir.getDiskCacheDir());
+        // 应用程序保持后台唤醒
+        ApplicationUtil.acquireWakeLock(this);
     }
 
     //添加activity
