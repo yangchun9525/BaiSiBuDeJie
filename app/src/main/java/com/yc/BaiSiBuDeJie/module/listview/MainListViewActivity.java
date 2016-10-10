@@ -1,5 +1,6 @@
 package com.yc.BaiSiBuDeJie.module.listview;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -11,8 +12,10 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -28,6 +31,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.android.volley.VolleyError;
+import com.fastaccess.permission.base.PermissionHelper;
+import com.fastaccess.permission.base.callback.OnPermissionCallback;
 import com.yc.BaiSiBuDeJie.GlobalApp;
 import com.yc.BaiSiBuDeJie.R;
 import com.yc.BaiSiBuDeJie.base.BaseActivity;
@@ -64,7 +69,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
  * Created by YangChun on 2016/4/15.
  * http://7xl07p.com1.z0.glb.clouddn.com/image" + i + ".jpg
  */
-public class MainListViewActivity extends BaseActivity implements IRequestListener, IParserListener, View.OnClickListener, OnDisableViewPagerSlipListener, ViewPager.OnPageChangeListener {
+public class MainListViewActivity extends BaseActivity implements IRequestListener, IParserListener, View.OnClickListener, OnDisableViewPagerSlipListener, ViewPager.OnPageChangeListener,OnPermissionCallback {
     private String[] mTitles = new String[3];
     private TabLayout mTabLayout;
     private SlipViewPager mViewPager;
@@ -80,11 +85,17 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     private ItemFragment textFragment = null;
     private ItemFragment imageFragment = null;
     private ItemFragment videoFragment = null;
+
+    private PermissionHelper permissionHelper;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_listview);
         init();
+        permissionHelper = PermissionHelper.getInstance(this);
+        permissionHelper
+                .setForceAccepting(true) // default is false. its here so you know that it exists.
+                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         sendRequest(Const.SHOWAPI_TYPE_IMAGE);
     }
 
@@ -386,5 +397,40 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
             LogTools.i("测试代码", "onPageScrollStateChanged=======空闲状态" + "SCROLL_STATE_IDLE");
             JCVideoPlayer.releaseAllVideos();
         }
+    }
+
+    @Override
+    public void onPermissionGranted(@NonNull String[] permissionName) {
+
+    }
+
+    @Override
+    public void onPermissionDeclined(@NonNull String[] permissionName) {
+
+    }
+
+    @Override
+    public void onPermissionPreGranted(@NonNull String permissionsName) {
+
+    }
+
+    @Override
+    public void onPermissionNeedExplanation(@NonNull String permissionName) {
+
+    }
+
+    @Override
+    public void onPermissionReallyDeclined(@NonNull String permissionName) {
+
+    }
+
+    @Override
+    public void onNoPermissionNeeded() {
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        permissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

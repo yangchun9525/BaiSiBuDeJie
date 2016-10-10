@@ -8,6 +8,7 @@ import com.yc.BaiSiBuDeJie.cache.LruCacheManager;
 import com.yc.BaiSiBuDeJie.constant.Dir;
 import com.yc.BaiSiBuDeJie.net.MyVolley;
 import com.yc.BaiSiBuDeJie.utils.ApplicationUtil;
+import com.yc.BaiSiBuDeJie.utils.CrashHandlerUtil;
 import com.yc.BaiSiBuDeJie.utils.DebugUtil;
 import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
 import com.yc.BaiSiBuDeJie.utils.LogTools;
@@ -38,6 +39,8 @@ public class GlobalApp extends Application {
     public void onCreate() {
         super.onCreate();
         SharedPreferencesMgr.init(this, "derson");
+        CrashHandlerUtil crashHandler = CrashHandlerUtil.getInstance();
+        crashHandler.init(getApplicationContext());
         sGlobalApp = this;
 
         // 开启严格模式

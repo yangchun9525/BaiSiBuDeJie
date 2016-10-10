@@ -2,7 +2,6 @@ package com.yc.BaiSiBuDeJie;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;

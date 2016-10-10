@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda' //加上这句加,入plugin声明
 android {
-    compileSdkVersion 23
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
 
 //    dataBinding {
 //        enabled true
@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.yc.baisibudejie"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -33,8 +33,8 @@ retrolambda {
 }
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:design:24.2.0'
     // 添加eventBus支持
     compile 'de.greenrobot:eventbus:2.4.0'
     // 添加Gson支持
@@ -46,7 +46,7 @@ dependencies {
     compile files('libs/ormlite-core-4.48.jar')
     // 图片缓存框架
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.android.support:recyclerview-v7:24.2.0'
     compile project(':gallery')
     compile project(':jcvideoplayer-lib')
     compile project(':recyclelibrary')
@@ -54,4 +54,6 @@ dependencies {
     compile files('libs/MobCommons-2016.0426.1819.jar')
     //增加左滑退出activity的库
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
+    //添加权限管理的库
+    compile 'com.github.k0shk0sh:PermissionHelper:1.0.13'
 }

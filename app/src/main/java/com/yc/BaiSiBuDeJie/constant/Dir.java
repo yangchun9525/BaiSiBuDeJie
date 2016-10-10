@@ -5,6 +5,8 @@ import android.os.Environment;
 import com.yc.BaiSiBuDeJie.GlobalApp;
 import com.yc.BaiSiBuDeJie.utils.FileUtil;
 
+import java.io.File;
+
 /**
  * Created by yangchun on 2015/5/29.
  * 应用中所有文件路径
@@ -24,8 +26,6 @@ public class Dir {
      *      用于获取/data/data/<application package>/files目录
      */
 
-    private static final String APP_NAME_PATH = "/Innovation/";
-
     /**
      * 获取应用的缓存路径
      * @return
@@ -41,60 +41,11 @@ public class Dir {
     }
 
     /**
-     * 获取应用在sd卡中的root路径
+     * 获取应用的缓存路径
      * @return
      */
-    public static String getAppRootDir() {
-        if (FileUtil.hasSDCard()) {
-            return Environment.getExternalStoragePublicDirectory(APP_NAME_PATH).getAbsolutePath() + "/";
-        } else {
-            return APP_NAME_PATH;
-        }
-    }
-
-    /**
-     * 获取应用中存放附件的路径
-     * @return
-     */
-    public static String getAppendixDir() {
-        return getAppendixDir(false);
-    }
-
-    /**
-     * 获取应用中存放附件的路径
-     * @param isDownload
-     *          由于调用DownloadManager时，系统已经默认添加了getExternalStoragePublicDirectory，所以在
-     *          此处不在调用getAppRootDir方法获得存储路径。
-     * @return
-     */
-    public static String getAppendixDir(boolean isDownload) {
-        if (isDownload) {
-            return APP_NAME_PATH + "appendix/";
-        } else {
-            return getAppRootDir() + "appendix/";
-        }
-    }
-
-    /**
-     * 获取应用中存放主题的路径
-     * @param isDownload
-     *          由于调用DownloadManager时，系统已经默认添加了getExternalStoragePublicDirectory，所以在
-     *          此处不在调用getAppRootDir方法获得存储路径。
-     * @return
-     */
-    public static String getThemDir(boolean isDownload) {
-        if (isDownload) {
-            return APP_NAME_PATH + "them/";
-        } else {
-            return getAppRootDir() + "them/";
-        }
-    }
-
-    public static String getEmailFileZipDir(boolean isDownload){
-        if (isDownload) {
-            return APP_NAME_PATH + "email/attachment/";
-        } else {
-            return getAppRootDir() + "email/attachment/";
-        }
+    public static String getCrashDir() {
+        String appPath = "BaiSiBuDeJie";
+        return  Environment.getExternalStorageDirectory().getPath() + "/" + appPath +"/crash/";
     }
 }
