@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
+        android:background="?attr/action_bar_bg"
+        android:layout_width="match_parent"
+        android:id="@+id/topRela"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/ic_launcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivOpenDraw"/>
+        <com.yc.BaiSiBuDeJie.base.BaseTextView
+            android:id="@+id/tvLabel"
+            android:text="@string/app_name"
+            android:layout_toRightOf="@id/ivOpenDraw"
+            android:textColor="?attr/action_bar_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.yc.BaiSiBuDeJie.base.BaseView
+            android:id="@+id/view_action_bar_divide"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?attr/action_bar_divide_line"/>
+    </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
+</com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>

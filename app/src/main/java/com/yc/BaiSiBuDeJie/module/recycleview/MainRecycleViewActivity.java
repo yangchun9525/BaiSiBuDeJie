@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -16,6 +17,8 @@ import com.kymjs.rxvolley.rx.Result;
 import com.yc.BaiSiBuDeJie.GlobalApp;
 import com.yc.BaiSiBuDeJie.R;
 import com.yc.BaiSiBuDeJie.base.BaseActivity;
+import com.yc.BaiSiBuDeJie.base.BaseRelativeLayout;
+import com.yc.BaiSiBuDeJie.base.BaseTextView;
 import com.yc.BaiSiBuDeJie.cache.LruCacheManager;
 import com.yc.BaiSiBuDeJie.constant.Const;
 import com.yc.BaiSiBuDeJie.constant.HttpURL;
@@ -24,8 +27,10 @@ import com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
 import com.yc.BaiSiBuDeJie.module.recycleview.adapter.RecycleViewAdapter;
 import com.yc.BaiSiBuDeJie.net.parser.JsonParser;
+import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
 import com.yc.BaiSiBuDeJie.utils.LogTools;
 import com.yc.BaiSiBuDeJie.utils.SecurityUtil;
+import com.yc.BaiSiBuDeJie.utils.TextDisplayUtil;
 
 import java.util.ArrayList;
 
@@ -43,7 +48,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by YangChun on 2016/4/19.
  */
-public class MainRecycleViewActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener,SwipeBackActivityBase {
+public class MainRecycleViewActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener,SwipeBackActivityBase, View.OnClickListener {
     private RecyclerView mRecyclerView;
     private RecycleViewAdapter mQuickAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -54,6 +59,10 @@ public class MainRecycleViewActivity extends BaseActivity implements SwipeRefres
     private ArrayList<ContentEntity> contentlist = new ArrayList<>();
     private SwipeBackActivityHelper swipeBackActivityHelper;
 
+    private BaseRelativeLayout mTopRela;
+    private View mViewActionBarDivide;
+    private BaseTextView mTvLabel;
+    private ImageView mIvOpenDrawer;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -183,20 +192,32 @@ public class MainRecycleViewActivity extends BaseActivity implements SwipeRefres
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
         errorPortraitVw = (ErrorPortraitView) findViewById(R.id.errorPortraitVw);
         errorPortraitVw.isLoading();
+
+        mTopRela = (BaseRelativeLayout) findViewById(R.id.topRela);
+        mViewActionBarDivide = findViewById(R.id.view_action_bar_divide);
+        mTvLabel = (BaseTextView) findViewById(R.id.tvLabel);
+        mIvOpenDrawer = (ImageView) findViewById(R.id.ivOpenDraw);
     }
 
     @Override
     protected void setViewSize() {
+        DimensionUtil.setSize(mTopRela, 0, 150);
+        DimensionUtil.setSize(mIvOpenDrawer, 120, 120);
 
+        DimensionUtil.setMargin(mIvOpenDrawer, 35, 15, 0, 0);
+        DimensionUtil.setMargin(mViewActionBarDivide, 0, 149, 0, 0);
+        DimensionUtil.setMargin(mTvLabel, 30, 35, 0, 0);
+        mTvLabel.setTextSize(TextDisplayUtil.fixSpValue(R.dimen.text_size_common_txt_60));
     }
 
     @Override
     protected void initValue() {
-
+        mTvLabel.setText("MVC-RecycleView");
     }
 
     @Override
     protected void bindEvent() {
+        mIvOpenDrawer.setOnClickListener(this);
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
 
@@ -248,5 +269,15 @@ public class MainRecycleViewActivity extends BaseActivity implements SwipeRefres
             onBackPressed();
         }
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id){
+            case R.id.ivOpenDraw:
+                onBackPressed();
+                break;
+        }
     }
 }
