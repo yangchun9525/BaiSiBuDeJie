@@ -182,7 +182,7 @@ public class SamplePagerAdapter extends PagerAdapter {
                 desiredWidth, desiredHeight);
         Log.i("test-size",size+"");
         //inSampleSize = = 2，则取出的缩略图的宽和高都是原始图片的1/2，图片大小就为原始大小的1/4。
-        option.inSampleSize = size;
+        option.inSampleSize = 3;
         option.inJustDecodeBounds = false;
         return BitmapFactory.decodeByteArray(data, 0, data.length, option);
     }
