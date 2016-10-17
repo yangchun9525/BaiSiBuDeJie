@@ -19,6 +19,7 @@ import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
 import java.util.ArrayList;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
  * Created by YangChun on 2016/4/15.
@@ -77,7 +78,7 @@ public class ListViewAdapter extends BaseAdapter {
             }else if(datas.get(i).type.equals("41")){
                 holder.ivImageView.setVisibility(View.GONE);
                 holder.jcVideoPlayer.setVisibility(View.VISIBLE);
-                holder.jcVideoPlayer.setUp(datas.get(i).video_uri, "");
+                holder.jcVideoPlayer.setUp(datas.get(i).video_uri,JCVideoPlayer.SCREEN_LAYOUT_LIST, "");
             }else {
                 holder.ivImageView.setVisibility(View.VISIBLE);
                 holder.ivImageView.setImageResource(R.drawable.common_loading);
@@ -113,7 +114,7 @@ public class ListViewAdapter extends BaseAdapter {
         holder.tvTitle = (BaseTextView) convertView.findViewById(R.id.title);
         holder.tvContent = (BaseTextView) convertView.findViewById(R.id.content);
         holder.ivImageView = (ImageView) convertView.findViewById(R.id.image);
-        holder.jcVideoPlayer = (JCVideoPlayer) convertView.findViewById(R.id.videocontroller1);
+        holder.jcVideoPlayer = (JCVideoPlayerStandard) convertView.findViewById(R.id.videocontroller1);
 
         DimensionUtil.setPadding(convertView, 30, 30, 30, 30);
         DimensionUtil.setMargin(holder.tvContent, 0, 30, 0, 0);
@@ -128,6 +129,6 @@ public class ListViewAdapter extends BaseAdapter {
         public BaseTextView tvTitle;
         public BaseTextView tvContent;
         public ImageView ivImageView;
-        public JCVideoPlayer jcVideoPlayer;
+        public JCVideoPlayerStandard jcVideoPlayer;
     }
 }

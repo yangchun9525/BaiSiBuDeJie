@@ -3,27 +3,19 @@ package com.yc.BaiSiBuDeJie.module.listview;
 import android.Manifest;
 import android.animation.Animator;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.graphics.drawable.DrawerArrowDrawable;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
@@ -376,27 +368,29 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+        LogTools.i("yc-onPageScrolled", position+"");
     }
 
     @Override
     public void onPageSelected(int position) {
-
+        JCVideoPlayer.releaseAllVideos();
+        LogTools.i("yc-onPageSelected", position+"");
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-        if (state == ViewPager.SCROLL_STATE_DRAGGING) {
-            //正在滑动   pager处于正在拖拽中
-            LogTools.i("测试代码", "onPageScrollStateChanged=======正在滑动" + "SCROLL_STATE_DRAGGING");
-        } else if (state == ViewPager.SCROLL_STATE_SETTLING) {
-            //pager正在自动沉降，相当于松手后，pager恢复到一个完整pager的过程
-            LogTools.i("测试代码", "onPageScrollStateChanged=======自动沉降" + "SCROLL_STATE_SETTLING");
-        } else if (state == ViewPager.SCROLL_STATE_IDLE) {
-            //空闲状态  pager处于空闲状态
-            LogTools.i("测试代码", "onPageScrollStateChanged=======空闲状态" + "SCROLL_STATE_IDLE");
-            JCVideoPlayer.releaseAllVideos();
-        }
+        LogTools.i("yc-onPageScrollStateChanged", state+"");
+//        if (state == ViewPager.SCROLL_STATE_DRAGGING) {
+//            //正在滑动   pager处于正在拖拽中
+//            LogTools.i("测试代码", "onPageScrollStateChanged=======正在滑动" + "SCROLL_STATE_DRAGGING");
+//        } else if (state == ViewPager.SCROLL_STATE_SETTLING) {
+//            //pager正在自动沉降，相当于松手后，pager恢复到一个完整pager的过程
+//            LogTools.i("测试代码", "onPageScrollStateChanged=======自动沉降" + "SCROLL_STATE_SETTLING");
+//        } else if (state == ViewPager.SCROLL_STATE_IDLE) {
+//            //空闲状态  pager处于空闲状态
+//            LogTools.i("测试代码", "onPageScrollStateChanged=======空闲状态" + "SCROLL_STATE_IDLE");
+////            JCVideoPlayer.releaseAllVideos();
+//        }
     }
 
     @Override
@@ -432,5 +426,10 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         permissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JCVideoPlayer.releaseAllVideos();
     }
 }

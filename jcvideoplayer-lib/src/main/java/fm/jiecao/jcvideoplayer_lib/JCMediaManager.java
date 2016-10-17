@@ -1,13 +1,19 @@
 package fm.jiecao.jcvideoplayer_lib;
 
-import android.content.Context;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.net.Uri;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Surface;
+import android.view.TextureView;
 
-import java.io.IOException;
+import java.util.Map;
 
+import tv.danmaku.ijk.media.player.IMediaPlayer;
+import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
  * <p>统一管理MediaPlayer的地方,只有一个mediaPlayer实例，那么不会有多个视频同时播放，也节省资源。</p>
@@ -15,109 +21,211 @@ import java.io.IOException;
  * Created by Nathen
  * On 2015/11/30 15:39
  */
-class JCMediaManager implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnSeekCompleteListener, MediaPlayer.OnErrorListener, MediaPlayer.OnVideoSizeChangedListener {
+public class JCMediaManager implements IMediaPlayer.OnPreparedListener, IMediaPlayer.OnCompletionListener,
+        IMediaPlayer.OnBufferingUpdateListener, IMediaPlayer.OnSeekCompleteListener, IMediaPlayer.OnErrorListener,
+        IMediaPlayer.OnVideoSizeChangedListener, IMediaPlayer.OnInfoListener {
+    public static String TAG = "JieCaoVideoPlayer";
 
-    public MediaPlayer mediaPlayer;
-    private static JCMediaManager jcMediaManager;
-    public int currentVideoWidth = 0;
+    private static fm.jiecao.jcvideoplayer_lib.JCMediaManager JCMediaManager;
+    public IjkMediaPlayer mediaPlayer;
+    public static  TextureView    textureView;
+
+    public int currentVideoWidth  = 0;
     public int currentVideoHeight = 0;
-    public JCMediaPlayerListener listener;
-    public JCMediaPlayerListener lastListener;
     public int lastState;
 
-    public static JCMediaManager intance() {
-        if (jcMediaManager == null) {
-            jcMediaManager = new JCMediaManager();
+    public static final int HANDLER_PREPARE    = 0;
+    public static final int HANDLER_SETDISPLAY = 1;
+    public static final int HANDLER_RELEASE    = 2;
+    HandlerThread mMediaHandlerThread;
+    MediaHandler  mMediaHandler;
+    Handler       mainThreadHandler;
+
+    public static fm.jiecao.jcvideoplayer_lib.JCMediaManager instance() {
+        if (JCMediaManager == null) {
+            JCMediaManager = new JCMediaManager();
         }
-        return jcMediaManager;
+        return JCMediaManager;
     }
 
     public JCMediaManager() {
-        mediaPlayer = new MediaPlayer();
+        mediaPlayer = new IjkMediaPlayer();
+        mMediaHandlerThread = new HandlerThread(TAG);
+        mMediaHandlerThread.start();
+        mMediaHandler = new MediaHandler((mMediaHandlerThread.getLooper()));
+        mainThreadHandler = new Handler();
     }
 
-    public void prepareToPlay(Context context, String url) {
+    public class MediaHandler extends Handler {
+        public MediaHandler(Looper looper) {
+            super(looper);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case HANDLER_PREPARE:
+                    try {
+                        currentVideoWidth = 0;
+                        currentVideoHeight = 0;
+                        mediaPlayer.release();
+                        mediaPlayer = new IjkMediaPlayer();
+                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                        mediaPlayer.setDataSource(((FuckBean) msg.obj).url, ((FuckBean) msg.obj).mapHeadData);
+                        mediaPlayer.setLooping(((FuckBean) msg.obj).looping);
+                        mediaPlayer.setOnPreparedListener(fm.jiecao.jcvideoplayer_lib.JCMediaManager.this);
+                        mediaPlayer.setOnCompletionListener(fm.jiecao.jcvideoplayer_lib.JCMediaManager.this);
+                        mediaPlayer.setOnBufferingUpdateListener(fm.jiecao.jcvideoplayer_lib.JCMediaManager.this);
+                        mediaPlayer.setScreenOnWhilePlaying(true);
+                        mediaPlayer.setOnSeekCompleteListener(fm.jiecao.jcvideoplayer_lib.JCMediaManager.this);
+                        mediaPlayer.setOnErrorListener(fm.jiecao.jcvideoplayer_lib.JCMediaManager.this);
+                        mediaPlayer.setOnInfoListener(fm.jiecao.jcvideoplayer_lib.JCMediaManager.this);
+                        mediaPlayer.setOnVideoSizeChangedListener(fm.jiecao.jcvideoplayer_lib.JCMediaManager.this);
+                        mediaPlayer.prepareAsync();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case HANDLER_SETDISPLAY:
+                    if (msg.obj == null) {
+                        instance().mediaPlayer.setSurface(null);
+                    } else {
+                        Surface holder = (Surface) msg.obj;
+                        if (holder.isValid()) {
+                            Log.i(TAG, "set surface");
+                            instance().mediaPlayer.setSurface(holder);
+                        }
+                    }
+                    break;
+                case HANDLER_RELEASE:
+                    mediaPlayer.release();
+                    break;
+            }
+        }
+    }
+
+
+    public void prepare(final String url, final Map<String, String> mapHeadData, boolean loop) {
         if (TextUtils.isEmpty(url)) return;
-        try {
-            mediaPlayer.release();
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mediaPlayer.setDataSource(context, Uri.parse(url));
-            mediaPlayer.setOnPreparedListener(this);
-            mediaPlayer.setOnCompletionListener(this);
-            mediaPlayer.setOnBufferingUpdateListener(this);
-            mediaPlayer.setOnSeekCompleteListener(this);
-            mediaPlayer.setOnErrorListener(this);
-            mediaPlayer.setOnVideoSizeChangedListener(this);
-            mediaPlayer.prepareAsync();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Message msg = new Message();
+        msg.what = HANDLER_PREPARE;
+        FuckBean fb = new FuckBean(url, mapHeadData, loop);
+        msg.obj = fb;
+        mMediaHandler.sendMessage(msg);
+    }
+
+    public void releaseMediaPlayer() {
+        Message msg = new Message();
+        msg.what = HANDLER_RELEASE;
+        mMediaHandler.sendMessage(msg);
+    }
+
+    public void setDisplay(Surface holder) {
+        Message msg = new Message();
+        msg.what = HANDLER_SETDISPLAY;
+        msg.obj = holder;
+        mMediaHandler.sendMessage(msg);
     }
 
     @Override
-    public void onPrepared(MediaPlayer mp) {
-        if (listener != null) {
-            listener.onPrepared();
-        }
+    public void onPrepared(IMediaPlayer mp) {
+        mainThreadHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (JCVideoPlayerManager.listener() != null) {
+                    JCVideoPlayerManager.listener().onPrepared();
+                }
+            }
+        });
     }
 
     @Override
-    public void onCompletion(MediaPlayer mp) {
-        if (listener != null) {
-            listener.onCompletion();
-        }
+    public void onCompletion(IMediaPlayer mp) {
+        mainThreadHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (JCVideoPlayerManager.listener() != null) {
+                    JCVideoPlayerManager.listener().onAutoCompletion();
+                }
+            }
+        });
     }
 
     @Override
-    public void onBufferingUpdate(MediaPlayer mp, int percent) {
-        if (listener != null) {
-            listener.onBufferingUpdate(percent);
-        }
+    public void onBufferingUpdate(IMediaPlayer mp, final int percent) {
+        mainThreadHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (JCVideoPlayerManager.listener() != null) {
+                    JCVideoPlayerManager.listener().onBufferingUpdate(percent);
+                }
+            }
+        });
     }
 
     @Override
-    public void onSeekComplete(MediaPlayer mp) {
-        if (listener != null) {
-            listener.onSeekComplete();
-        }
+    public void onSeekComplete(IMediaPlayer mp) {
+        mainThreadHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (JCVideoPlayerManager.listener() != null) {
+                    JCVideoPlayerManager.listener().onSeekComplete();
+                }
+            }
+        });
     }
 
     @Override
-    public boolean onError(MediaPlayer mp, int what, int extra) {
-        if (listener != null) {
-            listener.onError(what, extra);
-        }
+    public boolean onError(IMediaPlayer mp, final int what, final int extra) {
+        mainThreadHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (JCVideoPlayerManager.listener() != null) {
+                    JCVideoPlayerManager.listener().onError(what, extra);
+                }
+            }
+        });
         return true;
     }
 
     @Override
-    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+    public boolean onInfo(IMediaPlayer mp, final int what, final int extra) {
+        mainThreadHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (JCVideoPlayerManager.listener() != null) {
+                    JCVideoPlayerManager.listener().onInfo(what, extra);
+                }
+            }
+        });
+        return false;
+    }
+
+    @Override
+    public void onVideoSizeChanged(IMediaPlayer mp, int width, int height, int sar_num, int sar_den) {
         currentVideoWidth = mp.getVideoWidth();
         currentVideoHeight = mp.getVideoHeight();
-        if (listener != null) {
-            listener.onVideoSizeChanged();
+        mainThreadHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (JCVideoPlayerManager.listener() != null) {
+                    JCVideoPlayerManager.listener().onVideoSizeChanged();
+                }
+            }
+        });
+    }
+
+
+    private class FuckBean {
+        String              url;
+        Map<String, String> mapHeadData;
+        boolean             looping;
+
+        FuckBean(String url, Map<String, String> mapHeadData, boolean loop) {
+            this.url = url;
+            this.mapHeadData = mapHeadData;
+            this.looping = loop;
         }
-    }
-
-    public void clearWidthAndHeight() {
-        currentVideoWidth = 0;
-        currentVideoHeight = 0;
-    }
-
-    interface JCMediaPlayerListener {
-        void onPrepared();
-
-        void onCompletion();
-
-        void onBufferingUpdate(int percent);
-
-        void onSeekComplete();
-
-        void onError(int what, int extra);
-
-        void onVideoSizeChanged();
-
-        void onBackFullscreen();
     }
 }

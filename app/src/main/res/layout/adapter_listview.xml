@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
         android:layout_below="@id/title"
         android:visibility="gone"
         android:id="@+id/videocontroller1"
