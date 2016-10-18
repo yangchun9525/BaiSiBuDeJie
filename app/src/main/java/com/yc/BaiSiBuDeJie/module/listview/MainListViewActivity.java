@@ -56,6 +56,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
+import static fm.jiecao.jcvideoplayer_lib.JCVideoPlayer.backPress;
 
 /**
  * Created by YangChun on 2016/4/15.
@@ -182,11 +185,16 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     @Override
     public void onBackPressed() {
-        if ((System.currentTimeMillis() - exitTime) > 2000) {
-            Snackbar.make(mTabLayout, "再按一次退出程序", Snackbar.LENGTH_SHORT).show();
-            exitTime = System.currentTimeMillis();
-        } else {
-            finish();
+        if(JCVideoPlayerStandard.isFullScreen){
+            backPress();
+        }else {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Snackbar.make(mTabLayout, "再按一次退出程序", Snackbar.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.gc();
+            }
         }
     }
 

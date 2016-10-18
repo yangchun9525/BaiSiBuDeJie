@@ -55,8 +55,6 @@ public class GlobalApp extends Application {
         MyVolley.init(getApplicationContext());
         LruCacheManager.init(getApplicationContext(), Dir.getDiskCacheDir());
         LogTools.i("test-url",Dir.getDiskCacheDir());
-        // 应用程序保持后台唤醒
-        ApplicationUtil.acquireWakeLock(this);
     }
 
     //添加activity

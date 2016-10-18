@@ -183,8 +183,10 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
             startDismissControlViewTimer();
         } else if (i == R.id.back) {
             backPress();
+            isFullScreen = false;
         } else if (i == R.id.back_tiny) {
             backPress();
+            isFullScreen = false;
         }
     }
 

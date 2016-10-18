@@ -71,7 +71,7 @@ public abstract class JCVideoPlayer extends FrameLayout implements JCMediaPlayer
 
     public int currentState  = -1;
     public int currentScreen = -1;
-
+    public static boolean isFullScreen = false;
 
     public String              url             = null;
     public Object[]            objects         = null;
@@ -197,10 +197,12 @@ public abstract class JCVideoPlayer extends FrameLayout implements JCMediaPlayer
             if (currentScreen == SCREEN_WINDOW_FULLSCREEN) {
                 //quit fullscreen
                 backPress();
+                isFullScreen = false;
             } else {
                 Log.d(TAG, "toFullscreenActivity [" + this.hashCode() + "] ");
                 onEvent(JCBuriedPoint.ON_ENTER_FULLSCREEN);
                 startWindowFullscreen();
+                isFullScreen = true;
             }
         } else if (i == R.id.surface_container && currentState == CURRENT_STATE_ERROR) {
             Log.i(TAG, "onClick surfaceContainer State=Error [" + this.hashCode() + "] ");
@@ -216,6 +218,7 @@ public abstract class JCVideoPlayer extends FrameLayout implements JCMediaPlayer
         File file = Environment.getExternalStoragePublicDirectory(appPath);
         file.mkdirs();
         String name = url.substring(url.lastIndexOf("/") + 1);
+        Loger.debug("====url" + url);
         RxVolley.download(file.getAbsolutePath() + "/" + name,
                 url, new ProgressListener() {
                     @Override
@@ -643,7 +646,7 @@ public abstract class JCVideoPlayer extends FrameLayout implements JCMediaPlayer
             JCVideoPlayerManager.setLastListener(this);
             JCVideoPlayerManager.setListener(jcVideoPlayer);
 
-
+            Log.i("test-current111111111",currentScreen+"");
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -890,5 +893,13 @@ public abstract class JCVideoPlayer extends FrameLayout implements JCMediaPlayer
 
     public abstract int getLayoutId();
 
+    public NotificationManager notificationManager;
+    public Notification notification;
 
+    public Intent updateIntent;
+    public PendingIntent pendingIntent;
+    /***
+     * 创建通知栏
+     */
+    public RemoteViews contentView;
 }
