@@ -892,14 +892,4 @@ public abstract class JCVideoPlayer extends FrameLayout implements JCMediaPlayer
 
 
     public abstract int getLayoutId();
-
-    public NotificationManager notificationManager;
-    public Notification notification;
-
-    public Intent updateIntent;
-    public PendingIntent pendingIntent;
-    /***
-     * 创建通知栏
-     */
-    public RemoteViews contentView;
 }
