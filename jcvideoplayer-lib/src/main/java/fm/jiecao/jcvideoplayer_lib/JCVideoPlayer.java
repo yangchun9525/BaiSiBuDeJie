@@ -71,7 +71,7 @@ public abstract class JCVideoPlayer extends FrameLayout implements JCMediaPlayer
 
     public int currentState  = -1;
     public int currentScreen = -1;
-    public static boolean isFullScreen = false;
+    public static String isFullScreen = "false";
 
     public String              url             = null;
     public Object[]            objects         = null;
@@ -197,12 +197,12 @@ public abstract class JCVideoPlayer extends FrameLayout implements JCMediaPlayer
             if (currentScreen == SCREEN_WINDOW_FULLSCREEN) {
                 //quit fullscreen
                 backPress();
-                isFullScreen = false;
+                isFullScreen = "false";
             } else {
                 Log.d(TAG, "toFullscreenActivity [" + this.hashCode() + "] ");
                 onEvent(JCBuriedPoint.ON_ENTER_FULLSCREEN);
                 startWindowFullscreen();
-                isFullScreen = true;
+                isFullScreen = "true";
             }
         } else if (i == R.id.surface_container && currentState == CURRENT_STATE_ERROR) {
             Log.i(TAG, "onClick surfaceContainer State=Error [" + this.hashCode() + "] ");

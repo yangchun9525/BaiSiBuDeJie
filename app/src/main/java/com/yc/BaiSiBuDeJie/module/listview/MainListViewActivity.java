@@ -185,15 +185,17 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     @Override
     public void onBackPressed() {
-        if(JCVideoPlayerStandard.isFullScreen){
+        LogTools.i("isFullScreen",JCVideoPlayerStandard.isFullScreen+"");
+        if(JCVideoPlayerStandard.isFullScreen.equals("true")){
             backPress();
+            JCVideoPlayerStandard.isFullScreen = "false";
         }else {
             if ((System.currentTimeMillis() - exitTime) > 2000) {
                 Snackbar.make(mTabLayout, "再按一次退出程序", Snackbar.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
+                JCVideoPlayerStandard.isFullScreen = null;
                 finish();
-                System.gc();
             }
         }
     }
