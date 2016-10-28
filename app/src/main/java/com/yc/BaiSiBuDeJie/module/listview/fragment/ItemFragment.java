@@ -1,12 +1,8 @@
 package com.yc.BaiSiBuDeJie.module.listview.fragment;
 
-import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +14,6 @@ import com.yc.BaiSiBuDeJie.R;
 import com.yc.BaiSiBuDeJie.base.BaseFragment;
 import com.yc.BaiSiBuDeJie.constant.Const;
 import com.yc.BaiSiBuDeJie.manager.RequestManager;
-import com.yc.BaiSiBuDeJie.module.listview.MainListViewActivity;
 import com.yc.BaiSiBuDeJie.module.listview.adapter.ListViewAdapter;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
@@ -26,7 +21,6 @@ import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
 import com.yc.BaiSiBuDeJie.net.IParserListener;
 import com.yc.BaiSiBuDeJie.net.IRequestListener;
 import com.yc.BaiSiBuDeJie.net.ParserFacade;
-import com.yc.BaiSiBuDeJie.utils.ColorUiUtil;
 import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
 import com.yc.BaiSiBuDeJie.widget.PullToRefreshListView;
 
