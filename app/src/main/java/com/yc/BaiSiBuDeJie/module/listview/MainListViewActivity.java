@@ -186,7 +186,7 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     @Override
     public void onBackPressed() {
         LogTools.i("isFullScreen",JCVideoPlayerStandard.isFullScreen+"");
-        if(JCVideoPlayerStandard.isFullScreen.equals("true")){
+        if(!ValidatesUtil.isEmpty(JCVideoPlayerStandard.isFullScreen) && JCVideoPlayerStandard.isFullScreen.equals("true")){
             backPress();
             JCVideoPlayerStandard.isFullScreen = "false";
         }else {
