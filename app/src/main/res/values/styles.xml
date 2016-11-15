@@ -48,7 +48,7 @@
         <item name="colorPrimary">@color/status_bar_day</item>
         <item name="action_bar_text_color">@color/action_bar_text_color_day</item>
         <item name="action_bar_divide_line">@color/action_bar_divider_line_day</item>
-        <item name="recycle_bg">@color/recycle_item_background_day</item>
+        <item name="recycle_bg">@drawable/button_selector</item>
         <item name="pull_to_refresh_bg">@color/recycle_item_background_day</item>
     </style>
 
@@ -62,7 +62,7 @@
         <item name="action_bar_bg">@color/status_bar_night</item>
         <item name="action_bar_text_color">@color/action_bar_text_color_night</item>
         <item name="action_bar_divide_line">@color/action_bar_divider_line_night</item>
-        <item name="recycle_bg">@color/recycle_item_background_night</item>
+        <item name="recycle_bg">@drawable/button_click_select</item>
         <item name="pull_to_refresh_bg">@color/recycle_item_background_night</item>
     </style>
 </resources>

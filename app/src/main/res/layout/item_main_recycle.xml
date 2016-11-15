@@ -8,12 +8,12 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:foreground="?android:attr/selectableItemBackground"
-    card_view:cardBackgroundColor="?attr/recycle_bg"
     card_view:cardCornerRadius="8dp"
     card_view:cardElevation="4dp"
     card_view:cardUseCompatPadding="true">
 
     <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
+        android:background="?attr/recycle_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/smallSpace"

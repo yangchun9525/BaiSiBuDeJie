@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/common_btn_ok_click_bg">//点击时波纹的颜色
+    <item android:drawable="@android:color/white"/>//未点击时控件的颜色
+</selector>

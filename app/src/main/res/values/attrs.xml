@@ -10,7 +10,7 @@
     <attr name="divide_line_bg" format="reference|color"/>
     <attr name="action_bar_bg" format="reference|color"/>
     <attr name="action_bar_text_color" format="reference|color"/>
-    <attr name="recycle_bg" format="reference|color"/>
+    <attr name="recycle_bg" format="reference"/>
     <attr name="action_bar_divide_line" format="reference|color"/>
     <attr name="pull_to_refresh_bg" format="reference|color"/>
 </resources>

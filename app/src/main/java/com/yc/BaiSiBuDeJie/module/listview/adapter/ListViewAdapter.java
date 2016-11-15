@@ -13,6 +13,7 @@ import com.yc.BaiSiBuDeJie.base.BaseTextView;
 import com.yc.BaiSiBuDeJie.manager.ImageLoadManager;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity;
 import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
+import com.yc.BaiSiBuDeJie.utils.LogTools;
 import com.yc.BaiSiBuDeJie.utils.TextDisplayUtil;
 import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
 
@@ -70,6 +71,7 @@ public class ListViewAdapter extends BaseAdapter {
                 if(datas.get(i).image3.contains("gif")) {
                     ImageLoadManager.loadGif(mContext, datas.get(i).image3, holder.ivImageView);
                 }else {
+                    LogTools.i("test-image-url",datas.get(i).image3);
                     ImageLoadManager.loadImage(mContext, datas.get(i).image3, holder.ivImageView);
                 }
             }else if(datas.get(i).type.equals("29")){
