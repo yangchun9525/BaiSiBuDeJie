@@ -2,5 +2,5 @@
 <ripple
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:color="@color/blue">//点击时波纹的颜色
-    <item android:drawable="@color/item_background_night"/>//未点击时控件的颜色
+    <item android:drawable="@color/status_bar_night"/>//未点击时控件的颜色
 </ripple>
