@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="?attr/item_bg"
+    android:background="?attr/recycle_bg"
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_width="match_parent" android:layout_height="match_parent">
 

@@ -124,7 +124,8 @@ public class ItemFragment  extends BaseFragment implements IRequestListener, IPa
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Uri uri = Uri.parse("https://www.baidu.com/");
+        ContentEntity entity = (ContentEntity) lvAdapter.getItem((int)l);
+        Uri uri = Uri.parse(entity.weixin_url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }

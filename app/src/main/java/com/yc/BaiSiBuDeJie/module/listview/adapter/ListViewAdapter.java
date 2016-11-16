@@ -65,6 +65,7 @@ public class ListViewAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         if (!ValidatesUtil.isNull(datas.get(i))) {
+            LogTools.i("yc-url",datas.get(i).weixin_url);
             if(datas.get(i).type.equals("10")) {
                 holder.ivImageView.setVisibility(View.VISIBLE);
                 holder.jcVideoPlayer.setVisibility(View.GONE);
