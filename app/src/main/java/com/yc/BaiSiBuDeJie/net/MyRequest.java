@@ -3,12 +3,15 @@ package com.yc.BaiSiBuDeJie.net;
 import android.app.FragmentManager;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.yc.BaiSiBuDeJie.utils.LogTools;
 import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +25,18 @@ public class MyRequest extends StringRequest {
     static {
         mHeaders = new HashMap<>();
         mHeaders.put("x-client-identifier", "android");
+    }
+
+    @Override
+    protected Response<String> parseNetworkResponse(NetworkResponse response) {
+        String str = null;
+        try {
+            str = new String(response.data, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return Response.success(str,
+                HttpHeaderParser.parseCacheHeaders(response));
     }
 
     /**
