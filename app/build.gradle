@@ -60,4 +60,6 @@ dependencies {
     compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.6.0'
     compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.6.0'
     compile 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.6.0'
+
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }

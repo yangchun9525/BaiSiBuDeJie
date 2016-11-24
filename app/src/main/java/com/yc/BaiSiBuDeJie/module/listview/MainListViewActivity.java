@@ -195,7 +195,8 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
                 exitTime = System.currentTimeMillis();
             } else {
                 JCVideoPlayerStandard.isFullScreen = null;
-                finish();
+                GlobalApp.getInstance().exit();
+//                finish();
             }
         }
     }

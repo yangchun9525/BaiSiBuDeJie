@@ -24,6 +24,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!-- 应用程序保持后台唤醒 -->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.DEVICE_POWER"
@@ -37,6 +38,11 @@
         android:theme="@style/AppTheme"
         android:name="com.yc.BaiSiBuDeJie.GlobalApp"
         tools:replace="name,icon,label,theme">
+
+        <!-- 设置友盟appkey -->
+        <meta-data android:value="5836a705bbea837809001aeb" android:name="UMENG_APPKEY"/>
+        <!-- 设置推广渠道名称,channel id自定义 -->
+       <!-- <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>-->
 
         <activity
             android:name="com.yc.BaiSiBuDeJie.LoadingActivity"

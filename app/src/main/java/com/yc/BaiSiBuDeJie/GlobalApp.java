@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.app.Application;
 import android.graphics.Typeface;
 
+import com.umeng.analytics.MobclickAgent;
 import com.yc.BaiSiBuDeJie.cache.LruCacheManager;
 import com.yc.BaiSiBuDeJie.constant.Dir;
 import com.yc.BaiSiBuDeJie.net.MyVolley;
-import com.yc.BaiSiBuDeJie.utils.ApplicationUtil;
 import com.yc.BaiSiBuDeJie.utils.CrashHandlerUtil;
 import com.yc.BaiSiBuDeJie.utils.DebugUtil;
 import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
@@ -47,7 +47,7 @@ public class GlobalApp extends Application {
         DebugUtil.enableStrictMode();
 
         initApp();
-
+        MobclickAgent.setCatchUncaughtExceptions(true);
     }
 
     private void initApp() {
@@ -98,6 +98,7 @@ public class GlobalApp extends Application {
         /**
          * 如果调用 Process.kill 或者 System.exit 之类的方法杀死进程，请务必在此之前调用此方法，用来保存统计数据
          */
+        MobclickAgent.onKillProcess(this);
         System.exit(0);
     }
 }
