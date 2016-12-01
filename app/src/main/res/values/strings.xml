@@ -36,5 +36,6 @@
 
     <string name="to_mvp_activity">使用MVP实现</string>
     <string name="to_mvc_activity">使用MVC实现</string>
+    <string name="to_mvvm_activity">使用MVVM实现</string>
     <string name="change_skin">换肤</string>
 </resources>

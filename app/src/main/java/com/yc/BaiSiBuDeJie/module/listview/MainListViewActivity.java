@@ -39,6 +39,7 @@ import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
 import com.yc.BaiSiBuDeJie.module.listview.fragment.ItemFragment;
 import com.yc.BaiSiBuDeJie.module.mvp.activity.BuDeJieMvpActivity;
+import com.yc.BaiSiBuDeJie.module.mvvm.MvvmRecycleViewActivity;
 import com.yc.BaiSiBuDeJie.module.recycleview.MainRecycleViewActivity;
 import com.yc.BaiSiBuDeJie.net.IParserListener;
 import com.yc.BaiSiBuDeJie.net.IRequestListener;
@@ -70,7 +71,7 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     private SlipViewPager mViewPager;
     private TabLayoutFragmentAdapter mFragmentAdapter;
     private ErrorPortraitView errorPortraitVw;
-    private BaseTextView mTvToMvcRv,mTvToMvpRv,mTvChangeSkin,mTvLabel;
+    private BaseTextView mTvToMvcRv,mTvToMvpRv,mTvToMvvmRv,mTvChangeSkin,mTvLabel;
     private ImageView mIvOpenDrawer;
     private BaseRelativeLayout mTopRela,mLeftDrawerLayout,mRootLinear;
     private View mViewActionBarDivide;
@@ -118,6 +119,7 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
         mTvToMvcRv = (BaseTextView) findViewById(R.id.tvToMvcRv);
         mTvToMvpRv = (BaseTextView) findViewById(R.id.tvToMvpRv);
+        mTvToMvvmRv = (BaseTextView) findViewById(R.id.tvToMvvmRv);
         mTvChangeSkin = (BaseTextView) findViewById(R.id.tvToChangeSkin);
         mIvOpenDrawer = (ImageView) findViewById(R.id.ivOpenDraw);
 
@@ -169,6 +171,7 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     protected void bindEvent() {
         mTvToMvcRv.setOnClickListener(this);
         mTvToMvpRv.setOnClickListener(this);
+        mTvToMvvmRv.setOnClickListener(this);
         mTvChangeSkin.setOnClickListener(this);
         mIvOpenDrawer.setOnClickListener(this);
     }
@@ -276,6 +279,10 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
             case R.id.tvToMvpRv:
                 mMainDrawerLayout.closeDrawer(GravityCompat.START);
                 startActivity(new Intent(MainListViewActivity.this, BuDeJieMvpActivity.class));
+                break;
+            case R.id.tvToMvvmRv:
+                mMainDrawerLayout.closeDrawer(GravityCompat.START);
+                startActivity(new Intent(MainListViewActivity.this, MvvmRecycleViewActivity.class));
                 break;
             case R.id.tvToChangeSkin:
                 errorPortraitVw.setVisibility(View.VISIBLE);

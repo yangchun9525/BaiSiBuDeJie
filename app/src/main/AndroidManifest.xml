@@ -87,6 +87,14 @@
             android:theme="@style/ActivityTheme">
         </activity>
 
+        <activity
+            android:name=".module.mvvm.MvvmRecycleViewActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@style/ActivityTheme">
+        </activity>
+
         <!-- broadcast reveiver -->
         <receiver android:name="com.yc.BaiSiBuDeJie.receiver.NetWorkBroadcastReceiver">
             <intent-filter>

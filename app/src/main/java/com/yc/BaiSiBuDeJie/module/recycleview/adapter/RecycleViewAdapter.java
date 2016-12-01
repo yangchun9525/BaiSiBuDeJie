@@ -33,7 +33,7 @@ public class RecycleViewAdapter extends BaseQuickAdapter<ContentEntity, BaseView
         DimensionUtil.setMargin(tv, 0, 30, 0, 0);
         tv.setTextSize(TextDisplayUtil.fixSpValue(R.dimen.text_size_common_txt_50));
         helper.setText(R.id.title, item.text)
-        .addOnClickListener(R.id.image);
+                .addOnClickListener(R.id.image);
         if(item.image3.contains("gif")){
             ImageLoadManager.loadGif(mContext,item.image3,helper.getView(R.id.image));
         }else {

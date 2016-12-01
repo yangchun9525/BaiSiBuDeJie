@@ -71,10 +71,20 @@
             android:textColor="?attr/text_color" />
 
         <com.yc.BaiSiBuDeJie.base.BaseTextView
-            android:id="@+id/tvToChangeSkin"
+            android:id="@+id/tvToMvvmRv"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@id/tvToMvcRv"
+            android:gravity="center"
+            android:text="@string/to_mvvm_activity"
+            android:background="?attr/recycle_bg"
+            android:textColor="?attr/text_color" />
+
+        <com.yc.BaiSiBuDeJie.base.BaseTextView
+            android:id="@+id/tvToChangeSkin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/tvToMvvmRv"
             android:gravity="center"
             android:text="@string/change_skin"
             android:background="?attr/recycle_bg"
