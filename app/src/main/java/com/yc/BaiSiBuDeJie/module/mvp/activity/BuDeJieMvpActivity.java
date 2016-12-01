@@ -1,33 +1,34 @@
 package com.yc.BaiSiBuDeJie.module.mvp.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.kymjs.gallery.KJGalleryActivity;
 import com.yc.BaiSiBuDeJie.GlobalApp;
 import com.yc.BaiSiBuDeJie.R;
 import com.yc.BaiSiBuDeJie.base.BaseActivity;
-import com.yc.BaiSiBuDeJie.base.BaseButton;
 import com.yc.BaiSiBuDeJie.base.BaseRelativeLayout;
 import com.yc.BaiSiBuDeJie.base.BaseTextView;
 import com.yc.BaiSiBuDeJie.constant.Const;
 import com.yc.BaiSiBuDeJie.module.error.ErrorPortraitView;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
-import com.yc.BaiSiBuDeJie.module.mvp.adapter.MvpRecycleViewAdapter;
 import com.yc.BaiSiBuDeJie.module.mvp.model.MvpModel;
 import com.yc.BaiSiBuDeJie.module.mvp.presenter.BuDeJieMvpPresenter;
 import com.yc.BaiSiBuDeJie.module.recycleview.adapter.RecycleViewAdapter;
 import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
 import com.yc.BaiSiBuDeJie.utils.LogTools;
 import com.yc.BaiSiBuDeJie.utils.TextDisplayUtil;
+import com.yc.BaiSiBuDeJie.utils.ToastUtil;
 
 import java.util.ArrayList;
 
@@ -68,13 +69,33 @@ public class BuDeJieMvpActivity extends BaseActivity implements MvpModel, BaseQu
     private void initAdapter(ArrayList<ContentEntity> contentlist){
         mMvpRecycleViewAdapter = new RecycleViewAdapter(BuDeJieMvpActivity.this, R.layout.item_main_recycle, contentlist);
         mMvpRecycleViewAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT);
-        mMvpRecycleViewAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+        mRvMvpList.addOnItemTouchListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(BuDeJieMvpActivity.this, "" + position, Toast.LENGTH_LONG).show();
+            public void SimpleOnItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Uri uri = Uri.parse(contentlist.get(position).weixin_url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                super.onItemChildClick(adapter, view, position);
+                switch (view.getId()) {
+                    case R.id.image:
+                        ToastUtil.showLongToast("111111111111111");
+                        String[] imageUrls = new String[1];
+                        imageUrls[0] = contentlist.get(position).image3;
+                        KJGalleryActivity.toGallery(BuDeJieMvpActivity.this, imageUrls);
+                        break;
+                }
             }
         });
-        mMvpRecycleViewAdapter.setOnLoadMoreListener(Const.PAGESIZE, BuDeJieMvpActivity.this);
+//        mMvpRecycleViewAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+//                Toast.makeText(BuDeJieMvpActivity.this, "" + position, Toast.LENGTH_LONG).show();
+//            }
+//        });
+        mMvpRecycleViewAdapter.setOnLoadMoreListener(BuDeJieMvpActivity.this);
         mRvMvpList.setAdapter(mMvpRecycleViewAdapter);
     }
 
@@ -131,8 +152,8 @@ public class BuDeJieMvpActivity extends BaseActivity implements MvpModel, BaseQu
         errorPortraitVw.setVisibility(View.GONE);
         if(isLoadMore) {
             isLoadMore = false;
-            mMvpRecycleViewAdapter.setData(singleDataEntity.contentlist);
-            mMvpRecycleViewAdapter.isNextLoad(true);
+            mMvpRecycleViewAdapter.addData(singleDataEntity.contentlist);
+            mMvpRecycleViewAdapter.loadMoreComplete();
         }else{
             initAdapter(singleDataEntity.contentlist);
             mSwipeRefreshLayout.setRefreshing(false);

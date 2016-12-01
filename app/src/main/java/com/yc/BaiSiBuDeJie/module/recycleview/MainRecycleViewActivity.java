@@ -1,5 +1,7 @@
 package com.yc.BaiSiBuDeJie.module.recycleview;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,9 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.kymjs.gallery.KJGalleryActivity;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
 import com.kymjs.rxvolley.client.HttpParams;
@@ -101,8 +104,8 @@ public class MainRecycleViewActivity extends BaseActivity implements SwipeRefres
 
                             }else {
                                 isLoadMore = false;
-                                mQuickAdapter.setData(singleDataEntity.contentlist);
-                                mQuickAdapter.isNextLoad(true);
+                                mQuickAdapter.addData(singleDataEntity.contentlist);
+                                mQuickAdapter.loadMoreComplete();
                             }
                         }
                     }
@@ -149,9 +152,9 @@ public class MainRecycleViewActivity extends BaseActivity implements SwipeRefres
 
                         }else {
                             isLoadMore = false;
-                            mQuickAdapter.setData(result.contentlist);
+                            mQuickAdapter.addData(result.contentlist);
 //                            mQuickAdapter.getData().addAll(result.contentlist);
-                            mQuickAdapter.isNextLoad(true);
+                            mQuickAdapter.loadMoreComplete();
                         }
                     }
                 });
@@ -176,13 +179,33 @@ public class MainRecycleViewActivity extends BaseActivity implements SwipeRefres
     private void initAdapter(ArrayList<ContentEntity> contentlist){
         mQuickAdapter = new RecycleViewAdapter(MainRecycleViewActivity.this, R.layout.item_main_recycle, contentlist);
         mQuickAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT);
-        mQuickAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(MainRecycleViewActivity.this, "" + position, Toast.LENGTH_LONG).show();
+            public void SimpleOnItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Uri uri = Uri.parse(contentlist.get(position).weixin_url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                super.onItemChildClick(adapter, view, position);
+                switch (view.getId()) {
+                    case R.id.image:
+                        String[] imageUrls = new String[1];
+                        imageUrls[0] = contentlist.get(position).image3;
+                        KJGalleryActivity.toGallery(MainRecycleViewActivity.this, imageUrls);
+                        break;
+                }
             }
         });
-        mQuickAdapter.setOnLoadMoreListener(Const.PAGESIZE, MainRecycleViewActivity.this);
+//        mQuickAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+//                Toast.makeText(MainRecycleViewActivity.this, "" + position, Toast.LENGTH_LONG).show();
+//            }
+//        });
+        mQuickAdapter.setOnLoadMoreListener(MainRecycleViewActivity.this);
         mRecyclerView.setAdapter(mQuickAdapter);
     }
     @Override

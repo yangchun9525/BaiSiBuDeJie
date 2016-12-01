@@ -1,1 +1,1 @@
-include ':app', ':gallery', ':jcvideoplayer-lib', ':recyclelibrary', ':rxvolley'
+include ':app', ':gallery', ':jcvideoplayer-lib', ':rxvolley'
