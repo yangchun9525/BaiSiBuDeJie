@@ -235,7 +235,7 @@ public class MvvmRecycleViewActivity extends BaseActivity implements SwipeRefres
 
     @Override
     protected void initValue() {
-        mTvLabel.setText("MVC-RecycleView");
+        mTvLabel.setText("MVVM-RecycleView");
     }
 
     @Override
