@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -46,6 +47,7 @@ import com.yc.BaiSiBuDeJie.net.IRequestListener;
 import com.yc.BaiSiBuDeJie.net.ParserFacade;
 import com.yc.BaiSiBuDeJie.utils.ColorUiUtil;
 import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
+import com.yc.BaiSiBuDeJie.utils.FileUtil;
 import com.yc.BaiSiBuDeJie.utils.LogTools;
 import com.yc.BaiSiBuDeJie.utils.SecurityUtil;
 import com.yc.BaiSiBuDeJie.utils.SharedPreferencesMgr;
@@ -53,6 +55,7 @@ import com.yc.BaiSiBuDeJie.utils.TextDisplayUtil;
 import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
 import com.yc.BaiSiBuDeJie.widget.SlipViewPager;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -223,6 +226,13 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     @Override
     public void onRequestSuccess(String requestCode, String result) {
+        String appPath = "BaiSiBuDeJie";
+
+        File file = Environment.getExternalStoragePublicDirectory(appPath);
+        file.mkdirs();
+        File resultFile = FileUtil.createFile(file.getAbsolutePath() + "/result.txt");
+        FileUtil.writeToFile(resultFile, result,false);
+
         LruCacheManager.addStringToCache(SecurityUtil.getMD5(requestCode), result);
         LogTools.i("test-result", result);
         ParserFacade parser = new ParserFacade(requestCode, this);
