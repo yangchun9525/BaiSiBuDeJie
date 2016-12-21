@@ -16,6 +16,7 @@ import com.yc.BaiSiBuDeJie.constant.Const;
 import com.yc.BaiSiBuDeJie.manager.RequestManager;
 import com.yc.BaiSiBuDeJie.module.listview.adapter.ListViewAdapter;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity;
+import com.yc.BaiSiBuDeJie.module.listview.entity.MessageEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
 import com.yc.BaiSiBuDeJie.net.IParserListener;
@@ -163,7 +164,7 @@ public class ItemFragment  extends BaseFragment implements IRequestListener, IPa
     }
 
     @Override
-    public void onParserError(String requestCode, ShowApiEntity messageEntity) {
+    public void onParserError(String requestCode, MessageEntity messageEntity) {
 
     }
 

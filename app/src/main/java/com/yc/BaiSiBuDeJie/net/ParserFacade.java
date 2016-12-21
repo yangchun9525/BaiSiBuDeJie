@@ -3,8 +3,11 @@ package com.yc.BaiSiBuDeJie.net;
 import android.app.FragmentManager;
 import android.os.AsyncTask;
 
+import com.yc.BaiSiBuDeJie.module.listview.entity.MessageEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
+import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
 import com.yc.BaiSiBuDeJie.net.parser.JsonParser;
+import com.yc.BaiSiBuDeJie.utils.LogTools;
 
 import java.lang.reflect.Type;
 
@@ -84,10 +87,11 @@ public class ParserFacade {
 
         @Override
         protected void onPostExecute(Object result) {
-            if (result instanceof ShowApiEntity) {
-                mParserListener.onParserError(mRequestCode, (ShowApiEntity) result);
-            } else {
+            if (result instanceof SingleDataEntity) {
                 mParserListener.onParserSuccess(mRequestCode, result);
+            } else {
+                LogTools.i("yc-result" ,result.toString());
+                mParserListener.onParserError(mRequestCode, (MessageEntity)result);
             }
 
         }

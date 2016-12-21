@@ -29,6 +29,7 @@ import com.fastaccess.permission.base.callback.OnPermissionCallback;
 import com.yc.BaiSiBuDeJie.GlobalApp;
 import com.yc.BaiSiBuDeJie.R;
 import com.yc.BaiSiBuDeJie.base.BaseActivity;
+import com.yc.BaiSiBuDeJie.base.BaseButton;
 import com.yc.BaiSiBuDeJie.base.BaseRelativeLayout;
 import com.yc.BaiSiBuDeJie.base.BaseTextView;
 import com.yc.BaiSiBuDeJie.cache.LruCacheManager;
@@ -36,6 +37,7 @@ import com.yc.BaiSiBuDeJie.constant.Const;
 import com.yc.BaiSiBuDeJie.manager.RequestManager;
 import com.yc.BaiSiBuDeJie.module.error.ErrorPortraitView;
 import com.yc.BaiSiBuDeJie.module.listview.adapter.TabLayoutFragmentAdapter;
+import com.yc.BaiSiBuDeJie.module.listview.entity.MessageEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
 import com.yc.BaiSiBuDeJie.module.listview.fragment.ItemFragment;
@@ -84,6 +86,7 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     private ItemFragment textFragment = null;
     private ItemFragment imageFragment = null;
     private ItemFragment videoFragment = null;
+    private BaseButton mRetryButton;
 
     private PermissionHelper permissionHelper;
     @Override
@@ -119,6 +122,8 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
         errorPortraitVw = (ErrorPortraitView) findViewById(R.id.errorPortraitVw);
         errorPortraitVw.isLoading();
+        mRetryButton = (BaseButton) findViewById(R.id.commonRetryBtn);
+        mRetryButton.setOnClickListener(this);
 
         mTvToMvcRv = (BaseTextView) findViewById(R.id.tvToMvcRv);
         mTvToMvpRv = (BaseTextView) findViewById(R.id.tvToMvpRv);
@@ -274,8 +279,10 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
     }
 
     @Override
-    public void onParserError(String requestCode, ShowApiEntity messageEntity) {
+    public void onParserError(String requestCode, MessageEntity messageEntity) {
         LogTools.i("test-onParserError", messageEntity.showapi_res_error);
+        errorPortraitVw.setVisibility(View.VISIBLE);
+        errorPortraitVw.isError();
     }
 
     @Override
@@ -293,6 +300,9 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
             case R.id.tvToMvvmRv:
                 mMainDrawerLayout.closeDrawer(GravityCompat.START);
                 startActivity(new Intent(MainListViewActivity.this, MvvmRecycleViewActivity.class));
+                break;
+            case R.id.commonRetryBtn:
+                sendRequest(Const.SHOWAPI_TYPE_IMAGE);
                 break;
             case R.id.tvToChangeSkin:
                 errorPortraitVw.setVisibility(View.VISIBLE);

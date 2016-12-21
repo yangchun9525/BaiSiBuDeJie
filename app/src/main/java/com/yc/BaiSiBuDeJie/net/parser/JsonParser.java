@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.yc.BaiSiBuDeJie.constant.Const;
+import com.yc.BaiSiBuDeJie.module.listview.entity.MessageEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
 import com.yc.BaiSiBuDeJie.utils.JsonUtil;
+import com.yc.BaiSiBuDeJie.utils.LogTools;
 import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
 
 import java.lang.reflect.Type;
@@ -49,12 +51,17 @@ public class JsonParser {
 
         // 如果业务逻辑失败，则返回messageEntity
         String descStr = JsonUtil.detectElement(jsonStr, RESULT_DESC_LABEL);
-        if (!ValidatesUtil.isEmpty(descStr)) {
-            ShowApiEntity messageEntity = parserObject(descStr, ShowApiEntity.class);
-            if (messageEntity.showapi_res_code != Const.RESPONSE_SUCCESS) {
-                return messageEntity;
-            }
-        }
+        LogTools.i("yc-test",descStr);
+        String error = "{\"showapi_res_error\":\"1111111111\"}";
+//        MessageEntity messageEntity = new MessageEntity();
+//        if (!ValidatesUtil.isEmpty(descStr)) {
+//            ShowApiEntity showApiEntity = parserObject(descStr, ShowApiEntity.class);
+//            messageEntity.showapi_res_error = showApiEntity.showapi_res_error;
+////            LogTools.i("yc-code", messageEntity.showapi_res_code+"." + messageEntity);
+////            if (messageEntity.showapi_res_code != Const.RESPONSE_SUCCESS) {
+////                return descStr;
+////            }
+//        }
         // 如果业务逻辑成功
         // 首先解析result对应的字符串
         String resultStr = JsonUtil.detectElement(jsonStr, RESULT_LABEL);
@@ -71,7 +78,8 @@ public class JsonParser {
                 return parserObject(resultStr, typeOfT);
             }
         } else {
-            return JsonUtil.detectElement(jsonStr, RESULT_DESC_LABEL);
+//            return JsonUtil.detectElement(error, RESULT_DESC_LABEL);
+            return parserObject(error, MessageEntity.class);
         }
     }
 

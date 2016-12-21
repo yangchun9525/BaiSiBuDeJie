@@ -1,5 +1,6 @@
 package com.yc.BaiSiBuDeJie.net;
 
+import com.yc.BaiSiBuDeJie.module.listview.entity.MessageEntity;
 import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
 
 /**
@@ -20,5 +21,5 @@ public interface IParserListener {
      * @param requestCode    请求参数，标识请求类
      * @param messageEntity  服务端返回信息
      */
-    public void onParserError(String requestCode, ShowApiEntity messageEntity);
+    public void onParserError(String requestCode, MessageEntity messageEntity);
 }
