@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie;
+package com.yc.baisibudejie;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

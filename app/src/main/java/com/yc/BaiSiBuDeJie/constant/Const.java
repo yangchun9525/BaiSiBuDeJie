@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.constant;
+package com.yc.baisibudejie.constant;
 
 public class Const {
     // 网络类型

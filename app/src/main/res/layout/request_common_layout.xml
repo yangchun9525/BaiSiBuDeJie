@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yc.BaiSiBuDeJie.base.BaseFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yc.baisibudejie.base.BaseFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/action_bar_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- loading -->
-    <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
+    <com.yc.baisibudejie.base.BaseRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/commonLoadingLayout"
         android:background="?attr/action_bar_bg">
 
-        <com.yc.BaiSiBuDeJie.widget.CircularProgress
+        <com.yc.baisibudejie.widget.CircularProgress
             android:id="@+id/commonProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:progressBorderWidth="3dp"
             android:layout_centerInParent="true" />
 
-    </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
+    </com.yc.baisibudejie.base.BaseRelativeLayout>
 
     <!-- no data -->
-    <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
+    <com.yc.baisibudejie.base.BaseRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/commonNoDataLayout"
@@ -35,10 +35,10 @@
             android:src="@drawable/error_nodata"
             android:layout_centerHorizontal="true"/>
 
-    </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
+    </com.yc.baisibudejie.base.BaseRelativeLayout>
 
     <!-- error -->
-    <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
+    <com.yc.baisibudejie.base.BaseRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/commonErrorLayout"
@@ -58,7 +58,7 @@
             android:layout_below="@id/commonErrorIv"
             android:background="@color/common_body_content_text"/>
 
-        <com.yc.BaiSiBuDeJie.base.BaseTextView
+        <com.yc.baisibudejie.base.BaseTextView
             android:id="@+id/commonErrorTv"
             style="@style/textview_common"
             android:textColor="?attr/text_color"
@@ -66,7 +66,7 @@
             android:layout_below="@id/commonErrorLine"
             android:gravity="center_vertical"/>
 
-        <com.yc.BaiSiBuDeJie.base.BaseListView
+        <com.yc.baisibudejie.base.BaseListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/commonErrorReasonLv"
@@ -75,13 +75,13 @@
             android:divider="@null"
             android:listSelector="@android:color/transparent"/>
 
-        <com.yc.BaiSiBuDeJie.base.BaseButton
+        <com.yc.baisibudejie.base.BaseButton
             android:id="@+id/commonRetryBtn"
             style="@style/button_common"
             android:text="@string/common_retry"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/commonErrorReasonLv"/>
 
-    </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
+    </com.yc.baisibudejie.base.BaseRelativeLayout>
 
-</com.yc.BaiSiBuDeJie.base.BaseFrameLayout>
+</com.yc.baisibudejie.base.BaseFrameLayout>

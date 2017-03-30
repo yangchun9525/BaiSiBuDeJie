@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.module.listview.adapter;
+package com.yc.baisibudejie.module.listview.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

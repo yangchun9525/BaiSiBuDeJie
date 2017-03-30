@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.module.listview.fragment;
+package com.yc.baisibudejie.module.listview.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,20 +10,20 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.android.volley.VolleyError;
-import com.yc.BaiSiBuDeJie.R;
-import com.yc.BaiSiBuDeJie.base.BaseFragment;
-import com.yc.BaiSiBuDeJie.constant.Const;
-import com.yc.BaiSiBuDeJie.manager.RequestManager;
-import com.yc.BaiSiBuDeJie.module.listview.adapter.ListViewAdapter;
-import com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity;
-import com.yc.BaiSiBuDeJie.module.listview.entity.MessageEntity;
-import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
-import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
-import com.yc.BaiSiBuDeJie.net.IParserListener;
-import com.yc.BaiSiBuDeJie.net.IRequestListener;
-import com.yc.BaiSiBuDeJie.net.ParserFacade;
-import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
-import com.yc.BaiSiBuDeJie.widget.PullToRefreshListView;
+import com.yc.baisibudejie.OnekeyShare;
+import com.yc.baisibudejie.R;
+import com.yc.baisibudejie.base.BaseFragment;
+import com.yc.baisibudejie.constant.Const;
+import com.yc.baisibudejie.manager.RequestManager;
+import com.yc.baisibudejie.module.listview.adapter.ListViewAdapter;
+import com.yc.baisibudejie.module.listview.entity.ContentEntity;
+import com.yc.baisibudejie.module.listview.entity.MessageEntity;
+import com.yc.baisibudejie.module.listview.entity.SingleDataEntity;
+import com.yc.baisibudejie.net.IParserListener;
+import com.yc.baisibudejie.net.IRequestListener;
+import com.yc.baisibudejie.net.ParserFacade;
+import com.yc.baisibudejie.utils.ValidatesUtil;
+import com.yc.baisibudejie.widget.PullToRefreshListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -127,8 +127,27 @@ public class ItemFragment  extends BaseFragment implements IRequestListener, IPa
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         ContentEntity entity = (ContentEntity) lvAdapter.getItem((int)l);
         Uri uri = Uri.parse(entity.weixin_url);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(intent);
+        showShare(entity.text,entity.weixin_url);
+//        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//        startActivity(intent);
+    }
+
+    private void showShare(String title,String url) {
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+        oks.setTitle(title);
+        oks.setTitleUrl(url);
+        oks.setText(title);
+        oks.setImageUrl(url);
+        oks.setUrl(url);
+        oks.setSite(title);
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        oks.setSiteUrl(url);
+
+        // 启动分享GUI
+        oks.show(getActivity());
     }
 
     @Override

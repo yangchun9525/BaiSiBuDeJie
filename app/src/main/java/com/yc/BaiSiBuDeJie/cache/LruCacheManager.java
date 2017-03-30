@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.cache;
+package com.yc.baisibudejie.cache;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.util.LruCache;
 
-import com.yc.BaiSiBuDeJie.utils.ApplicationUtil;
-import com.yc.BaiSiBuDeJie.utils.FileUtil;
+import com.yc.baisibudejie.utils.ApplicationUtil;
+import com.yc.baisibudejie.utils.FileUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;

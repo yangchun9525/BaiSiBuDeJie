@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.utils;
+package com.yc.baisibudejie.utils;
 
 import com.google.gson.Gson;
 

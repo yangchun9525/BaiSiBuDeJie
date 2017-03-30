@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.module.recycleview.adapter;
+package com.yc.baisibudejie.module.recycleview.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -6,12 +6,12 @@ import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.yc.BaiSiBuDeJie.R;
-import com.yc.BaiSiBuDeJie.base.BaseTextView;
-import com.yc.BaiSiBuDeJie.manager.ImageLoadManager;
-import com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity;
-import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
-import com.yc.BaiSiBuDeJie.utils.TextDisplayUtil;
+import com.yc.baisibudejie.R;
+import com.yc.baisibudejie.base.BaseTextView;
+import com.yc.baisibudejie.manager.ImageLoadManager;
+import com.yc.baisibudejie.module.listview.entity.ContentEntity;
+import com.yc.baisibudejie.utils.DimensionUtil;
+import com.yc.baisibudejie.utils.TextDisplayUtil;
 
 import java.util.ArrayList;
 

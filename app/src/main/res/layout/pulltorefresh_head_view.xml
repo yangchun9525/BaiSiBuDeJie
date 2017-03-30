@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- ListView的头部 -->
 
-<com.yc.BaiSiBuDeJie.base.BaseLinerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yc.baisibudejie.base.BaseLinerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -10,7 +10,7 @@
 
     <!-- 内容 -->
 
-    <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
+    <com.yc.baisibudejie.base.BaseRelativeLayout
         android:id="@+id/head_contentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
 
         <!-- 箭头图像、进度条 -->
 
-        <com.yc.BaiSiBuDeJie.base.BaseFrameLayout
+        <com.yc.baisibudejie.base.BaseFrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -49,11 +49,11 @@
                 android:layout_gravity="center"
                 android:indeterminateDrawable="@drawable/loading_sircle"
                 android:visibility="gone" />
-        </com.yc.BaiSiBuDeJie.base.BaseFrameLayout>
+        </com.yc.baisibudejie.base.BaseFrameLayout>
 
         <!-- 提示、最近更新 -->
 
-        <com.yc.BaiSiBuDeJie.base.BaseLinerLayout
+        <com.yc.baisibudejie.base.BaseLinerLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -64,7 +64,7 @@
 
             <!-- 提示 -->
 
-            <com.yc.BaiSiBuDeJie.base.BaseTextView
+            <com.yc.baisibudejie.base.BaseTextView
                 android:id="@+id/head_tipsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
 
             <!-- 最近更新 -->
 
-            <com.yc.BaiSiBuDeJie.base.BaseTextView
+            <com.yc.baisibudejie.base.BaseTextView
                 android:id="@+id/head_lastUpdatedTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                 android:text="@string/p2refresh_refresh_lasttime"
                 android:textColor="?attr/text_color"
                 android:textSize="12sp" />
-        </com.yc.BaiSiBuDeJie.base.BaseLinerLayout>
-    </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
+        </com.yc.baisibudejie.base.BaseLinerLayout>
+    </com.yc.baisibudejie.base.BaseRelativeLayout>
 
-</com.yc.BaiSiBuDeJie.base.BaseLinerLayout>
+</com.yc.baisibudejie.base.BaseLinerLayout>

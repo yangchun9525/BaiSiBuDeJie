@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.module.listview;
+package com.yc.baisibudejie.module.listview;
 
 /**
  * 禁用viewpager的滑动事件，由于viewpager与listview、recylerview

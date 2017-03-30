@@ -1,7 +1,6 @@
-package com.yc.BaiSiBuDeJie.net;
+package com.yc.baisibudejie.net;
 
-import com.yc.BaiSiBuDeJie.module.listview.entity.MessageEntity;
-import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
+import com.yc.baisibudejie.module.listview.entity.MessageEntity;
 
 /**
  * 解析字符串请求回调接口

@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.widget;
+package com.yc.baisibudejie.widget;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
@@ -17,7 +17,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.yc.BaiSiBuDeJie.R;
+import com.yc.baisibudejie.R;
 
 public class CircularProgress extends View {
 

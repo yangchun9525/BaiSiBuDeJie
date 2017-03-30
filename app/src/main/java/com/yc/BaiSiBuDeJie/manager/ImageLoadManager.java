@@ -1,11 +1,11 @@
-package com.yc.BaiSiBuDeJie.manager;
+package com.yc.baisibudejie.manager;
 
 import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.yc.BaiSiBuDeJie.R;
+import com.yc.baisibudejie.R;
 
 public class ImageLoadManager {
 

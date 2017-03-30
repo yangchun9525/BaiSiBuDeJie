@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie;
+package com.yc.baisibudejie;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.yc.BaiSiBuDeJie.base.BaseActivity;
-import com.yc.BaiSiBuDeJie.module.listview.MainListViewActivity;
+import com.yc.baisibudejie.base.BaseActivity;
+import com.yc.baisibudejie.module.listview.MainListViewActivity;
 
 /**
  * Created by YangChun on 2016/4/21.

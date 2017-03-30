@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yc.BaiSiBuDeJie.base.BaseRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yc.baisibudejie.base.BaseRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="?attr/recycle_bg"
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <com.yc.BaiSiBuDeJie.base.BaseTextView
+    <com.yc.baisibudejie.base.BaseTextView
         android:text="jashkjahskjfhjakfbmxzbnjashkjfahsfjkhnf,masnkjshakjfhjksh"
         android:textColor="?attr/text_color"
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.yc.BaiSiBuDeJie.base.BaseTextView
+    <com.yc.baisibudejie.base.BaseTextView
         android:textColor="?attr/text_color"
         android:id="@+id/content"
         android:layout_below="@id/title"
@@ -33,4 +33,4 @@
         android:id="@+id/videocontroller1"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
-</com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
+</com.yc.baisibudejie.base.BaseRelativeLayout>

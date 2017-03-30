@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.base;
+package com.yc.baisibudejie.base;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -7,8 +7,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 
-import com.yc.BaiSiBuDeJie.GlobalApp;
-import com.yc.BaiSiBuDeJie.utils.ViewAttributeUtil;
+import com.yc.baisibudejie.GlobalApp;
+import com.yc.baisibudejie.utils.ViewAttributeUtil;
 
 public class BaseButton extends Button implements ColorUiInterface{
 

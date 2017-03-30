@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.base;
+package com.yc.baisibudejie.base;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -6,8 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.yc.BaiSiBuDeJie.utils.LogTools;
-import com.yc.BaiSiBuDeJie.utils.ViewAttributeUtil;
+import com.yc.baisibudejie.utils.ViewAttributeUtil;
 
 /**
  * Created by chengli on 15/6/8.

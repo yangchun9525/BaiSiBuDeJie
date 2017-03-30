@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.receiver;
+package com.yc.baisibudejie.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.yc.BaiSiBuDeJie.GlobalApp;
-import com.yc.BaiSiBuDeJie.R;
-import com.yc.BaiSiBuDeJie.constant.Const;
-import com.yc.BaiSiBuDeJie.utils.ToastUtil;
+import com.yc.baisibudejie.GlobalApp;
+import com.yc.baisibudejie.R;
+import com.yc.baisibudejie.constant.Const;
+import com.yc.baisibudejie.utils.ToastUtil;
 
 /**
  * 网络状态监听

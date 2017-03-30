@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.module.recycleview;
+package com.yc.baisibudejie.module.recycleview;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -17,23 +17,23 @@ import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.kymjs.rxvolley.rx.Result;
-import com.yc.BaiSiBuDeJie.GlobalApp;
-import com.yc.BaiSiBuDeJie.R;
-import com.yc.BaiSiBuDeJie.base.BaseActivity;
-import com.yc.BaiSiBuDeJie.base.BaseRelativeLayout;
-import com.yc.BaiSiBuDeJie.base.BaseTextView;
-import com.yc.BaiSiBuDeJie.cache.LruCacheManager;
-import com.yc.BaiSiBuDeJie.constant.Const;
-import com.yc.BaiSiBuDeJie.constant.HttpURL;
-import com.yc.BaiSiBuDeJie.module.error.ErrorPortraitView;
-import com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity;
-import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
-import com.yc.BaiSiBuDeJie.module.recycleview.adapter.RecycleViewAdapter;
-import com.yc.BaiSiBuDeJie.net.parser.JsonParser;
-import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
-import com.yc.BaiSiBuDeJie.utils.LogTools;
-import com.yc.BaiSiBuDeJie.utils.SecurityUtil;
-import com.yc.BaiSiBuDeJie.utils.TextDisplayUtil;
+import com.yc.baisibudejie.GlobalApp;
+import com.yc.baisibudejie.R;
+import com.yc.baisibudejie.base.BaseActivity;
+import com.yc.baisibudejie.base.BaseRelativeLayout;
+import com.yc.baisibudejie.base.BaseTextView;
+import com.yc.baisibudejie.cache.LruCacheManager;
+import com.yc.baisibudejie.constant.Const;
+import com.yc.baisibudejie.constant.HttpURL;
+import com.yc.baisibudejie.module.error.ErrorPortraitView;
+import com.yc.baisibudejie.module.listview.entity.ContentEntity;
+import com.yc.baisibudejie.module.listview.entity.SingleDataEntity;
+import com.yc.baisibudejie.module.recycleview.adapter.RecycleViewAdapter;
+import com.yc.baisibudejie.net.parser.JsonParser;
+import com.yc.baisibudejie.utils.DimensionUtil;
+import com.yc.baisibudejie.utils.LogTools;
+import com.yc.baisibudejie.utils.SecurityUtil;
+import com.yc.baisibudejie.utils.TextDisplayUtil;
 
 import java.util.ArrayList;
 

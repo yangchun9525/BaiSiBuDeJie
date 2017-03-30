@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.module.mvvm.adapter;
+package com.yc.baisibudejie.module.mvvm.adapter;
 
 import android.content.Context;
 import android.databinding.BindingAdapter;
@@ -10,14 +10,14 @@ import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.yc.BaiSiBuDeJie.BR;
-import com.yc.BaiSiBuDeJie.R;
-import com.yc.BaiSiBuDeJie.base.BaseTextView;
-import com.yc.BaiSiBuDeJie.manager.ImageLoadManager;
-import com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity;
-import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
-import com.yc.BaiSiBuDeJie.utils.TextDisplayUtil;
-import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
+import com.yc.baisibudejie.BR;
+import com.yc.baisibudejie.R;
+import com.yc.baisibudejie.base.BaseTextView;
+import com.yc.baisibudejie.manager.ImageLoadManager;
+import com.yc.baisibudejie.module.listview.entity.ContentEntity;
+import com.yc.baisibudejie.utils.DimensionUtil;
+import com.yc.baisibudejie.utils.TextDisplayUtil;
+import com.yc.baisibudejie.utils.ValidatesUtil;
 
 import java.util.ArrayList;
 

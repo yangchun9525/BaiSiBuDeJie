@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.base;
+package com.yc.baisibudejie.base;
 
 import android.content.res.Resources;
 import android.view.View;

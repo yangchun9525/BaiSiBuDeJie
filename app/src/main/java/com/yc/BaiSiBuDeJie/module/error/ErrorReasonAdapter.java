@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.module.error;
+package com.yc.baisibudejie.module.error;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.yc.BaiSiBuDeJie.R;
-import com.yc.BaiSiBuDeJie.base.BaseTextView;
-import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
+import com.yc.baisibudejie.R;
+import com.yc.baisibudejie.base.BaseTextView;
+import com.yc.baisibudejie.utils.DimensionUtil;
 
 /**
  * 错误原因adapter

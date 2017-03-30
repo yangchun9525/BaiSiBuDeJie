@@ -1,13 +1,13 @@
-package com.yc.BaiSiBuDeJie.utils;
+package com.yc.baisibudejie.utils;
 
 import android.app.Application;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import com.yc.BaiSiBuDeJie.GlobalApp;
-import com.yc.BaiSiBuDeJie.R;
-import com.yc.BaiSiBuDeJie.base.BaseTextView;
+import com.yc.baisibudejie.GlobalApp;
+import com.yc.baisibudejie.R;
+import com.yc.baisibudejie.base.BaseTextView;
 
 /**
  * Toast 工具类

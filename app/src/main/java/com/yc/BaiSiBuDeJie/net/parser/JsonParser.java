@@ -1,14 +1,12 @@
-package com.yc.BaiSiBuDeJie.net.parser;
+package com.yc.baisibudejie.net.parser;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import com.yc.BaiSiBuDeJie.constant.Const;
-import com.yc.BaiSiBuDeJie.module.listview.entity.MessageEntity;
-import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
-import com.yc.BaiSiBuDeJie.utils.JsonUtil;
-import com.yc.BaiSiBuDeJie.utils.LogTools;
-import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
+import com.yc.baisibudejie.module.listview.entity.MessageEntity;
+import com.yc.baisibudejie.utils.JsonUtil;
+import com.yc.baisibudejie.utils.LogTools;
+import com.yc.baisibudejie.utils.ValidatesUtil;
 
 import java.lang.reflect.Type;
 

@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.module.mvp.activity;
+package com.yc.baisibudejie.module.mvp.activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,22 +13,22 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.kymjs.gallery.KJGalleryActivity;
-import com.yc.BaiSiBuDeJie.GlobalApp;
-import com.yc.BaiSiBuDeJie.R;
-import com.yc.BaiSiBuDeJie.base.BaseActivity;
-import com.yc.BaiSiBuDeJie.base.BaseRelativeLayout;
-import com.yc.BaiSiBuDeJie.base.BaseTextView;
-import com.yc.BaiSiBuDeJie.constant.Const;
-import com.yc.BaiSiBuDeJie.module.error.ErrorPortraitView;
-import com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity;
-import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
-import com.yc.BaiSiBuDeJie.module.mvp.model.MvpModel;
-import com.yc.BaiSiBuDeJie.module.mvp.presenter.BuDeJieMvpPresenter;
-import com.yc.BaiSiBuDeJie.module.recycleview.adapter.RecycleViewAdapter;
-import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
-import com.yc.BaiSiBuDeJie.utils.LogTools;
-import com.yc.BaiSiBuDeJie.utils.TextDisplayUtil;
-import com.yc.BaiSiBuDeJie.utils.ToastUtil;
+import com.yc.baisibudejie.GlobalApp;
+import com.yc.baisibudejie.R;
+import com.yc.baisibudejie.base.BaseActivity;
+import com.yc.baisibudejie.base.BaseRelativeLayout;
+import com.yc.baisibudejie.base.BaseTextView;
+import com.yc.baisibudejie.constant.Const;
+import com.yc.baisibudejie.module.error.ErrorPortraitView;
+import com.yc.baisibudejie.module.listview.entity.ContentEntity;
+import com.yc.baisibudejie.module.listview.entity.SingleDataEntity;
+import com.yc.baisibudejie.module.mvp.model.MvpModel;
+import com.yc.baisibudejie.module.mvp.presenter.BuDeJieMvpPresenter;
+import com.yc.baisibudejie.module.recycleview.adapter.RecycleViewAdapter;
+import com.yc.baisibudejie.utils.DimensionUtil;
+import com.yc.baisibudejie.utils.LogTools;
+import com.yc.baisibudejie.utils.TextDisplayUtil;
+import com.yc.baisibudejie.utils.ToastUtil;
 
 import java.util.ArrayList;
 

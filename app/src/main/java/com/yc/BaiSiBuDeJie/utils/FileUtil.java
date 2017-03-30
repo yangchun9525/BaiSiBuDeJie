@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.utils;
+package com.yc.baisibudejie.utils;
 
 import android.content.Context;
 import android.content.Intent;

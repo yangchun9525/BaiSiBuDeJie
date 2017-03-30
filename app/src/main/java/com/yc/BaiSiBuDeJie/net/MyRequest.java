@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.net;
+package com.yc.baisibudejie.net;
 
 import android.app.FragmentManager;
 
@@ -8,8 +8,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
-import com.yc.BaiSiBuDeJie.utils.LogTools;
-import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
+import com.yc.baisibudejie.utils.LogTools;
+import com.yc.baisibudejie.utils.ValidatesUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;

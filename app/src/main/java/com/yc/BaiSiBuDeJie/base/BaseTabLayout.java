@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.base;
+package com.yc.baisibudejie.base;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -6,7 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.yc.BaiSiBuDeJie.utils.ViewAttributeUtil;
+import com.yc.baisibudejie.utils.ViewAttributeUtil;
 
 /**
  * Created by yangchun on 2016-9-27.

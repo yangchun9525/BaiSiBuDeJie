@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.base;
+package com.yc.baisibudejie.base;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.umeng.analytics.MobclickAgent;
-import com.yc.BaiSiBuDeJie.R;
-import com.yc.BaiSiBuDeJie.utils.SharedPreferencesMgr;
+import com.yc.baisibudejie.R;
+import com.yc.baisibudejie.utils.SharedPreferencesMgr;
 
 public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void findView();

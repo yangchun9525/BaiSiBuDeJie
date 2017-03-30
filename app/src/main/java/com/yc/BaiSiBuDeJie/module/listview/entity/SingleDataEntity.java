@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.module.listview.entity;
+package com.yc.baisibudejie.module.listview.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.module.listview.adapter;
+package com.yc.baisibudejie.module.listview.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,14 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.kymjs.gallery.KJGalleryActivity;
-import com.yc.BaiSiBuDeJie.R;
-import com.yc.BaiSiBuDeJie.base.BaseTextView;
-import com.yc.BaiSiBuDeJie.manager.ImageLoadManager;
-import com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity;
-import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
-import com.yc.BaiSiBuDeJie.utils.LogTools;
-import com.yc.BaiSiBuDeJie.utils.TextDisplayUtil;
-import com.yc.BaiSiBuDeJie.utils.ValidatesUtil;
+import com.yc.baisibudejie.R;
+import com.yc.baisibudejie.base.BaseTextView;
+import com.yc.baisibudejie.manager.ImageLoadManager;
+import com.yc.baisibudejie.module.listview.entity.ContentEntity;
+import com.yc.baisibudejie.utils.DimensionUtil;
+import com.yc.baisibudejie.utils.LogTools;
+import com.yc.baisibudejie.utils.TextDisplayUtil;
+import com.yc.baisibudejie.utils.ValidatesUtil;
 
 import java.util.ArrayList;
 

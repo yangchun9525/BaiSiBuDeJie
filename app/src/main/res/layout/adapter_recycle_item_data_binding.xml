@@ -7,7 +7,7 @@
 
         <variable
             name="contententity"
-            type="com.yc.BaiSiBuDeJie.module.listview.entity.ContentEntity"/>
+            type="com.yc.baisibudejie.module.listview.entity.ContentEntity"/>
 
         <variable
             name="imageUrl"
@@ -27,7 +27,7 @@
         card_view:cardElevation="4dp"
         card_view:cardUseCompatPadding="true">
 
-        <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
+        <com.yc.baisibudejie.base.BaseRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/recycle_bg"
@@ -35,7 +35,7 @@
             android:paddingRight="@dimen/smallSpace"
             android:paddingTop="@dimen/smallSpace">
 
-            <com.yc.BaiSiBuDeJie.base.BaseTextView
+            <com.yc.baisibudejie.base.BaseTextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,6 +50,6 @@
                 app:imageUrl="@{imageUrl}"
                 android:scaleType="fitXY"
                 android:visibility="gone"/>
-        </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
+        </com.yc.baisibudejie.base.BaseRelativeLayout>
     </android.support.v7.widget.CardView>
 </layout>

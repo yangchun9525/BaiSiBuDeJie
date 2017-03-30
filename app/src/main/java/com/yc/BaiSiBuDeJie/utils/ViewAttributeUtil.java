@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.utils;
+package com.yc.baisibudejie.utils;
 
 
 import android.content.res.Resources;
@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.yc.BaiSiBuDeJie.base.ColorUiInterface;
+import com.yc.baisibudejie.base.ColorUiInterface;
 
 /**
  * Created by chengli on 15/6/8.

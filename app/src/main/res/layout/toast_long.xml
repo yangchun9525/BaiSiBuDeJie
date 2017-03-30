@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="5dip" >
 
-    <com.yc.BaiSiBuDeJie.base.BaseTextView
+    <com.yc.baisibudejie.base.BaseTextView
         android:id="@+id/toastLongTxt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         android:textColor="@android:color/white"
         tools:ignore="SelectableText" />
 
-    <com.yc.BaiSiBuDeJie.base.BaseTextView
+    <com.yc.baisibudejie.base.BaseTextView
         android:id="@+id/toastLongTxt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yc.BaiSiBuDeJie.cache;
+package com.yc.baisibudejie.cache;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;

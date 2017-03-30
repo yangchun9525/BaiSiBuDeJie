@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yc.BaiSiBuDeJie.base.BaseLinerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yc.baisibudejie.base.BaseLinerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="?attr/item_bg"
     android:layout_width="match_parent"
@@ -7,7 +7,7 @@
 
     <include layout="@layout/common_title" android:id="@+id/topRela"/>
 
-    <com.yc.BaiSiBuDeJie.module.error.ErrorPortraitView
+    <com.yc.baisibudejie.module.error.ErrorPortraitView
         android:id="@+id/errorPortraitVw"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,4 +24,4 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </android.support.v4.widget.SwipeRefreshLayout>
-</com.yc.BaiSiBuDeJie.base.BaseLinerLayout>
+</com.yc.baisibudejie.base.BaseLinerLayout>

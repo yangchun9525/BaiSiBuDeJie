@@ -1,13 +1,12 @@
-package com.yc.BaiSiBuDeJie.net;
+package com.yc.baisibudejie.net;
 
 import android.app.FragmentManager;
 import android.os.AsyncTask;
 
-import com.yc.BaiSiBuDeJie.module.listview.entity.MessageEntity;
-import com.yc.BaiSiBuDeJie.module.listview.entity.ShowApiEntity;
-import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
-import com.yc.BaiSiBuDeJie.net.parser.JsonParser;
-import com.yc.BaiSiBuDeJie.utils.LogTools;
+import com.yc.baisibudejie.module.listview.entity.MessageEntity;
+import com.yc.baisibudejie.module.listview.entity.SingleDataEntity;
+import com.yc.baisibudejie.net.parser.JsonParser;
+import com.yc.baisibudejie.utils.LogTools;
 
 import java.lang.reflect.Type;
 
@@ -90,7 +89,6 @@ public class ParserFacade {
             if (result instanceof SingleDataEntity) {
                 mParserListener.onParserSuccess(mRequestCode, result);
             } else {
-                LogTools.i("yc-result" ,result.toString());
                 mParserListener.onParserError(mRequestCode, (MessageEntity)result);
             }
 

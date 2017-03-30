@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.module.error;
+package com.yc.baisibudejie.module.error;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,12 +8,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.yc.BaiSiBuDeJie.R;
-import com.yc.BaiSiBuDeJie.base.BaseButton;
-import com.yc.BaiSiBuDeJie.base.BaseListView;
-import com.yc.BaiSiBuDeJie.base.BaseTextView;
-import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
-import com.yc.BaiSiBuDeJie.widget.CircularProgress;
+import com.yc.baisibudejie.R;
+import com.yc.baisibudejie.base.BaseButton;
+import com.yc.baisibudejie.base.BaseListView;
+import com.yc.baisibudejie.base.BaseTextView;
+import com.yc.baisibudejie.utils.DimensionUtil;
+import com.yc.baisibudejie.widget.CircularProgress;
 
 /**
  * 竖屏错误页面

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.yc.BaiSiBuDeJie" >
+    package="com.yc.baisibudejie" >
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -17,6 +17,13 @@
         android:normalScreens="true"
         android:resizeable="true"
         android:smallScreens="true" />
+
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <!-- 蓝牙分享所需的权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -36,7 +43,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name="com.yc.BaiSiBuDeJie.GlobalApp"
+        android:name=".GlobalApp"
         tools:replace="name,icon,label,theme">
 
         <!-- 设置友盟appkey -->
@@ -45,7 +52,7 @@
        <!-- <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>-->
 
         <activity
-            android:name="com.yc.BaiSiBuDeJie.LoadingActivity"
+            android:name=".LoadingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/LoadingActivityTheme"
             android:label="@string/app_name" >
@@ -57,14 +64,14 @@
         </activity>
 
         <activity
-            android:name="com.yc.BaiSiBuDeJie.module.listview.MainListViewActivity"
+            android:name=".module.listview.MainListViewActivity"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation"
             android:windowSoftInputMode="adjustPan">
         </activity>
 
         <activity
-            android:name="com.yc.BaiSiBuDeJie.module.recycleview.MainRecycleViewActivity"
+            android:name=".module.recycleview.MainRecycleViewActivity"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation"
             android:windowSoftInputMode="adjustPan"
@@ -95,8 +102,24 @@
             android:theme="@style/ActivityTheme">
         </activity>
 
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+
+        </activity>
+
+        <!--微信分享回调 -->
+        <activity
+            android:name=".share.WXEntryActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
         <!-- broadcast reveiver -->
-        <receiver android:name="com.yc.BaiSiBuDeJie.receiver.NetWorkBroadcastReceiver">
+        <receiver android:name=".receiver.NetWorkBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>

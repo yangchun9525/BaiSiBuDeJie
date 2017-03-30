@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.constant;
+package com.yc.baisibudejie.constant;
 
 public class HttpURL {
 

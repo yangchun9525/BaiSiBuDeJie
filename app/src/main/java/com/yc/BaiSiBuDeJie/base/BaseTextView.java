@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.base;
+package com.yc.baisibudejie.base;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -8,9 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.yc.BaiSiBuDeJie.GlobalApp;
-import com.yc.BaiSiBuDeJie.utils.LogTools;
-import com.yc.BaiSiBuDeJie.utils.ViewAttributeUtil;
+import com.yc.baisibudejie.GlobalApp;
+import com.yc.baisibudejie.utils.ViewAttributeUtil;
 
 public class BaseTextView extends TextView implements ColorUiInterface{
     private int attr_drawable = -1;

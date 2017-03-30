@@ -1,27 +1,22 @@
-package com.yc.BaiSiBuDeJie.module.mvp.presenter;
-
-import android.graphics.Bitmap;
+package com.yc.baisibudejie.module.mvp.presenter;
 
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.kymjs.rxvolley.rx.Result;
-import com.yc.BaiSiBuDeJie.cache.LruCacheManager;
-import com.yc.BaiSiBuDeJie.constant.Const;
-import com.yc.BaiSiBuDeJie.constant.HttpURL;
-import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
-import com.yc.BaiSiBuDeJie.module.mvp.model.MvpModel;
-import com.yc.BaiSiBuDeJie.net.parser.JsonParser;
-import com.yc.BaiSiBuDeJie.utils.LogTools;
-import com.yc.BaiSiBuDeJie.utils.SecurityUtil;
-
-import java.util.Map;
+import com.yc.baisibudejie.cache.LruCacheManager;
+import com.yc.baisibudejie.constant.Const;
+import com.yc.baisibudejie.constant.HttpURL;
+import com.yc.baisibudejie.module.listview.entity.SingleDataEntity;
+import com.yc.baisibudejie.module.mvp.model.MvpModel;
+import com.yc.baisibudejie.net.parser.JsonParser;
+import com.yc.baisibudejie.utils.LogTools;
+import com.yc.baisibudejie.utils.SecurityUtil;
 
 import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 

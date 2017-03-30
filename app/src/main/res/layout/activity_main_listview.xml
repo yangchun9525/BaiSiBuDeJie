@@ -7,13 +7,13 @@
 
     <include layout="@layout/common_title" android:id="@+id/topRela"/>
 
-    <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
+    <com.yc.baisibudejie.base.BaseRelativeLayout
         android:id="@+id/rootLinear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.yc.BaiSiBuDeJie.base.BaseTabLayout
+        <com.yc.baisibudejie.base.BaseTabLayout
             android:id="@+id/mainTabLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,27 +23,27 @@
             app:tabTextAppearance="@style/TextAppearance.AppCompat"
             app:tabTextColor="@color/common_tab_text" />
 
-        <com.yc.BaiSiBuDeJie.base.BaseView
+        <com.yc.baisibudejie.base.BaseView
             android:id="@+id/tab_divide"
             android:layout_below="@id/mainTabLay"
             android:background="?attr/divide_line_bg"
             android:layout_width="match_parent"
             android:layout_height="0.5px"/>
-        <com.yc.BaiSiBuDeJie.widget.SlipViewPager
+        <com.yc.baisibudejie.widget.SlipViewPager
             android:id="@+id/mainViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tab_divide"
              />
 
-    </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
+    </com.yc.baisibudejie.base.BaseRelativeLayout>
 
-    <com.yc.BaiSiBuDeJie.module.error.ErrorPortraitView
+    <com.yc.baisibudejie.module.error.ErrorPortraitView
         android:id="@+id/errorPortraitVw"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.yc.BaiSiBuDeJie.base.BaseRelativeLayout
+    <com.yc.baisibudejie.base.BaseRelativeLayout
         android:id="@+id/leftDrawerLayout"
         android:layout_width="150dp"
         android:layout_height="match_parent"
@@ -51,7 +51,7 @@
         android:background="?attr/action_bar_bg"
         android:clickable="true">
 
-        <com.yc.BaiSiBuDeJie.base.BaseTextView
+        <com.yc.baisibudejie.base.BaseTextView
             android:id="@+id/tvToMvpRv"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -60,7 +60,7 @@
             android:background="?attr/recycle_bg"
             android:textColor="?attr/text_color" />
 
-        <com.yc.BaiSiBuDeJie.base.BaseTextView
+        <com.yc.baisibudejie.base.BaseTextView
             android:id="@+id/tvToMvcRv"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -70,7 +70,7 @@
             android:background="?attr/recycle_bg"
             android:textColor="?attr/text_color" />
 
-        <com.yc.BaiSiBuDeJie.base.BaseTextView
+        <com.yc.baisibudejie.base.BaseTextView
             android:id="@+id/tvToMvvmRv"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -80,7 +80,7 @@
             android:background="?attr/recycle_bg"
             android:textColor="?attr/text_color" />
 
-        <com.yc.BaiSiBuDeJie.base.BaseTextView
+        <com.yc.baisibudejie.base.BaseTextView
             android:id="@+id/tvToChangeSkin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -89,5 +89,5 @@
             android:text="@string/change_skin"
             android:background="?attr/recycle_bg"
             android:textColor="?attr/text_color" />
-    </com.yc.BaiSiBuDeJie.base.BaseRelativeLayout>
+    </com.yc.baisibudejie.base.BaseRelativeLayout>
 </android.support.v4.widget.DrawerLayout>

@@ -1,9 +1,9 @@
-package com.yc.BaiSiBuDeJie.utils;
+package com.yc.baisibudejie.utils;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
-import com.yc.BaiSiBuDeJie.GlobalApp;
+import com.yc.baisibudejie.GlobalApp;
 
 /**
  * 字体大小适配工具类

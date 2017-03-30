@@ -1,11 +1,9 @@
-package com.yc.BaiSiBuDeJie.constant;
+package com.yc.baisibudejie.constant;
 
 import android.os.Environment;
 
-import com.yc.BaiSiBuDeJie.GlobalApp;
-import com.yc.BaiSiBuDeJie.utils.FileUtil;
-
-import java.io.File;
+import com.yc.baisibudejie.GlobalApp;
+import com.yc.baisibudejie.utils.FileUtil;
 
 /**
  * Created by yangchun on 2015/5/29.

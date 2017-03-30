@@ -6,7 +6,7 @@
     android:background="@drawable/bg_toast_style"
     android:padding="5dp">
     
-    <com.yc.BaiSiBuDeJie.base.BaseTextView
+    <com.yc.baisibudejie.base.BaseTextView
         android:id="@+id/commToastMessageTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

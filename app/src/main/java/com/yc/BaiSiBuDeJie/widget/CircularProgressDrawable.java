@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.widget;
+package com.yc.baisibudejie.widget;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;

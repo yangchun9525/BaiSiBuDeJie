@@ -1,21 +1,23 @@
-package com.yc.BaiSiBuDeJie;
+package com.yc.baisibudejie;
 
 import android.app.Activity;
 import android.app.Application;
 import android.graphics.Typeface;
 
 import com.umeng.analytics.MobclickAgent;
-import com.yc.BaiSiBuDeJie.cache.LruCacheManager;
-import com.yc.BaiSiBuDeJie.constant.Dir;
-import com.yc.BaiSiBuDeJie.net.MyVolley;
-import com.yc.BaiSiBuDeJie.utils.CrashHandlerUtil;
-import com.yc.BaiSiBuDeJie.utils.DebugUtil;
-import com.yc.BaiSiBuDeJie.utils.DimensionUtil;
-import com.yc.BaiSiBuDeJie.utils.LogTools;
-import com.yc.BaiSiBuDeJie.utils.SharedPreferencesMgr;
+import com.yc.baisibudejie.cache.LruCacheManager;
+import com.yc.baisibudejie.constant.Dir;
+import com.yc.baisibudejie.net.MyVolley;
+import com.yc.baisibudejie.utils.CrashHandlerUtil;
+import com.yc.baisibudejie.utils.DebugUtil;
+import com.yc.baisibudejie.utils.DimensionUtil;
+import com.yc.baisibudejie.utils.LogTools;
+import com.yc.baisibudejie.utils.SharedPreferencesMgr;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import cn.sharesdk.framework.ShareSDK;
 
 /**
  * Created by WangWenLong on 2016/3/9.
@@ -47,6 +49,7 @@ public class GlobalApp extends Application {
         DebugUtil.enableStrictMode();
 
         initApp();
+        ShareSDK.initSDK(this);
         MobclickAgent.setCatchUncaughtExceptions(true);
     }
 

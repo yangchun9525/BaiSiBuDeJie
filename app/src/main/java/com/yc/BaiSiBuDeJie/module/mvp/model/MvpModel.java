@@ -1,6 +1,6 @@
-package com.yc.BaiSiBuDeJie.module.mvp.model;
+package com.yc.baisibudejie.module.mvp.model;
 
-import com.yc.BaiSiBuDeJie.module.listview.entity.SingleDataEntity;
+import com.yc.baisibudejie.module.listview.entity.SingleDataEntity;
 
 /**
  * Created by yangchun on 2016-9-19.

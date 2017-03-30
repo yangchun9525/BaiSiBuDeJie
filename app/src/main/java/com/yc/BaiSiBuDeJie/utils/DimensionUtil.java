@@ -1,10 +1,10 @@
-package com.yc.BaiSiBuDeJie.utils;
+package com.yc.baisibudejie.utils;
 
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yc.BaiSiBuDeJie.GlobalApp;
+import com.yc.baisibudejie.GlobalApp;
 
 /**
  * 屏幕适配工具类

@@ -1,4 +1,4 @@
-package com.yc.BaiSiBuDeJie.widget;
+package com.yc.baisibudejie.widget;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -24,11 +24,11 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.yc.BaiSiBuDeJie.R;
-import com.yc.BaiSiBuDeJie.base.ColorUiInterface;
-import com.yc.BaiSiBuDeJie.utils.LogTools;
-import com.yc.BaiSiBuDeJie.utils.SharedPreferencesMgr;
-import com.yc.BaiSiBuDeJie.utils.ViewAttributeUtil;
+import com.yc.baisibudejie.R;
+import com.yc.baisibudejie.base.ColorUiInterface;
+import com.yc.baisibudejie.utils.LogTools;
+import com.yc.baisibudejie.utils.SharedPreferencesMgr;
+import com.yc.baisibudejie.utils.ViewAttributeUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

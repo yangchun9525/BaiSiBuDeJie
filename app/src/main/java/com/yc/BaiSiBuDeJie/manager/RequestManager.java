@@ -1,16 +1,16 @@
-package com.yc.BaiSiBuDeJie.manager;
+package com.yc.baisibudejie.manager;
 
 import android.app.FragmentManager;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
-import com.yc.BaiSiBuDeJie.constant.Const;
-import com.yc.BaiSiBuDeJie.constant.HttpURL;
-import com.yc.BaiSiBuDeJie.net.IRequestListener;
-import com.yc.BaiSiBuDeJie.net.MyRequest;
-import com.yc.BaiSiBuDeJie.net.MyVolley;
-import com.yc.BaiSiBuDeJie.utils.LogTools;
+import com.yc.baisibudejie.constant.Const;
+import com.yc.baisibudejie.constant.HttpURL;
+import com.yc.baisibudejie.net.IRequestListener;
+import com.yc.baisibudejie.net.MyRequest;
+import com.yc.baisibudejie.net.MyVolley;
+import com.yc.baisibudejie.utils.LogTools;
 
 import java.util.HashMap;
 

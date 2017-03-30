@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical">
 
-    <com.yc.BaiSiBuDeJie.base.BaseTextView
+    <com.yc.baisibudejie.base.BaseTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="●"
         android:id="@+id/commonErrorItemFlag"
         android:layout_gravity="center_vertical"/>
 
-    <com.yc.BaiSiBuDeJie.base.BaseTextView
+    <com.yc.baisibudejie.base.BaseTextView
         android:textColor="@color/common_body_content_text"
         android:id="@+id/commonErrorItemTv"
         android:layout_width="wrap_content"
