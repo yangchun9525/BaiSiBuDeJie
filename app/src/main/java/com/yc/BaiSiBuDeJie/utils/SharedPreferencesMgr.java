@@ -14,8 +14,10 @@ public class SharedPreferencesMgr {
 	private SharedPreferencesMgr(Context context, String fileName)
 	{
 		this.context=context;
+//		sPrefs= context.getSharedPreferences(
+//				 fileName, Context.MODE_WORLD_READABLE );
 		sPrefs= context.getSharedPreferences(
-				 fileName, Context.MODE_WORLD_READABLE );
+				fileName, Context.MODE_APPEND );
 	}
 
 	public static void init(Context context, String fileName)
