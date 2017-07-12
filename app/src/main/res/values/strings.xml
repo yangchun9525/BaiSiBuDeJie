@@ -38,6 +38,7 @@
     <string name="to_mvc_activity">使用MVC实现</string>
     <string name="to_mvvm_activity">使用MVVM实现</string>
     <string name="change_skin">换肤</string>
+    <string name="tv_download">下载</string>
 
     <string name="ssdk_oks_share">分享</string>
     <string name="ssdk_oks_sharing">分享操作正在后台进行…</string>

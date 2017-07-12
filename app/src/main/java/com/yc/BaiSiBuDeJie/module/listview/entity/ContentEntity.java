@@ -18,7 +18,7 @@ public class ContentEntity implements Serializable{
     public String image0;
     public String image1;
     public String image2;
-    public String image3;
+//    public String image3;
     //是否是gif 0表示不是，1表示是
     public String is_gif;
     // 	点赞的数量

@@ -39,7 +39,7 @@ public class DataBindingAdapter extends BaseQuickAdapter<ContentEntity, DataBind
         ViewDataBinding binding = contentEntityViewHolder.getBinding();
         contentEntityViewHolder.addOnClickListener(R.id.image);
         binding.setVariable(BR.contententity, contentEntity);
-        binding.setVariable(BR.imageUrl,contentEntity.image3);
+        binding.setVariable(BR.imageUrl,contentEntity.image0);
         binding.executePendingBindings();
     }
 

@@ -1,6 +1,7 @@
 package com.yc.baisibudejie.module.listview.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import com.kymjs.gallery.KJGalleryActivity;
 import com.yc.baisibudejie.R;
 import com.yc.baisibudejie.base.BaseTextView;
 import com.yc.baisibudejie.manager.ImageLoadManager;
+import com.yc.baisibudejie.module.StaticImageShowActivity;
 import com.yc.baisibudejie.module.listview.entity.ContentEntity;
 import com.yc.baisibudejie.utils.DimensionUtil;
 import com.yc.baisibudejie.utils.LogTools;
@@ -69,11 +71,11 @@ public class ListViewAdapter extends BaseAdapter {
             if(datas.get(i).type.equals("10")) {
                 holder.ivImageView.setVisibility(View.VISIBLE);
                 holder.jcVideoPlayer.setVisibility(View.GONE);
-                if(datas.get(i).image3.contains("gif")) {
-                    ImageLoadManager.loadGif(mContext, datas.get(i).image3, holder.ivImageView);
+                if(datas.get(i).image0.contains("gif")) {
+                    ImageLoadManager.loadGif(mContext, datas.get(i).image0, holder.ivImageView);
                 }else {
-                    LogTools.i("test-image-url",datas.get(i).image3);
-                    ImageLoadManager.loadImage(mContext, datas.get(i).image3, holder.ivImageView);
+                    LogTools.i("test-image-url",datas.get(i).image0);
+                    ImageLoadManager.loadImage(mContext, datas.get(i).image0, holder.ivImageView);
                 }
             }else if(datas.get(i).type.equals("29")){
                 holder.ivImageView.setVisibility(View.GONE);
@@ -92,18 +94,30 @@ public class ListViewAdapter extends BaseAdapter {
                 holder.ivImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String[] imageUrls = new String[1];
-                        imageUrls[0] = datas.get(i).image3;
-                        KJGalleryActivity.toGallery(mContext, imageUrls);
+                        if(datas.get(i).image0.endsWith("gif")) {
+                            String[] imageUrls = new String[1];
+                            imageUrls[0] = datas.get(i).image0;
+                            KJGalleryActivity.toGallery(mContext, imageUrls);
+                        }else {
+                            Intent intent = new Intent(mContext, StaticImageShowActivity.class);
+                            intent.putExtra("url", datas.get(i).image0);
+                            mContext.startActivity(intent);
+                        }
                     }
                 });
             }else if(datas.get(i).type.equals("41")){
                 holder.ivImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String[] imageUrls = new String[1];
-                        imageUrls[0] = datas.get(i).image3;
-                        KJGalleryActivity.toGallery(mContext, imageUrls);
+                        if(datas.get(i).image0.endsWith("gif")) {
+                            String[] imageUrls = new String[1];
+                            imageUrls[0] = datas.get(i).image0;
+                            KJGalleryActivity.toGallery(mContext, imageUrls);
+                        }else {
+                            Intent intent = new Intent(mContext, StaticImageShowActivity.class);
+                            intent.putExtra("url", datas.get(i).image0);
+                            mContext.startActivity(intent);
+                        }
                     }
                 });
             }

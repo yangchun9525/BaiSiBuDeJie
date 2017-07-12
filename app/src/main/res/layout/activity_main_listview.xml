@@ -57,6 +57,7 @@
             android:layout_height="50dp"
             android:gravity="center"
             android:text="@string/to_mvp_activity"
+            android:visibility="gone"
             android:background="?attr/recycle_bg"
             android:textColor="?attr/text_color" />
 
@@ -67,6 +68,7 @@
             android:layout_below="@id/tvToMvpRv"
             android:gravity="center"
             android:text="@string/to_mvc_activity"
+            android:visibility="gone"
             android:background="?attr/recycle_bg"
             android:textColor="?attr/text_color" />
 
@@ -76,6 +78,7 @@
             android:layout_height="50dp"
             android:layout_below="@id/tvToMvcRv"
             android:gravity="center"
+            android:visibility="gone"
             android:text="@string/to_mvvm_activity"
             android:background="?attr/recycle_bg"
             android:textColor="?attr/text_color" />

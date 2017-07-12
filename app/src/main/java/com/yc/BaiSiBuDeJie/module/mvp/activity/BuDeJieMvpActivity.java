@@ -19,6 +19,7 @@ import com.yc.baisibudejie.base.BaseActivity;
 import com.yc.baisibudejie.base.BaseRelativeLayout;
 import com.yc.baisibudejie.base.BaseTextView;
 import com.yc.baisibudejie.constant.Const;
+import com.yc.baisibudejie.module.StaticImageShowActivity;
 import com.yc.baisibudejie.module.error.ErrorPortraitView;
 import com.yc.baisibudejie.module.listview.entity.ContentEntity;
 import com.yc.baisibudejie.module.listview.entity.SingleDataEntity;
@@ -81,10 +82,15 @@ public class BuDeJieMvpActivity extends BaseActivity implements MvpModel, BaseQu
                 super.onItemChildClick(adapter, view, position);
                 switch (view.getId()) {
                     case R.id.image:
-                        ToastUtil.showLongToast("111111111111111");
-                        String[] imageUrls = new String[1];
-                        imageUrls[0] = contentlist.get(position).image3;
-                        KJGalleryActivity.toGallery(BuDeJieMvpActivity.this, imageUrls);
+                        if(contentlist.get(position).image0.endsWith("gif")) {
+                            String[] imageUrls = new String[1];
+                            imageUrls[0] = contentlist.get(position).image0;
+                            KJGalleryActivity.toGallery(BuDeJieMvpActivity.this, imageUrls);
+                        }else {
+                            Intent intent = new Intent(BuDeJieMvpActivity.this, StaticImageShowActivity.class);
+                            intent.putExtra("url", contentlist.get(position).image0);
+                            BuDeJieMvpActivity.this.startActivity(intent);
+                        }
                         break;
                 }
             }

@@ -25,6 +25,7 @@ import com.yc.baisibudejie.base.BaseTextView;
 import com.yc.baisibudejie.cache.LruCacheManager;
 import com.yc.baisibudejie.constant.Const;
 import com.yc.baisibudejie.constant.HttpURL;
+import com.yc.baisibudejie.module.StaticImageShowActivity;
 import com.yc.baisibudejie.module.error.ErrorPortraitView;
 import com.yc.baisibudejie.module.listview.entity.ContentEntity;
 import com.yc.baisibudejie.module.listview.entity.SingleDataEntity;
@@ -192,9 +193,15 @@ public class MvvmRecycleViewActivity extends BaseActivity implements SwipeRefres
                 super.onItemChildClick(adapter, view, position);
                 switch (view.getId()) {
                     case R.id.image:
-                        String[] imageUrls = new String[1];
-                        imageUrls[0] = contentlist.get(position).image3;
-                        KJGalleryActivity.toGallery(MvvmRecycleViewActivity.this, imageUrls);
+                        if(contentlist.get(position).image0.endsWith("gif")) {
+                            String[] imageUrls = new String[1];
+                            imageUrls[0] = contentlist.get(position).image0;
+                            KJGalleryActivity.toGallery(MvvmRecycleViewActivity.this, imageUrls);
+                        }else {
+                            Intent intent = new Intent(MvvmRecycleViewActivity.this, StaticImageShowActivity.class);
+                            intent.putExtra("url", contentlist.get(position).image0);
+                            MvvmRecycleViewActivity.this.startActivity(intent);
+                        }
                         break;
                 }
             }
