@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import com.yc.baisibudejie.module.listview.entity.MessageEntity;
 import com.yc.baisibudejie.module.listview.entity.SingleDataEntity;
 import com.yc.baisibudejie.net.parser.JsonParser;
-import com.yc.baisibudejie.utils.LogTools;
 
 import java.lang.reflect.Type;
 

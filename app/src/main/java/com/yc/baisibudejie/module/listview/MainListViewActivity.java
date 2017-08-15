@@ -27,7 +27,6 @@ import com.android.volley.VolleyError;
 import com.fastaccess.permission.base.PermissionHelper;
 import com.fastaccess.permission.base.callback.OnPermissionCallback;
 import com.yc.baisibudejie.GlobalApp;
-import com.yc.baisibudejie.OnekeyShare;
 import com.yc.baisibudejie.R;
 import com.yc.baisibudejie.base.BaseActivity;
 import com.yc.baisibudejie.base.BaseButton;
@@ -61,8 +60,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import cn.sharesdk.framework.Platform;
-import cn.sharesdk.framework.ShareSDK;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 

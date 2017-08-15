@@ -29,7 +29,6 @@ import com.yc.baisibudejie.module.recycleview.adapter.RecycleViewAdapter;
 import com.yc.baisibudejie.utils.DimensionUtil;
 import com.yc.baisibudejie.utils.LogTools;
 import com.yc.baisibudejie.utils.TextDisplayUtil;
-import com.yc.baisibudejie.utils.ToastUtil;
 
 import java.util.ArrayList;
 
