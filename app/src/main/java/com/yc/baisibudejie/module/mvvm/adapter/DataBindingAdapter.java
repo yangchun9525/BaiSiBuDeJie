@@ -27,19 +27,21 @@ import java.util.ArrayList;
 
 public class DataBindingAdapter extends BaseQuickAdapter<ContentEntity, DataBindingAdapter.ContentEntityViewHolder> {
 
-//    private MoviePresenter mPresenter;
+    //    private MoviePresenter mPresenter;
     private static Context sContext;
+
     public DataBindingAdapter(int layoutResId, ArrayList<ContentEntity> contentList, Context context) {
         super(layoutResId, contentList);
         sContext = context;
 //        mPresenter = new MoviePresenter();
     }
+
     @Override
     protected void convert(ContentEntityViewHolder contentEntityViewHolder, ContentEntity contentEntity) {
         ViewDataBinding binding = contentEntityViewHolder.getBinding();
         contentEntityViewHolder.addOnClickListener(R.id.image);
         binding.setVariable(BR.contententity, contentEntity);
-        binding.setVariable(BR.imageUrl,contentEntity.image0);
+        binding.setVariable(BR.imageUrl, contentEntity.image0);
         binding.executePendingBindings();
     }
 
@@ -50,9 +52,9 @@ public class DataBindingAdapter extends BaseQuickAdapter<ContentEntity, DataBind
 
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImageView3(ImageView view, String url) {
-        if(ValidatesUtil.isEmpty(url)){
+        if (ValidatesUtil.isEmpty(url)) {
             view.setVisibility(View.GONE);
-        }else {
+        } else {
             view.setVisibility(View.VISIBLE);
             if (url.contains("gif")) {
                 ImageLoadManager.loadGif(sContext, url, view);
@@ -87,7 +89,7 @@ public class DataBindingAdapter extends BaseQuickAdapter<ContentEntity, DataBind
         }
 
         public ViewDataBinding getBinding() {
-            return (ViewDataBinding)getConvertView().getTag(R.id.DataBinding_support);
+            return (ViewDataBinding) getConvertView().getTag(R.id.DataBinding_support);
         }
     }
 }
