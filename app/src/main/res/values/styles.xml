@@ -6,6 +6,7 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="colorPrimary">@color/status_bar_day</item>
         <item name="colorPrimaryDark">@color/status_bar_day</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="LoadingActivityTheme" parent="Theme.AppCompat.NoActionBar">

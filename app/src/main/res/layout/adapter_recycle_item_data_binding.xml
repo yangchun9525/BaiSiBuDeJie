@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title"
-                app:imageUrl="@{imageUrl}"
+                android:imageUrl="@{imageUrl}"
                 android:scaleType="fitXY"
                 android:visibility="gone"/>
         </com.yc.baisibudejie.base.BaseRelativeLayout>

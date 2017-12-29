@@ -70,7 +70,7 @@ public class StaticImageShowActivity extends BaseActivity implements View.OnClic
         int id = view.getId();
         switch (id){
             case R.id.livImage:
-                finish();
+                onBackPressed();
                 break;
             case R.id.tvDownload:
                 download();

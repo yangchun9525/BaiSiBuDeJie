@@ -50,7 +50,7 @@ public class DataBindingAdapter extends BaseQuickAdapter<ContentEntity, DataBind
         return new ContentEntityViewHolder(view);
     }
 
-    @BindingAdapter({"bind:imageUrl"})
+    @BindingAdapter({"android:imageUrl"})
     public static void loadImageView3(ImageView view, String url) {
         if (ValidatesUtil.isEmpty(url)) {
             view.setVisibility(View.GONE);

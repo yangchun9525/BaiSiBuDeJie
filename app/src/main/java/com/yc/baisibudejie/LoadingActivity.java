@@ -1,7 +1,10 @@
 package com.yc.baisibudejie;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -9,6 +12,7 @@ import android.widget.ImageView;
 
 import com.yc.baisibudejie.base.BaseActivity;
 import com.yc.baisibudejie.module.listview.MainListViewActivity;
+import com.yc.baisibudejie.receiver.NetWorkBroadcastReceiver;
 
 /**
  * Created by YangChun on 2016/4/21.
@@ -16,6 +20,7 @@ import com.yc.baisibudejie.module.listview.MainListViewActivity;
 public class LoadingActivity extends BaseActivity implements Animation.AnimationListener {
     private ImageView loadingIv;
     private Animation mFadeIn;
+    private NetWorkBroadcastReceiver networkBroadcast = new NetWorkBroadcastReceiver();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +29,14 @@ public class LoadingActivity extends BaseActivity implements Animation.Animation
         getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN , WindowManager.LayoutParams. FLAG_FULLSCREEN);
         setContentView(R.layout.activity_loading);
         init();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+                LoadingActivity.this.registerReceiver(networkBroadcast, filter);
+                // 加载session
+            }
+        }, 1000);
     }
 
     private void initAnim() {
@@ -77,5 +90,11 @@ public class LoadingActivity extends BaseActivity implements Animation.Animation
     @Override
     public void onAnimationRepeat(Animation animation) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(networkBroadcast);
     }
 }

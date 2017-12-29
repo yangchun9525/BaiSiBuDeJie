@@ -1,7 +1,9 @@
 package com.yc.baisibudejie.module.listview.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +93,7 @@ public class ListViewAdapter extends BaseAdapter {
             holder.tvTitle.setText(datas.get(i).text);
 
             if(datas.get(i).type.equals("10")) {
+                ViewHolder finalHolder = holder;
                 holder.ivImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -101,7 +104,12 @@ public class ListViewAdapter extends BaseAdapter {
                         }else {
                             Intent intent = new Intent(mContext, StaticImageShowActivity.class);
                             intent.putExtra("url", datas.get(i).image0);
-                            mContext.startActivity(intent);
+                            ActivityOptionsCompat optionsCompat =
+                                    ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext, finalHolder.ivImageView, "image");
+                            mContext.startActivity(intent,optionsCompat.toBundle());
+//                            Intent intent = new Intent(mContext, StaticImageShowActivity.class);
+//                            intent.putExtra("url", datas.get(i).image0);
+//                            mContext.startActivity(intent);
                         }
                     }
                 });
@@ -133,10 +141,11 @@ public class ListViewAdapter extends BaseAdapter {
         holder.ivImageView = (ImageView) convertView.findViewById(R.id.image);
         holder.jcVideoPlayer = (JCVideoPlayerStandard) convertView.findViewById(R.id.videocontroller1);
 
+
         DimensionUtil.setPadding(convertView, 30, 30, 30, 30);
         DimensionUtil.setMargin(holder.tvContent, 0, 30, 0, 0);
         DimensionUtil.setSize(holder.ivImageView, 1000, 1000);
-
+        holder.ivImageView.setAdjustViewBounds(true);
         holder.tvTitle.setTextSize(TextDisplayUtil.fixSpValue(R.dimen.text_size_common_txt_50));
         holder.tvContent.setTextSize(TextDisplayUtil.fixSpValue(R.dimen.text_size_common_txt_48));
         return holder;

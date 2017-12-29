@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda' //加上这句加,入plugin声明
 android {
     compileSdkVersion 24
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '26.0.2'
 
     dataBinding {
         enabled true
@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.yc.baisibudejie"
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 24
         versionCode 1
         versionName "2.1"
@@ -45,7 +45,7 @@ dependencies {
     compile project(':gallery')
     compile project(':jcvideoplayer-lib')
     compile project(':rxvolley')
-    compile files('libs/MobCommons-2016.0426.1819.jar')
+//    compile files('libs/MobCommons-2016.0426.1819.jar')
     //增加左滑退出activity的库
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
     //添加权限管理的库
@@ -60,6 +60,6 @@ dependencies {
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.6.2'
     //cardview
     compile 'com.android.support:cardview-v7:24.2.0'
-    compile files('libs/MobCommons-2017.0216.1054.jar')
+//    compile files('libs/MobCommons-2017.0216.1054.jar')
     compile 'com.shizhefei:LargeImageView:1.0.9'
 }

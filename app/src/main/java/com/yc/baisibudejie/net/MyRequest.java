@@ -3,6 +3,7 @@ package com.yc.baisibudejie.net;
 import android.app.FragmentManager;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -41,6 +42,7 @@ public class MyRequest extends StringRequest {
 
     /**
      * 更新http head
+     *
      * @param key
      * @param value
      */
@@ -64,7 +66,7 @@ public class MyRequest extends StringRequest {
 
     public static MyRequest createPostStringRequest(String requestCode, String url,
                                                     HashMap<String, String> params, IRequestListener requestListener) {
-        if(!ValidatesUtil.isEmpty(params)) {
+        if (!ValidatesUtil.isEmpty(params)) {
             mParams = params;
         }
         return createPostStringRequest(requestCode, url, params, requestListener, null);
@@ -72,16 +74,17 @@ public class MyRequest extends StringRequest {
 
     /**
      * 发送post方式的string request
-     * @param requestCode        请求代码
-     * @param url                 请求路径
-     * @param params              请求参数
-     * @param requestListener   请求回调
+     *
+     * @param requestCode     请求代码
+     * @param url             请求路径
+     * @param params          请求参数
+     * @param requestListener 请求回调
      * @param fragmentManager
      * @return
      */
     public static MyRequest createPostStringRequest(String requestCode, String url,
                                                     HashMap<String, String> params, IRequestListener requestListener, FragmentManager fragmentManager) {
-        if(!ValidatesUtil.isEmpty(params)) {
+        if (!ValidatesUtil.isEmpty(params)) {
             mParams = params;
         }
         return createStringRequest(Method.POST, requestCode, url, requestListener, fragmentManager);
@@ -94,10 +97,11 @@ public class MyRequest extends StringRequest {
 
     /**
      * 发送get方式的string request
-     * @param requestCode        请求代码
-     * @param url                 请求路径
-     * @param params              请求参数
-     * @param requestListener   请求回调
+     *
+     * @param requestCode     请求代码
+     * @param url             请求路径
+     * @param params          请求参数
+     * @param requestListener 请求回调
      * @param fragmentManager
      * @return
      */
@@ -118,10 +122,11 @@ public class MyRequest extends StringRequest {
 
     /**
      * 发送string request
-     * @param method              请求方式post/get
-     * @param requestCode        请求代码
-     * @param url                 请求路径
-     * @param requestListener   请求回调
+     *
+     * @param method          请求方式post/get
+     * @param requestCode     请求代码
+     * @param url             请求路径
+     * @param requestListener 请求回调
      * @return
      */
     private static MyRequest createStringRequest(int method, final String requestCode,
@@ -132,7 +137,7 @@ public class MyRequest extends StringRequest {
             @Override
             public void onResponse(String result) {
                 // 由于请求成功后，需要做json串解析，所以不在此处hide dialog
-                LogTools.i("requestCode = " + requestCode + " : " + result);
+                LogTools.i("yc-requestCode = " + requestCode + " : " + result);
                 requestListener.onRequestSuccess(requestCode, result);
             }
         };
@@ -140,12 +145,16 @@ public class MyRequest extends StringRequest {
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                LogTools.i("yc-volleyError = " + volleyError.networkResponse + "," + volleyError);
                 // 隐藏progress dialog
                 requestListener.onRequestError(requestCode, volleyError);
             }
         };
+
         // 创建request
         MyRequest myRequest = new MyRequest(method, url, successListener, errorListener);
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(180 * 1000, 10, 1.0f);
+        myRequest.setRetryPolicy(retryPolicy);
         return myRequest;
     }
 }

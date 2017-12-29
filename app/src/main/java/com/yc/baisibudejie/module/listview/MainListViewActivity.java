@@ -98,6 +98,7 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
                 .setForceAccepting(true) // default is false. its here so you know that it exists.
                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         sendRequest(Const.SHOWAPI_TYPE_IMAGE);
+//        sendRequest11(Const.SHOWAPI_TYPE_IMAGE);
     }
 
     private void sendRequest(String type) {
@@ -106,6 +107,12 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
         params.put("showapi_sign", Const.SHOWAPI_SIGN);
         params.put("type", type);
         RequestManager.getInstance().deliverCommonRequest(type, params, this, null);
+    }
+
+    private void sendRequest11(String type) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("subkey", "8eda3c3cab3e4beeb7b81561d1328be5");
+        RequestManager.getInstance().deliverGetRequest(type,"http://store.troncell.com/api/v1/Sensingdevice/products", params, this, null);
     }
 
     @Override
