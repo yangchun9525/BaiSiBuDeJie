@@ -1,6 +1,7 @@
 package com.yc.baisibudejie.module.listview.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -126,9 +127,9 @@ public class ItemFragment  extends BaseFragment implements IRequestListener, IPa
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         ContentEntity entity = (ContentEntity) lvAdapter.getItem((int)l);
         Uri uri = Uri.parse(entity.weixin_url);
-        showShare(entity.text,entity.weixin_url);
-//        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//        startActivity(intent);
+//        showShare(entity.text,entity.weixin_url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 
     private void showShare(String title,String url) {

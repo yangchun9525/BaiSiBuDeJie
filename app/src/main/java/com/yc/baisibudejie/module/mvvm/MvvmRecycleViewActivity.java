@@ -52,7 +52,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by YangChun on 2016/4/19.
  */
-public class MvvmRecycleViewActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener,SwipeBackActivityBase, View.OnClickListener {
+public class MvvmRecycleViewActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
     private RecyclerView mRecyclerView;
     private DataBindingAdapter mQuickAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -61,7 +61,7 @@ public class MvvmRecycleViewActivity extends BaseActivity implements SwipeRefres
     private int currentPage = 1;
     private boolean isLoadMore = false;
     private ArrayList<ContentEntity> contentlist = new ArrayList<>();
-    private SwipeBackActivityHelper swipeBackActivityHelper;
+//    private SwipeBackActivityHelper swipeBackActivityHelper;
 
     private BaseRelativeLayout mTopRela;
     private View mViewActionBarDivide;
@@ -70,8 +70,8 @@ public class MvvmRecycleViewActivity extends BaseActivity implements SwipeRefres
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        swipeBackActivityHelper = new SwipeBackActivityHelper(this);
-        swipeBackActivityHelper.onActivityCreate();
+//        swipeBackActivityHelper = new SwipeBackActivityHelper(this);
+//        swipeBackActivityHelper.onActivityCreate();
         setContentView(R.layout.activity_main_recyclerview);
         init();
         rxVolleyPost(Const.SHOWAPI_TYPE_IMAGE);
@@ -273,26 +273,26 @@ public class MvvmRecycleViewActivity extends BaseActivity implements SwipeRefres
         rxVolleyPost(Const.SHOWAPI_TYPE_IMAGE);
     }
 
-    @Override
-    public SwipeBackLayout getSwipeBackLayout() {
-        return swipeBackActivityHelper.getSwipeBackLayout();
-    }
-
-    @Override
-    public void setSwipeBackEnable(boolean enable) {
-        getSwipeBackLayout().setEnableGesture(enable);
-    }
-
-    @Override
-    public void scrollToFinishActivity() {
-        Utils.convertActivityToTranslucent(this);
-        getSwipeBackLayout().scrollToFinishActivity();
-    }
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        swipeBackActivityHelper.onPostCreate();
-    }
+//    @Override
+//    public SwipeBackLayout getSwipeBackLayout() {
+//        return swipeBackActivityHelper.getSwipeBackLayout();
+//    }
+//
+//    @Override
+//    public void setSwipeBackEnable(boolean enable) {
+//        getSwipeBackLayout().setEnableGesture(enable);
+//    }
+//
+//    @Override
+//    public void scrollToFinishActivity() {
+//        Utils.convertActivityToTranslucent(this);
+//        getSwipeBackLayout().scrollToFinishActivity();
+//    }
+//    @Override
+//    protected void onPostCreate(Bundle savedInstanceState) {
+//        super.onPostCreate(savedInstanceState);
+//        swipeBackActivityHelper.onPostCreate();
+//    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

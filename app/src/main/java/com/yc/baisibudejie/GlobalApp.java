@@ -2,6 +2,7 @@ package com.yc.baisibudejie;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.graphics.Typeface;
 
 import com.umeng.analytics.MobclickAgent;
@@ -37,6 +38,12 @@ public class GlobalApp extends Application {
         return sGlobalApp;
     }
 
+//    public static RefWatcher getRefWatcher(Context context) {
+//        GlobalApp application = (GlobalApp) context.getApplicationContext();
+//        return application.refWatcher;
+//    }
+//
+//    private RefWatcher refWatcher;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -51,6 +58,7 @@ public class GlobalApp extends Application {
         initApp();
         ShareSDK.initSDK(this);
         MobclickAgent.setCatchUncaughtExceptions(true);
+//        refWatcher = LeakCanary.install(this);
     }
 
     private void initApp() {

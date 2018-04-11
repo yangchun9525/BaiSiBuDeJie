@@ -15,6 +15,7 @@ import com.shizhefei.view.largeimage.factory.FileBitmapDecoderFactory;
 import com.yc.baisibudejie.R;
 
 import java.io.File;
+import java.util.Observable;
 
 public class ImageLoadManager {
 

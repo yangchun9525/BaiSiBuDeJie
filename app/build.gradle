@@ -62,4 +62,7 @@ dependencies {
     compile 'com.android.support:cardview-v7:24.2.0'
 //    compile files('libs/MobCommons-2017.0216.1054.jar')
     compile 'com.shizhefei:LargeImageView:1.0.9'
+
+//    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+//    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 }

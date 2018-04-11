@@ -53,6 +53,7 @@ import com.yc.baisibudejie.utils.LogTools;
 import com.yc.baisibudejie.utils.SecurityUtil;
 import com.yc.baisibudejie.utils.SharedPreferencesMgr;
 import com.yc.baisibudejie.utils.TextDisplayUtil;
+import com.yc.baisibudejie.utils.ToastUtil;
 import com.yc.baisibudejie.utils.ValidatesUtil;
 import com.yc.baisibudejie.widget.SlipViewPager;
 
@@ -111,8 +112,10 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     private void sendRequest11(String type) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("subkey", "8eda3c3cab3e4beeb7b81561d1328be5");
-        RequestManager.getInstance().deliverGetRequest(type,"http://store.troncell.com/api/v1/Sensingdevice/products", params, this, null);
+        params.put("UserName", "d2c_User001");
+        params.put("Password", "1q2w3e4r");
+        params.put("Mac", "88:EE:FF:DD:AA");
+        RequestManager.getInstance().deliverCommonRequest(type,"http://jbgw.troncell.com/api/v1/Sensingdevice/login", params, this, null);
     }
 
     @Override
@@ -237,6 +240,8 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     @Override
     public void onRequestSuccess(String requestCode, String result) {
+        LogTools.i("yc-result",result);
+//        ToastUtil.showLongToast(result);
         String appPath = "BaiSiBuDeJie";
 
         File file = Environment.getExternalStoragePublicDirectory(appPath);
@@ -252,6 +257,7 @@ public class MainListViewActivity extends BaseActivity implements IRequestListen
 
     @Override
     public void onRequestError(String requestCode, VolleyError volleyError) {
+        ToastUtil.showLongToast(requestCode);
         String result = LruCacheManager.getStringFromCache(SecurityUtil.getMD5(requestCode));
         if (!ValidatesUtil.isEmpty(result)) {
             ParserFacade parser = new ParserFacade(requestCode, this);
