@@ -65,6 +65,13 @@
         </activity>
 
         <activity
+            android:name=".TestActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <activity
             android:name=".module.listview.MainListViewActivity"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation"

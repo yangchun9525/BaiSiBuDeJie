@@ -4,10 +4,12 @@ import android.app.FragmentManager;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.yc.baisibudejie.constant.Const;
 import com.yc.baisibudejie.constant.HttpURL;
 import com.yc.baisibudejie.net.IRequestListener;
+import com.yc.baisibudejie.net.MyJsonRequest;
 import com.yc.baisibudejie.net.MyRequest;
 import com.yc.baisibudejie.net.MyVolley;
 import com.yc.baisibudejie.utils.LogTools;
@@ -79,6 +81,27 @@ public class RequestManager {
         mRequestQueue.add(request);
     }
 
+
+    public void doNetWork(String requestCode, String requestURL,
+                          HashMap<String, String> params, int timeoutMs,
+                          IRequestListener requestListener, FragmentManager fragmentManager){
+        JsonObjectRequest request = MyJsonRequest.createPostStringRequest(requestCode, requestURL, params, requestListener, fragmentManager);
+
+        //设置不要缓存请求(解决中断正在执行的网络请求)
+        request.setShouldCache(false);
+        REQUEST_TAG = requestCode;
+        request.setTag(REQUEST_TAG);
+        Const.isCancelRequest = true;
+        LogTools.i(REQUEST_TAG);
+
+        // Volley中没有指定的方法来设置请求超时时间，可以设置RetryPolicy 来变通实现。
+        // 10s超时
+        // 重试次数1
+        // 1.0f为超时因子，控制下次重试时的超时时间
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(timeoutMs, 1, 1.0f);
+        request.setRetryPolicy(retryPolicy);
+        mRequestQueue.add(request);
+    }
     /**
      * 通用请求处理
      * @param requestCode         请求代码

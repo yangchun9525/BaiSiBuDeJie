@@ -8,5 +8,6 @@ public class HttpURL {
      */
     public static String getCommonRequestURL(){
         return "http://route.showapi.com/255-1";
+//        return "http://192.168.1.141:8080/testRequestBody";
     }
 }
